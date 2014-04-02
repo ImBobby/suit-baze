@@ -1,0 +1,28 @@
+{
+  "name": "PROJECT_NAME",
+  "version": "0.0.0",
+  "authors": [
+    "Suitmedia"
+  ],
+  "description": "PROJECT_DESC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "PROJECT_GIT_URL"
+  },
+  "devDependencies": {
+    "gulp-ruby-sass": "~0.3.0",
+    "gulp-util": "~2.2.14",
+    "gulp": "~3.5.2",
+    "gulp-autoprefixer": "0.0.6",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-minify-css": "~0.3.0",
+    "gulp-rename": "~1.0.0",
+    "gulp-uglify": "~0.2.1",
+    "gulp-clean": "~0.2.4",
+    "gulp-livereload": "~1.1.1",
+    "gulp-watch": "~0.5.0",
+    "gulp-changed": "~0.2.1",
+    "gulp-webp": "~0.1.2"
+  }
+}

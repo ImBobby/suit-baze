@@ -1,0 +1,145 @@
+/*--------------------------------*\ 
+ 	
+ 	Mobile First Responsive Table
+ 	structure:
+  	
+ 	table
+ 	-thead
+ 	--tr
+	---th
+ 	-tbody
+ 	--tr
+ 	---td
+
+ 	Available modifier:
+ 	* table--responsive
+ 	* table--zebra
+ 	* table--compact
+
+\*--------------------------------*/
+
+$border: "solid 1px " + $table-border;
+
+/*table*/.table{
+	background: $table-background;
+	text-align: left;
+
+	thead{
+		background: $table-thead-background;
+
+		tr{
+			border-top: unquote($border);
+		}
+	}
+
+	tr{
+		border-bottom: unquote($border);
+	}
+
+	th,
+	td{
+		border-right: unquote($border);
+		padding: $table-cell-padding;
+
+		&:first-child{
+			border-left: unquote($border);
+		}
+	}
+}
+
+.table--responsive{
+	display: block;
+	position: relative;
+
+	@extend .clearfix;
+
+	@media #{$tablet}{
+		display: table;
+	}
+
+	thead{
+		border-left: unquote($border);
+		display: block;
+		float: left;
+
+		@media #{$tablet}{
+			border-left: none;
+			display: table-header-group;
+			float: none;
+		}
+
+		tr{
+			display: block;
+
+			@media #{$tablet}{
+				display: table-row;
+			}
+		}
+	}
+
+	tbody{
+		// border-right: unquote($border);
+		display: block;
+		overflow-x: auto;
+		position: relative;
+		white-space: nowrap;
+		width: auto;
+
+		@media #{$tablet}{
+			display: table-row-group;
+			white-space: normal;
+		}
+
+		tr{
+			border-top: unquote($border);
+			display: inline-block;
+			margin-left: -4px;
+
+			@media #{$tablet}{
+				border-top: none;
+				display: table-row;
+			}
+		}
+	}
+
+	th,
+	td{
+		display: block;
+
+		&:first-child{
+			border-left: none;
+
+			@media #{$tablet}{
+				border-left: unquote($border);
+			}
+		}
+
+		@media #{$tablet}{
+			display: table-cell;
+		}
+	}
+	
+	th + th,
+	td + td{
+		border-top: unquote($border);
+
+		@media #{$tablet}{
+			border-top: none;
+		}
+	}
+}
+
+.table--zebra{
+	tbody{
+		tr:nth-child(2n){
+			background: $table-zebra;
+		}
+	}
+}
+
+.table--compact{
+	th,
+	td{
+		padding: $table-cell-padding-compact;
+	}
+}

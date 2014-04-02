@@ -1,0 +1,75 @@
+/* Typography
+------------------------------------------------------------------------------*/
+
+$base_font_size   	: 16px;
+$base_line_height 	: 1.6em;
+$base_font_family   : sans-serif;
+$space              : $base_line_height;
+
+
+
+
+/* Colors
+------------------------------------------------------------------------------*/
+
+$black 	 			: #222;
+$black90 			: lighten($black, 10%);
+$black80 			: lighten($black, 20%);
+$black70 			: lighten($black, 30%);
+$black60 			: lighten($black, 40%);
+$black50 			: lighten($black, 50%);
+$black40 			: lighten($black, 60%);
+$black30 			: lighten($black, 70%);
+$black20 			: lighten($black, 80%);
+$black10 			: lighten($black, 90%);
+
+$link               : #0094ed;
+$link_hover 		: darken($link, 10%);
+
+$selection_bg 	 	: #b3d4fc;
+$selection_color 	: $black;
+
+
+
+
+/* Break Points
+------------------------------------------------------------------------------*/
+
+$phone 				: "screen and (min-width: 20em)";
+$phone_portrait 	: "screen and (min-width: 20em) and (orientation: portrait)";
+$phone_landscape 	: "screen and (min-width: 20em) and (orientation: landscape)";
+
+$phablet 			: "screen and (min-width: 30em)";
+$phablet_portrait   : "screen and (min-width: 30em) and (orientation: portrait)";
+$phablet_landscape  : "screen and (min-width: 30em) and (orientation: landscape)";
+
+$tablet 			: "screen and (min-width: 48em)";
+$tablet_portrait 	: "screen and (min-width: 48em) and (orientation: portrait)";
+$tablet_landscape 	: "screen and (min-width: 48em) and (orientation: landscape)";
+
+$desktop 			: "screen and (min-width: 60em)";
+
+$retina             : "only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 13/10), only screen and (min-resolution: 120dpi)";
+
+
+
+
+/* Table
+------------------------------------------------------------------------------*/
+
+$table-background 			: lighten($black20, 7%);
+$table-border 				: #c6c6c6;
+$table-zebra 				: lighten($black20, 3%);
+$table-thead-background 	: $black20;
+
+$table-cell-padding 		: .4em;
+$table-cell-padding-compact : .2em .4em;
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,119 @@
+
+$MINOR_SECOND   : 1.067;
+$MAJOR_SECOND   : 1.125;
+$MINOR_THIRD    : 1.2;
+$MAJOR_THIRD    : 1.25;
+$PERFECT_FOURTH : 1.333;
+$PERFECT_FIFTH  : 1.5;
+$GOLDEN_SECTION : 1.618;
+$MINOR_SIXTH    : 1.6;
+$MAJOR_SIXTH    : 1.667;
+$MINOR_SEVENTH  : 1.778;
+
+$RATIO          : $PERFECT_FOURTH;
+
+@function getLineHeight($font_size) {
+    $temp: $base_line_height / $font_size * 1em;
+
+    @if $temp < 1em {
+        @return 1em;
+    } @else {
+        @return $temp;
+    }
+}
+
+@function getMarginBottom ($font_size) {
+    $temp: $base_line_height / $font_size * 1em;
+    
+    @return $temp;
+}
+
+@mixin typography_getDefaultStyle() {
+    $font_size: 1em;
+    
+    font-size: $font_size;
+    line-height: getLineHeight($font_size);
+    margin: 0 0 getMarginBottom($font_size) 0;
+}
+
+h1,
+.h1 {
+    $font_size: $RATIO * $RATIO * $RATIO * 1em;
+    
+    font-size: $font_size;
+    line-height: getLineHeight($font_size);
+    margin: 0 0 getMarginBottom($font_size) 0;
+}
+
+h2,
+.h2 {
+    $font_size: $RATIO * $RATIO * 1em;
+    
+    font-size: $font_size;
+    line-height: getLineHeight($font_size);
+    margin: 0 0 getMarginBottom($font_size) 0;
+}
+
+h3,
+.h3 {
+    $font_size: $RATIO * 1em;
+    
+    font-size: $font_size;
+    line-height: getLineHeight($font_size);
+    margin: 0 0 getMarginBottom($font_size) 0;
+}
+
+h4,
+.h4 {
+    @include typography_getDefaultStyle();
+}
+
+h5,
+.h5 {
+    $font_size: (1 / $RATIO) * 1em;
+    
+    font-size: $font_size;
+    line-height: getLineHeight($font_size);
+    margin: 0 0 getMarginBottom($font_size) 0;
+}
+
+h6,
+.h6 {
+    $font_size: (1 / ($RATIO * $RATIO)) * 1em;
+    
+    font-size: $font_size;
+    line-height: getLineHeight($font_size);
+    margin: 0 0 getMarginBottom($font_size) 0;
+}
+
+p,
+ul,
+ol,
+hr,
+table {
+    @include typography_getDefaultStyle();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
