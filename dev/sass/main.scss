@@ -56,29 +56,29 @@
  ######     ##       ##    ######## ########  ######
 ------------------------------------------------------------------------------*/
 
-*{
+* {
     box-sizing: border-box;
 }
 
-html{
+html {
     font: 400 $base_font_size $base_font_family;
     line-height: $base_line_height;
 }
 
-body{
+body {
 	color: $black90;
 }
 
-a{
+a {
 	color: $link;
 	text-decoration: none;
 
-	.no-touch &:hover{
+	&:hover{
 		color: $link_hover;
 	}
 
-    .no-touch &:focus,
-    .touch &:active {
+    &:focus,
+    &:active {
         background: $link_hover;
         color: white;
     }
