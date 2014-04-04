@@ -104,6 +104,9 @@ gulp.task('copyCSS', function () {
 gulp.task('copy-JS', function () {
     return gulp
         .src(paths.dev + 'js/**/*.js')
+        .pipe(task_rename({
+            suffix: '.min'
+        }))
         .pipe( gulp.dest( paths.build + 'js'));
 });
 
