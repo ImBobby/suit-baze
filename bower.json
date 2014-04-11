@@ -1,12 +1,12 @@
 {
-  "name": "PROJECT_NAME",
+  "name": "suit-baze",
   "version": "0.0.0",
   "authors": [
     "Suitmedia"
   ],
-  "description": "PROJECT_DESC",
+  "description": "suit-baze is a Front-end starter kit base on HTML5 Boilerplate, modified by Suitmedia",
   "license": "MIT",
-  "homepage": "PROJECT_URL",
+  "homepage": "https://github.com/ImBobby/suit-baze",
   "devDependencies": {
     "jquery": "1.11.0",
     "normalize-css": "~3.0.0",
