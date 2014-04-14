@@ -35,19 +35,15 @@ $selection_color 	: $black;
 /* Break Points
 ------------------------------------------------------------------------------*/
 
-$phone 				: "screen and (min-width: 20em)";
-$phone_portrait 	: "screen and (min-width: 20em) and (orientation: portrait)";
-$phone_landscape 	: "screen and (min-width: 20em) and (orientation: landscape)";
+$small 				: "screen and (min-width: 20em)";
+$small_portrait 	: "screen and (min-width: 20em) and (orientation: portrait)";
+$small_landscape 	: "screen and (min-width: 20em) and (orientation: landscape)";
 
-$phablet 			: "screen and (min-width: 30em)";
-$phablet_portrait   : "screen and (min-width: 30em) and (orientation: portrait)";
-$phablet_landscape  : "screen and (min-width: 30em) and (orientation: landscape)";
+$medium 			: "screen and (min-width: 48em)";
+$medium_portrait 	: "screen and (min-width: 48em) and (orientation: portrait)";
+$medium_landscape 	: "screen and (min-width: 48em) and (orientation: landscape)";
 
-$tablet 			: "screen and (min-width: 48em)";
-$tablet_portrait 	: "screen and (min-width: 48em) and (orientation: portrait)";
-$tablet_landscape 	: "screen and (min-width: 48em) and (orientation: landscape)";
-
-$desktop 			: "screen and (min-width: 60em)";
+$large              : "screen and (min-width: 60em)";
 
 $retina             : "only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 13/10), only screen and (min-resolution: 120dpi)";
 
