@@ -18,6 +18,17 @@
 
 \*--------------------------------*/
 
+/* Base style
+--------------------------------------------------------------------------- */
+
+$table_cell_padding         : .4em;
+$table_cell_padding_compact : .2em .4em;
+
+$table_background           : lighten($black20, 7%);
+$table_border               : #c6c6c6;
+$table_zebra                : lighten($black20, 3%);
+$table_thead_background     : $black20;
+
 $border: "solid 1px " + $table-border;
 
 /*table*/.table{
