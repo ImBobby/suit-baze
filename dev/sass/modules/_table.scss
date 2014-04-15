@@ -32,8 +32,8 @@ $table_thead_background     : $black20;
 $table_border_prop          : "solid 1px " + $table-border;
 
 /*table*/.table {
-    background: $table_background;
     text-align: left;
+    background: $table_background;
 
     thead {
         background: $table_thead_background;
@@ -49,8 +49,8 @@ $table_border_prop          : "solid 1px " + $table-border;
 
     th,
     td {
-        border-right: unquote($table_border_prop);
         padding: $table_cell_padding;
+        border-right: unquote($table_border_prop);
 
         &:first-child {
             border-left: unquote($table_border_prop);
@@ -61,22 +61,22 @@ $table_border_prop          : "solid 1px " + $table-border;
 .table--responsive {
     @extend .clearfix;
     
-    display: block;
     position: relative;
+    display: block;
 
     @media #{$tablet} {
         display: table;
     }
 
     thead {
-        border-left: unquote($table_border_prop);
         display: block;
         float: left;
+        border-left: unquote($table_border_prop);
 
         @media #{$tablet} {
-            border-left: none;
-            display: table-header-group;
             float: none;
+            display: table-header-group;
+            border-left: none;
         }
 
         tr {
@@ -89,11 +89,11 @@ $table_border_prop          : "solid 1px " + $table-border;
     }
 
     tbody {
-        display: block;
-        overflow-x: auto;
         position: relative;
-        white-space: nowrap;
+        display: block;
         width: auto;
+        overflow-x: auto;
+        white-space: nowrap;
         
         @media #{$tablet} {
             display: table-row-group;
@@ -101,13 +101,13 @@ $table_border_prop          : "solid 1px " + $table-border;
         }
 
         tr {
-            border-top: unquote($table_border_prop);
             display: inline-block;
+            border-top: unquote($table_border_prop);
             margin-left: -4px;
 
             @media #{$tablet} {
-                border-top: none;
                 display: table-row;
+                border-top: none;
             }
         }
     }
