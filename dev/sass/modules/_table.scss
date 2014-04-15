@@ -68,7 +68,7 @@ $table_border_prop          : "solid 1px " + $table-border;
         display: table;
     }
 
-    thead{
+    thead {
         border-left: unquote($table_border_prop);
         display: block;
         float: left;
@@ -79,7 +79,7 @@ $table_border_prop          : "solid 1px " + $table-border;
             float: none;
         }
 
-        tr{
+        tr {
             display: block;
 
             @media #{$tablet} {
@@ -130,7 +130,7 @@ $table_border_prop          : "solid 1px " + $table-border;
     }
 
     th + th,
-    td + td{
+    td + td {
         border-top: unquote($table_border_prop);
 
         @media #{$tablet} {
