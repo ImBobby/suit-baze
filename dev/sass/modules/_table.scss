@@ -1,20 +1,20 @@
-/*--------------------------------*\ 
- 	
- 	Mobile First Responsive Table
- 	structure:
-  	
- 	table
- 	-thead
- 	--tr
-	---th
- 	-tbody
- 	--tr
- 	---td
+/*--------------------------------*\
 
- 	Available modifier:
- 	* table--responsive
- 	* table--zebra
- 	* table--compact
+    Responsive Table
+    structure:
+ 
+    table
+    -thead
+    --tr
+    ---th
+    -tbody
+    --tr
+    ---td
+
+    Available modifier:
+    * table--responsive
+    * table--zebra
+    * table--compact
 
 \*--------------------------------*/
 
@@ -29,128 +29,127 @@ $table_border               : #c6c6c6;
 $table_zebra                : lighten($black20, 3%);
 $table_thead_background     : $black20;
 
-$border: "solid 1px " + $table-border;
+$table_border_prop          : "solid 1px " + $table-border;
 
-/*table*/.table{
-	background: $table-background;
-	text-align: left;
+/*table*/.table {
+    background: $table_background;
+    text-align: left;
 
-	thead{
-		background: $table-thead-background;
+    thead {
+        background: $table_thead_background;
 
-		tr{
-			border-top: unquote($border);
-		}
-	}
+        tr {
+            border-top: unquote($table_border_prop);
+        }
+    }
 
-	tr{
-		border-bottom: unquote($border);
-	}
+    tr {
+        border-bottom: unquote($table_border_prop);
+    }
 
-	th,
-	td{
-		border-right: unquote($border);
-		padding: $table-cell-padding;
+    th,
+    td {
+        border-right: unquote($table_border_prop);
+        padding: $table_cell_padding;
 
-		&:first-child{
-			border-left: unquote($border);
-		}
-	}
+        &:first-child {
+            border-left: unquote($table_border_prop);
+        }
+    }
 }
 
-.table--responsive{
-	display: block;
-	position: relative;
+.table--responsive {
+    @extend .clearfix;
+    
+    display: block;
+    position: relative;
 
-	@extend .clearfix;
+    @media #{$tablet} {
+        display: table;
+    }
 
-	@media #{$tablet}{
-		display: table;
-	}
+    thead{
+        border-left: unquote($table_border_prop);
+        display: block;
+        float: left;
 
-	thead{
-		border-left: unquote($border);
-		display: block;
-		float: left;
+        @media #{$tablet} {
+            border-left: none;
+            display: table-header-group;
+            float: none;
+        }
 
-		@media #{$tablet}{
-			border-left: none;
-			display: table-header-group;
-			float: none;
-		}
+        tr{
+            display: block;
 
-		tr{
-			display: block;
+            @media #{$tablet} {
+                display: table-row;
+            }
+        }
+    }
 
-			@media #{$tablet}{
-				display: table-row;
-			}
-		}
-	}
+    tbody {
+        display: block;
+        overflow-x: auto;
+        position: relative;
+        white-space: nowrap;
+        width: auto;
+        
+        @media #{$tablet} {
+            display: table-row-group;
+            white-space: normal;
+        }
 
-	tbody{
-		// border-right: unquote($border);
-		display: block;
-		overflow-x: auto;
-		position: relative;
-		white-space: nowrap;
-		width: auto;
+        tr {
+            border-top: unquote($table_border_prop);
+            display: inline-block;
+            margin-left: -4px;
 
-		@media #{$tablet}{
-			display: table-row-group;
-			white-space: normal;
-		}
+            @media #{$tablet} {
+                border-top: none;
+                display: table-row;
+            }
+        }
+    }
 
-		tr{
-			border-top: unquote($border);
-			display: inline-block;
-			margin-left: -4px;
+    th,
+    td {
+        display: block;
 
-			@media #{$tablet}{
-				border-top: none;
-				display: table-row;
-			}
-		}
-	}
+        &:first-child {
+            border-left: none;
 
-	th,
-	td{
-		display: block;
+            @media #{$tablet} {
+                border-left: unquote($table_border_prop);
+            }
+        }
 
-		&:first-child{
-			border-left: none;
+        @media #{$tablet} {
+            display: table-cell;
+        }
+    }
 
-			@media #{$tablet}{
-				border-left: unquote($border);
-			}
-		}
+    th + th,
+    td + td{
+        border-top: unquote($table_border_prop);
 
-		@media #{$tablet}{
-			display: table-cell;
-		}
-	}
-	
-	th + th,
-	td + td{
-		border-top: unquote($border);
-
-		@media #{$tablet}{
-			border-top: none;
-		}
-	}
+        @media #{$tablet} {
+            border-top: none;
+        }
+    }
 }
 
-.table--zebra{
-	tbody{
-		tr:nth-child(2n){
-			background: $table-zebra;
-		}
-	}
+.table--zebra {
+    tbody {
+        tr:nth-child(2n) {
+            background: $table-zebra;
+        }
+    }
 }
 
-.table--compact{
-	th,
-	td{
-		padding: $table-cell-padding-compact;
-	}
+.table--compact {
+    th,
+    td {
+        padding: $table-cell-padding-compact;
+    }
 }
