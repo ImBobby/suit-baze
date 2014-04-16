@@ -34,18 +34,10 @@
     visibility: hidden;
 }
 
-.clearfix {
-    *zoom: 1;
-
-    &:before,
-    &:after{
-        content: '';
-        display: table;
-    }
-
-    &:after{
-        clear: both;
-    }
+.clearfix:after {
+    display: table;
+    clear: both;
+    content: '';
 }
 
 .align-center{
@@ -58,8 +50,4 @@
 
 .list-inline > li{
     display: inline-block;
-}
-
-.lt-ie8 .list-inline > li{
-    display: inline;
 }
