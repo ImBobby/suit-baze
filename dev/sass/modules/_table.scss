@@ -64,7 +64,7 @@ $table_border_prop          : "solid 1px " + $table-border;
     position: relative;
     display: block;
 
-    @media #{$tablet} {
+    @media #{$medium} {
         display: table;
     }
 
@@ -73,7 +73,7 @@ $table_border_prop          : "solid 1px " + $table-border;
         float: left;
         border-left: unquote($table_border_prop);
 
-        @media #{$tablet} {
+        @media #{$medium} {
             float: none;
             display: table-header-group;
             border-left: none;
@@ -82,7 +82,7 @@ $table_border_prop          : "solid 1px " + $table-border;
         tr {
             display: block;
 
-            @media #{$tablet} {
+            @media #{$medium} {
                 display: table-row;
             }
         }
@@ -95,7 +95,7 @@ $table_border_prop          : "solid 1px " + $table-border;
         overflow-x: auto;
         white-space: nowrap;
         
-        @media #{$tablet} {
+        @media #{$medium} {
             display: table-row-group;
             white-space: normal;
         }
@@ -105,7 +105,7 @@ $table_border_prop          : "solid 1px " + $table-border;
             border-top: unquote($table_border_prop);
             margin-left: -4px;
 
-            @media #{$tablet} {
+            @media #{$medium} {
                 display: table-row;
                 border-top: none;
             }
@@ -119,12 +119,12 @@ $table_border_prop          : "solid 1px " + $table-border;
         &:first-child {
             border-left: none;
 
-            @media #{$tablet} {
+            @media #{$medium} {
                 border-left: unquote($table_border_prop);
             }
         }
 
-        @media #{$tablet} {
+        @media #{$medium} {
             display: table-cell;
         }
     }
@@ -133,7 +133,7 @@ $table_border_prop          : "solid 1px " + $table-border;
     td + td {
         border-top: unquote($table_border_prop);
 
-        @media #{$tablet} {
+        @media #{$medium} {
             border-top: none;
         }
     }
