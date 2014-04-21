@@ -29,7 +29,7 @@ $RATIO          : $PERFECT_FOURTH;
     }
 }
 
-@function getMarginBottom ($font_size) {
+@function getMarginBottom($font_size) {
     $temp: $base_line_height / $font_size * 1em;
     
     @return $temp;
