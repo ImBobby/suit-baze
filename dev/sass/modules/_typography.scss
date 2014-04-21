@@ -1,4 +1,7 @@
 
+/* Ratio variables
+--------------------------------------------------------------------------- */
+
 $MINOR_SECOND   : 1.067;
 $MAJOR_SECOND   : 1.125;
 $MINOR_THIRD    : 1.2;
@@ -12,11 +15,15 @@ $MINOR_SEVENTH  : 1.778;
 
 $RATIO          : $PERFECT_FOURTH;
 
+
+/* Functions and Mixins
+--------------------------------------------------------------------------- */
+
 @function getLineHeight($font_size) {
     $temp: $base_line_height / $font_size * 1em;
 
     @if $temp < 1em {
-        @return 1em;
+        @return $temp*1.5;
     } @else {
         @return $temp;
     }
@@ -36,54 +43,57 @@ $RATIO          : $PERFECT_FOURTH;
     margin: 0 0 getMarginBottom($font_size) 0;
 }
 
-h1,
-.h1 {
-    $font_size: $RATIO * $RATIO * $RATIO * 1em;
-    
+@mixin typography_getStyle($multiplier, $direction: 'up') {
+    $font_size: 1em;
+
+    @if $direction == up {
+        @for $i from 1 through $multiplier {
+            $font_size: $font_size * $RATIO;
+        }
+    } @else {
+        @for $i from 1 through $multiplier {
+            $font_size: (1 / $RATIO) * $font_size;
+        }
+    }
+
     font-size: $font_size;
     line-height: getLineHeight($font_size);
     margin: 0 0 getMarginBottom($font_size) 0;
+
+}
+
+
+/* Styles
+--------------------------------------------------------------------------- */
+
+h1,
+.h1 {
+    @include typography_getStyle(3);
 }
 
 h2,
 .h2 {
-    $font_size: $RATIO * $RATIO * 1em;
-    
-    font-size: $font_size;
-    line-height: getLineHeight($font_size);
-    margin: 0 0 getMarginBottom($font_size) 0;
+    @include typography_getStyle(2);
 }
 
 h3,
 .h3 {
-    $font_size: $RATIO * 1em;
-    
-    font-size: $font_size;
-    line-height: getLineHeight($font_size);
-    margin: 0 0 getMarginBottom($font_size) 0;
+    @include typography_getStyle(1);
 }
 
 h4,
 .h4 {
-    @include typography_getDefaultStyle();
+    @include typography_getStyle(0);
 }
 
 h5,
 .h5 {
-    $font_size: (1 / $RATIO) * 1em;
-    
-    font-size: $font_size;
-    line-height: getLineHeight($font_size);
-    margin: 0 0 getMarginBottom($font_size) 0;
+    @include typography_getStyle(1, 'down');
 }
 
 h6,
 .h6 {
-    $font_size: (1 / ($RATIO * $RATIO)) * 1em;
-    
-    font-size: $font_size;
-    line-height: getLineHeight($font_size);
-    margin: 0 0 getMarginBottom($font_size) 0;
+    @include typography_getStyle(2, 'down');
 }
 
 p,
@@ -91,7 +101,7 @@ ul,
 ol,
 hr,
 table {
-    @include typography_getDefaultStyle();
+    @include typography_getStyle(0);
 }
 
 
