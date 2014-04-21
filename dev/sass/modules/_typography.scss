@@ -35,14 +35,6 @@ $RATIO          : $PERFECT_FOURTH;
     @return $temp;
 }
 
-@mixin typography_getDefaultStyle() {
-    $font_size: 1em;
-    
-    font-size: $font_size;
-    line-height: getLineHeight($font_size);
-    margin: 0 0 getMarginBottom($font_size) 0;
-}
-
 @mixin typography_getStyle($multiplier, $direction: 'up') {
     $font_size: 1em;
 
