@@ -1,0 +1,38 @@
+
+/* Setup
+--------------------------------------------------------------------------- */
+
+$BTN_PADDING: $space/3 $space;
+
+
+/* Base Style
+--------------------------------------------------------------------------- */
+
+.btn {
+    display: inline-block;
+    padding: $BTN_PADDING;
+    border: 0;
+    line-height: $base_line_height;
+    text-align: center;
+    vertical-align: middle;
+    color: $black80;
+    background: #ddd;
+
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+    &:focus {
+        outline: none;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}
+
+
+/* Modifier
+--------------------------------------------------------------------------- */
+
+.btn--block {
+    width: 100%;
+}
