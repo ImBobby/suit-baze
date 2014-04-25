@@ -101,7 +101,7 @@ gulp.task('autoprefix', function () {
 gulp.task('style', function () {
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(task_sass({ style: 'expanded' })
+        .pipe(task_sass({ style: 'compressed' })
             .on('error', gutil.log)
             .on('error', gutil.beep)
         )
