@@ -78,7 +78,34 @@ gulp.task('sass', function () {
             .on('error', gutil.log)
             .on('error', gutil.beep)
         )
+        .pipe(gulp.dest( paths.build + 'css'));
+});
+
+
+
+/* Task: Autoprefix
+--------------------------------------------------------------------------------- */
+
+gulp.task('autoprefix', function () {
+    return gulp
+        .src(paths.build + 'css/main.css')
         .pipe(task_prefixer())
+        .pipe(gulp.dest( paths.build + 'css'));
+});
+
+
+
+/* Task: Style
+--------------------------------------------------------------------------------- */
+
+gulp.task('style', function () {
+    return gulp
+        .src(paths.dev + 'sass/main.scss')
+        .pipe(task_sass({ style: 'expanded' })
+            .on('error', gutil.log)
+            .on('error', gutil.beep)
+        )
+        .pipe( task_prefixer() )
         .pipe(gulp.dest( paths.build + 'css'));
 });
 
@@ -189,7 +216,9 @@ gulp.task('clean', function () {
 /* Task: Default
 --------------------------------------------------------------------------------- */
 
-gulp.task('default', ['imagemin', 'sass', 'copy-JS', 'fonts', 'copyCSS', 'webp']);
+gulp.task('default', ['imagemin', 'sass', 'copy-JS', 'fonts', 'copyCSS', 'webp'], function () {
+    gulp.start('autoprefix');
+});
 
 
 
@@ -200,6 +229,9 @@ gulp.task('default', ['imagemin', 'sass', 'copy-JS', 'fonts', 'copyCSS', 'webp']
 gulp.task('watch', ['default'], function () {
     // SASS 
     gulp.watch(paths.dev + 'sass/**/*.scss', ['sass']);
+
+    // Autoprefix 
+    gulp.watch(paths.build + 'css/main.css', ['autoprefix']);
 
     // Uglify
     gulp.watch(paths.dev + 'js/**/*.js', ['copy-JS']);
@@ -234,7 +266,7 @@ gulp.task('livereload', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('build', ['clean'], function () {
-    gulp.start('sass', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS');
+    gulp.start('style', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS');
 });
 
 
