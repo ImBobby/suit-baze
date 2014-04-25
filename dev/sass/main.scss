@@ -49,15 +49,10 @@ a {
 	color: $link;
 	text-decoration: none;
 
-	&:hover{
+	&:hover,
+    &:focus {
 		color: $link_hover;
 	}
-
-    &:focus,
-    &:active {
-        background: $link_hover;
-        color: white;
-    }
 }
 
 label, 
