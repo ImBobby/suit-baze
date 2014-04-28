@@ -1,0 +1,74 @@
+
+/* Config
+--------------------------------------------------------------------------- */
+
+$GRID_COUNT     : 12;
+$GRID_GUTTER    : 25px;
+
+@function grid_size($size) {
+    @return $size / $GRID_COUNT * 100%;
+}
+
+
+/* Style
+--------------------------------------------------------------------------- */
+
+%clearfix:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.grid {
+    @extend %clearfix;
+
+    margin-left: $GRID_GUTTER * -1;
+    box-sizing: border-box;
+}
+
+.grid__col {
+    float: left;
+    min-height: 1px;    // http://css-tricks.com/make-sure-columns-dont-collapse-horizontally/
+    padding-left: $GRID_GUTTER;
+    box-sizing: border-box;
+}
+
+@for $i from 1 through $GRID_COUNT {
+
+    .grid__col--s#{$i} {
+        width: grid_size($i);
+    }
+
+    .grid__col--off-s#{$i} {
+        margin-left: grid_size($i);
+    }
+
+}
+
+@for $i from 1 through $GRID_COUNT {
+
+    @media screen and (min-width: 40em) {
+        .grid__col--m#{$i} {
+            width: grid_size($i);
+        }
+
+        .grid__col--off-m#{$i} {
+            margin-left: grid_size($i);
+        }
+    }
+
+}
+
+@for $i from 1 through $GRID_COUNT {
+
+    @media screen and (min-width: 64em) {
+        .grid__col--l#{$i} {
+            width: grid_size($i);
+        }
+
+        .grid__col--off-l#{$i} {
+            margin-left: grid_size($i);
+        }
+    }
+
+}
