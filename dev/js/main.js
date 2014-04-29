@@ -11,7 +11,7 @@ var Site = {
     init: function () {
         Site.fastClick();
         Site.enableActiveStateMobile();
-        Site.windowsPhoneViewportFix();
+        Site.WPViewportFix();
     },
 
     fastClick: function () {
@@ -22,13 +22,13 @@ var Site = {
         document.addEventListener('touchstart', function () {}, true);
     },
 
-    windowsPhoneViewportFix: function () {
+    WPViewportFix: function () {
         if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-            var msViewportStyle = document.createElement("style"),
-                fix             = document.createTextNode("@-ms-viewport{width:auto!important}");
+            var style   = document.createElement("style"),
+                fix     = document.createTextNode("@-ms-viewport{width:auto!important}");
 
-            msViewportStyle.appendChild(fix);
-            document.getElementsByTagName('head')[0].appendChild(msViewportStyle);
+            style.appendChild(fix);
+            document.getElementsByTagName('head')[0].appendChild(style);
         }
     }
 
