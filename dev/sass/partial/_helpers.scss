@@ -51,3 +51,9 @@
 .list-inline > li{
     display: inline-block;
 }
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
