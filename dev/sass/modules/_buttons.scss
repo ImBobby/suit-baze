@@ -12,6 +12,7 @@ $BTN_PADDING: $space/3 $space;
     display: inline-block;
     padding: $BTN_PADDING;
     border: 0;
+    font-family: inherit;
     line-height: $base_line_height;
     text-align: center;
     vertical-align: middle;
