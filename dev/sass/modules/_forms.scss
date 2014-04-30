@@ -1,0 +1,63 @@
+
+/* Config
+--------------------------------------------------------------------------- */
+
+$input_border_size      : 1 * 1px;
+$input_border_color     : $black40;
+$input_padding          : $space/3;
+$input_line_height      : $space;
+$input_bg               : #fff;
+
+
+/* Base style
+--------------------------------------------------------------------------- */
+
+.form__row {
+    margin-bottom: $space/2;
+}
+
+.form-label {
+    display: block;
+    margin-top: $space/3;
+}
+
+.form-input {
+    padding: $input_padding;
+    border: solid $input_border_size $input_border_color;
+    font-family: inherit;
+    background: $input_bg;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+
+    &:focus {
+        border-color: #2669d3;
+        outline: none;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}
+
+.form-input--error {
+    border-color: #d32c31;
+
+    &:focus {
+        border-color: #d32c31;
+    }
+}
+
+.form-input--success {
+    border-color: #4eb74a;
+
+    &:focus {
+        border-color: #4eb74a;
+    }
+}
+
+
+/* Modifier
+--------------------------------------------------------------------------- */
+
+.form-input--block {
+    width: 100%;
+}
