@@ -1,0 +1,35 @@
+
+// http://www.w3.org/html/wg/drafts/html/master/common-idioms.html#rel-up
+
+/* Config
+--------------------------------------------------------------------------- */
+
+$bread_space        : $space/2;
+$bread_separator    : '/';
+
+
+/* Style
+--------------------------------------------------------------------------- */
+
+/*ol*/.breadcrumb {
+    padding: 0;
+    margin-left: $bread_space * -1;
+    list-style: none;
+
+    > li {
+        position: relative;
+        display: inline-block;
+        padding: 0 $bread_space;
+
+        &:after {
+            position: absolute;
+            right: 100%;
+            color: #444;
+            content: $bread_separator;
+        }
+
+        &:first-child:after {
+            content: '';
+        }
+    }
+}
