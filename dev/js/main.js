@@ -25,7 +25,7 @@ var Site = {
     },
 
     WPViewportFix: function () {
-        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+        if ( navigator.userAgent.match(/IEMobile\/10\.0/) ) {
             var style   = document.createElement("style"),
                 fix     = document.createTextNode("@-ms-viewport{width:auto!important}");
 
