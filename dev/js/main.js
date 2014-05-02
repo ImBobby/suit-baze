@@ -19,7 +19,9 @@ var Site = {
     },
 
     enableActiveStateMobile: function () {
-        document.addEventListener('touchstart', function () {}, true);
+        if ( document.addEventListener ) {
+            document.addEventListener('touchstart', function () {}, true);
+        }
     },
 
     WPViewportFix: function () {
