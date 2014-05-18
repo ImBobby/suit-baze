@@ -9,7 +9,7 @@
   "homepage": "https://github.com/ImBobby/suit-baze",
   "devDependencies": {
     "jquery": "1.11.0",
-    "normalize-css": "~3.0.0",
+    "normalize-css": "~3.0.1",
     "fastclick": "~0.6.11",
     "modernizr": "~2.8.1",
     "baze-grid": "~0.1.0"
