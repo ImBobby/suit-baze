@@ -8,7 +8,7 @@
   "license": "MIT",
   "homepage": "https://github.com/ImBobby/suit-baze",
   "devDependencies": {
-    "jquery": "1.11.0",
+    "jquery": "1.11.1",
     "normalize-css": "~3.0.1",
     "fastclick": "~0.6.11",
     "modernizr": "~2.8.1",
