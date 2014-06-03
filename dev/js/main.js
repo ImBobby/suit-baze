@@ -1,12 +1,16 @@
 /*******************************************************************************
 
     Title :  
-    Date  :  January 2014
+    Date  :  June 2014
     Author:  Suitmedia (http://www.suitmedia.com)
 
 ********************************************************************************/
 
 var Site = {
+
+    assets: {
+        // _plugin: myPrefix + [plugin path]
+    },
 
     init: function () {
         Site.fastClick();
