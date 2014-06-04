@@ -9,7 +9,7 @@
 var Site = {
 
     assets: {
-        // _plugin: myPrefix + [plugin path]
+        _fastclick: myPrefix + 'assets/js/vendor/fastClick.min.js'
     },
 
     init: function () {
@@ -19,7 +19,12 @@ var Site = {
     },
 
     fastClick: function () {
-        FastClick.attach(document.body);
+        Modernizr.load({
+            load    : Site.assets._fastclick,
+            complete: function () {
+                FastClick.attach(document.body);
+            }
+        });
     },
 
     enableActiveStateMobile: function () {
