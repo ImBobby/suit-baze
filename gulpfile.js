@@ -240,7 +240,7 @@ gulp.task('watch', ['default'], function () {
     gulp.watch(paths.dev + 'img/*', ['imagemin']);
 
     // WebP
-    gulp.watch(paths.dev + 'img/webp/', ['webp']);
+    gulp.watch(paths.dev + 'img/webp/*', ['webp']);
 
     // Fonts
     gulp.watch(paths.dev + 'fonts/*', ['fonts']);
