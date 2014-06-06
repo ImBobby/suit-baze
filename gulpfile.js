@@ -2,27 +2,27 @@
 /* Gulp set up
 --------------------------------------------------------------------------------- */
 
-var gulp                = require('gulp'),
-    gutil               = require('gulp-util'),
+var gulp            = require('gulp'),
+    gutil           = require('gulp-util'),
 
     // css task
-    task_sass           = require('gulp-ruby-sass'),
-    task_minify_css     = require('gulp-minify-css'),
-    task_prefixer       = require('gulp-autoprefixer'),
+    rubySass        = require('gulp-ruby-sass'),
+    minifyCSS       = require('gulp-minify-css'),
+    autoprefixer    = require('gulp-autoprefixer'),
 
     // js task
-    task_uglify         = require('gulp-uglify'),
+    uglify          = require('gulp-uglify'),
 
     // image task
-    task_imagemin       = require('gulp-imagemin'),
-    task_webp           = require('gulp-webp'),
+    imagemin        = require('gulp-imagemin'),
+    webp            = require('gulp-webp'),
     
     // misc task
-    task_livereload     = require('gulp-livereload'),
-    task_changed        = require('gulp-changed'),
-    task_watch          = require('gulp-watch'),
-    task_rename         = require('gulp-rename'),
-    task_clean          = require('gulp-clean');
+    livereload      = require('gulp-livereload'),
+    changed         = require('gulp-changed'),
+    watch           = require('gulp-watch'),
+    rename          = require('gulp-rename'),
+    clean           = require('gulp-clean');
 
 
 var paths = {
@@ -38,8 +38,8 @@ var paths = {
 gulp.task('html_watch', function () {
     return gulp
         .src('*.html')
-        .pipe(task_watch())
-        .pipe(task_livereload());
+        .pipe(watch())
+        .pipe(livereload());
 });
 
 
@@ -50,8 +50,8 @@ gulp.task('html_watch', function () {
 gulp.task('css_watch', function () {
     return gulp
         .src(paths.build + 'css/*.css')
-        .pipe(task_watch())
-        .pipe(task_livereload());
+        .pipe(watch())
+        .pipe(livereload());
 });
 
 
@@ -62,8 +62,8 @@ gulp.task('css_watch', function () {
 gulp.task('js_watch', function () {
     return gulp
         .src(paths.build + 'js/*.js')
-        .pipe(task_watch())
-        .pipe(task_livereload());
+        .pipe(watch())
+        .pipe(livereload());
 });
 
 
@@ -74,7 +74,7 @@ gulp.task('js_watch', function () {
 gulp.task('sass', function () {
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(task_sass({ style: 'expanded' })
+        .pipe(rubySass({ style: 'expanded' })
             .on('error', gutil.log)
             .on('error', gutil.beep)
         )
@@ -89,7 +89,7 @@ gulp.task('sass', function () {
 gulp.task('autoprefix', function () {
     return gulp
         .src(paths.build + 'css/main.css')
-        .pipe(task_prefixer())
+        .pipe(autoprefixer())
         .pipe(gulp.dest( paths.build + 'css'));
 });
 
@@ -101,11 +101,11 @@ gulp.task('autoprefix', function () {
 gulp.task('style', function () {
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(task_sass({ style: 'compressed' })
+        .pipe(rubySass({ style: 'compressed' })
             .on('error', gutil.log)
             .on('error', gutil.beep)
         )
-        .pipe( task_prefixer() )
+        .pipe( autoprefixer() )
         .pipe(gulp.dest( paths.build + 'css'));
 });
 
@@ -118,7 +118,7 @@ gulp.task('style', function () {
 gulp.task('copyCSS', function () {
     return gulp
         .src(paths.dev + 'css/*.css')
-        .pipe(task_minify_css())
+        .pipe(minifyCSS())
         .pipe(gulp.dest(paths.build + 'css/'));
 });
 
@@ -131,7 +131,7 @@ gulp.task('copyCSS', function () {
 gulp.task('copy-JS', function () {
     return gulp
         .src(paths.dev + 'js/**/*.js')
-        .pipe(task_rename({
+        .pipe(rename({
             suffix: '.min'
         }))
         .pipe( gulp.dest( paths.build + 'js'));
@@ -146,9 +146,9 @@ gulp.task('copy-JS', function () {
 gulp.task('uglify', function () {
     return gulp
         .src(paths.dev + 'js/**/*.js')
-        .pipe(task_changed(paths.build + 'js'))
-        .pipe(task_uglify()) 
-        .pipe(task_rename({
+        .pipe(changed(paths.build + 'js'))
+        .pipe(uglify()) 
+        .pipe(rename({
             suffix: '.min'
         }))
         .pipe( gulp.dest( paths.build + 'js'));
@@ -163,8 +163,8 @@ gulp.task('uglify', function () {
 gulp.task('imagemin', function () {
     return gulp
         .src([paths.dev + 'img/*.png', paths.dev + 'img/*.jpg', paths.dev + 'img/*.gif'])
-        .pipe(task_changed(paths.build + 'img'))
-        .pipe(task_imagemin({ progressive: true })) 
+        .pipe(changed(paths.build + 'img'))
+        .pipe(imagemin({ progressive: true })) 
         .pipe(gulp.dest( paths.build + 'img'));
 });
 
@@ -177,8 +177,8 @@ gulp.task('imagemin', function () {
 gulp.task('webp', function () {
     return gulp
         .src([paths.dev + 'img/webp/*.png', paths.dev + 'img/webp/*.jpg'])
-        .pipe(task_changed(paths.build + 'img/webp/'))
-        .pipe(task_webp({
+        .pipe(changed(paths.build + 'img/webp/'))
+        .pipe(webp({
             quality: 80
         }))
         .pipe(gulp.dest( paths.build + 'img/webp/'));
@@ -193,7 +193,7 @@ gulp.task('webp', function () {
 gulp.task('fonts', function () {
     return gulp
         .src(paths.dev + 'fonts/*')
-        .pipe(task_changed(paths.build + 'fonts'))
+        .pipe(changed(paths.build + 'fonts'))
         .pipe(gulp.dest( paths.build + 'fonts'));
 });
 
@@ -207,7 +207,7 @@ gulp.task('fonts', function () {
 gulp.task('clean', function () {
     return gulp
         .src(paths.build, {read: false})
-        .pipe(task_clean());    
+        .pipe(clean());    
 });
 
 
