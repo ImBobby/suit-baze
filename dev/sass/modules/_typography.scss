@@ -39,9 +39,15 @@ $RATIO          : $PERFECT_FOURTH;
     $font_size: 1em;
 
     @if $direction == up {
-        @for $i from 1 through $multiplier {
-            $font_size: $font_size * $RATIO;
+
+        @if $multiplier == 0 {
+            $font_size: 1em;
+        } @else {
+            @for $i from 1 through $multiplier {
+                $font_size: $font_size * $RATIO;
+            }    
         }
+
     } @else {
         @for $i from 1 through $multiplier {
             $font_size: (1 / $RATIO) * $font_size;
