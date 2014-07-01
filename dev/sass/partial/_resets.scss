@@ -60,10 +60,9 @@ table{
     text-shadow: none;
 }
 
-/** 
- * Fix windows phone viewport bug
- * http://goo.gl/knRaIp
- */
+
+/* Fix windows phone viewport bug - http://goo.gl/knRaIp
+--------------------------------------------------------------------------- */
 
 @-webkit-viewport{width: device-width}
 @-moz-viewport{width: device-width}
