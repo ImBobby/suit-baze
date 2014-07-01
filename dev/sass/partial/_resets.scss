@@ -71,3 +71,11 @@ table{
 @-o-viewport{width: device-width}
 @viewport{width: device-width}
 
+
+/* https://github.com/ImBobby/suit-baze/issues/7
+--------------------------------------------------------------------------- */
+
+input[type="search"] {
+    box-sizing: border-box;
+}
+
