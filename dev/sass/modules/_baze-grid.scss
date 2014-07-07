@@ -26,6 +26,15 @@ $GRID_GUTTER    : 25px;
     box-sizing: border-box;
 }
 
+.grid--no-gutter {
+    margin-left: 0;
+
+    > .grid__col {
+        padding-left: 0;
+    }
+
+}
+
 .grid__col {
     float: left;
     min-height: 1px;    // http://css-tricks.com/make-sure-columns-dont-collapse-horizontally/
@@ -45,11 +54,12 @@ $GRID_GUTTER    : 25px;
 
 }
 
-@for $i from 1 through $GRID_COUNT {
+@media screen and (min-width: 40em) {
 
-    @media screen and (min-width: 40em) {
+    @for $i from 1 through $GRID_COUNT {
         .grid__col--m#{$i} {
             width: grid_size($i);
+            margin-left: 0;
         }
 
         .grid__col--off-m#{$i} {
@@ -59,11 +69,12 @@ $GRID_GUTTER    : 25px;
 
 }
 
-@for $i from 1 through $GRID_COUNT {
+@media screen and (min-width: 64em) {
 
-    @media screen and (min-width: 64em) {
+    @for $i from 1 through $GRID_COUNT {
         .grid__col--l#{$i} {
             width: grid_size($i);
+            margin-left: 0;
         }
 
         .grid__col--off-l#{$i} {
