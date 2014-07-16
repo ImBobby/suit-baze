@@ -22,7 +22,7 @@ var gulp            = require('gulp'),
     changed         = require('gulp-changed'),
     watch           = require('gulp-watch'),
     rename          = require('gulp-rename'),
-    clean           = require('gulp-clean');
+    rimraf          = require('rimraf');
 
 
 var paths = {
@@ -204,10 +204,8 @@ gulp.task('fonts', function () {
 /* Task: Clean
 --------------------------------------------------------------------------------- */
 
-gulp.task('clean', function () {
-    return gulp
-        .src(paths.build, {read: false})
-        .pipe(clean());    
+gulp.task('clean', function (cb) {
+    rimraf(paths.build, cb);
 });
 
 
