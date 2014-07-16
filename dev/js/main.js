@@ -48,11 +48,11 @@ var Site = {
 };
 
 (function () {
-    function siteInit() {
+    var siteInit = function () {
         Site.init();
-    }
+    };
 
-    function fallback() {
+    var checkJquery = function () {
         if ( !window.jQuery ) {
             Modernizr.load({
                 load    : Site.assets._jquery,
@@ -61,10 +61,10 @@ var Site = {
         } else {
             Site.init();
         }
-    }
+    };
 
     Modernizr.load({
         load    : Site.assets._jquery_cdn,
-        complete: fallback
+        complete: checkJquery
     });
 })();
