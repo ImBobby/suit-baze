@@ -22,7 +22,7 @@ var gulp            = require('gulp'),
     changed         = require('gulp-changed'),
     watch           = require('gulp-watch'),
     rename          = require('gulp-rename'),
-    rimraf          = require('rimraf');
+    del             = require('del');
 
 
 var paths = {
@@ -204,8 +204,10 @@ gulp.task('fonts', function () {
 /* Task: Clean
 --------------------------------------------------------------------------------- */
 
-gulp.task('clean', function (cb) {
-    rimraf(paths.build, cb);
+gulp.task('clean', function () {
+    del(paths.build, function (err) {
+        console.log('Assets directory cleaned');
+    });
 });
 
 
