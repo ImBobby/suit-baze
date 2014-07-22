@@ -11,6 +11,7 @@
     "url": "https://github.com/ImBobby/suit-baze"
   },
   "devDependencies": {
+    "del": "^0.1.1",
     "gulp": "~3.8.1",
     "gulp-autoprefixer": "0.0.6",
     "gulp-changed": "~0.2.1",
@@ -22,7 +23,6 @@
     "gulp-uglify": "~0.2.1",
     "gulp-util": "~2.2.14",
     "gulp-watch": "~0.5.0",
-    "gulp-webp": "~0.1.2",
-    "rimraf": "^2.2.8"
+    "gulp-webp": "~0.1.2"
   }
 }
