@@ -3,17 +3,18 @@ Suit-baze is a Front-end starter kit base on [HTML5 Boilerplate](https://github.
 
 ## What's included
 
-* Normalize
-* Baze Grid
-* Modernizr
-* jQuery
-* Fastclick
-* Gulp build system
-* Bower manifest
+* [Normalize](https://github.com/necolas/normalize.css/)
+* [Baze Grid](https://github.com/ImBobby/Baze-Grid)
+* [Modernizr](https://github.com/Modernizr/Modernizr)
+* [jQuery](https://github.com/jquery/jquery)
+* [Fastclick](https://github.com/ftlabs/fastclick)
+* [Gulp](https://github.com/gulpjs/gulp) build system
+* [Bower](https://github.com/bower/bower) manifest
+* Vertical rhythm system
 
 ### Available gulp task
 
-* Default
+* default
 * watch
 * build
 * livereload
