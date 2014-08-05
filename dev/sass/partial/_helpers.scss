@@ -20,7 +20,7 @@
     width: 1px;
 
     &.focusable:active,
-    &.focusable:focus{
+    &.focusable:focus {
         clip: auto;
         height: auto;
         margin: 0;
@@ -40,15 +40,15 @@
     content: '';
 }
 
-.align-center{
+.align-center {
     text-align: center;
 }
 
-.align-right{
+.align-right {
     text-align: right;
 }
 
-.list-inline > li{
+.list-inline > li {
     display: inline-block;
 }
 

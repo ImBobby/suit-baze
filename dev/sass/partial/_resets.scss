@@ -30,11 +30,11 @@ textarea {
     resize: vertical;
 }
 
-address{
+address {
     font-style: normal;
 }
 
-table{
+table {
     width: 100%;
 }
 
@@ -64,11 +64,11 @@ table{
 /* Fix windows phone viewport bug - http://goo.gl/knRaIp
 --------------------------------------------------------------------------- */
 
-@-webkit-viewport{width: device-width}
-@-moz-viewport{width: device-width}
-@-ms-viewport{width: device-width}
-@-o-viewport{width: device-width}
-@viewport{width: device-width}
+@-webkit-viewport { width: device-width }
+@-moz-viewport { width: device-width }
+@-ms-viewport { width: device-width }
+@-o-viewport { width: device-width }
+@viewport { width: device-width }
 
 
 /* http://goo.gl/e0gJzS
