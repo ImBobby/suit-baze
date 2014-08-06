@@ -13,7 +13,7 @@ var gulp    = require('gulp'),
 var paths = {
     dev     : 'dev/',
     build   : 'assets/'
-}
+};
 
 
 
