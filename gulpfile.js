@@ -2,27 +2,12 @@
 /* Gulp set up
 --------------------------------------------------------------------------------- */
 
-var gulp            = require('gulp'),
-    gutil           = require('gulp-util'),
+var gulp    = require('gulp'),
+    gutil   = require('gulp-util'),
+    del     = require('del'),
 
-    // css task
-    rubySass        = require('gulp-ruby-sass'),
-    minifyCSS       = require('gulp-minify-css'),
-    autoprefixer    = require('gulp-autoprefixer'),
-
-    // js task
-    uglify          = require('gulp-uglify'),
-
-    // image task
-    imagemin        = require('gulp-imagemin'),
-    webp            = require('gulp-webp'),
-    
-    // misc task
-    livereload      = require('gulp-livereload'),
-    changed         = require('gulp-changed'),
-    watch           = require('gulp-watch'),
-    rename          = require('gulp-rename'),
-    del             = require('del');
+    // load all plugins with prefix 'gulp'
+    plugins = require('gulp-load-plugins')();
 
 
 var paths = {
@@ -38,8 +23,8 @@ var paths = {
 gulp.task('html_watch', function () {
     return gulp
         .src('*.html')
-        .pipe(watch())
-        .pipe(livereload());
+        .pipe(plugins.watch())
+        .pipe(plugins.livereload());
 });
 
 
@@ -50,8 +35,8 @@ gulp.task('html_watch', function () {
 gulp.task('css_watch', function () {
     return gulp
         .src(paths.build + 'css/*.css')
-        .pipe(watch())
-        .pipe(livereload());
+        .pipe(plugins.watch())
+        .pipe(plugins.livereload());
 });
 
 
@@ -62,8 +47,8 @@ gulp.task('css_watch', function () {
 gulp.task('js_watch', function () {
     return gulp
         .src(paths.build + 'js/*.js')
-        .pipe(watch())
-        .pipe(livereload());
+        .pipe(plugins.watch())
+        .pipe(plugins.livereload());
 });
 
 
@@ -74,7 +59,7 @@ gulp.task('js_watch', function () {
 gulp.task('sass', function () {
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(rubySass({ style: 'expanded' })
+        .pipe(plugins.rubySass({ style: 'expanded' })
             .on('error', gutil.log)
             .on('error', gutil.beep)
         )
@@ -89,7 +74,7 @@ gulp.task('sass', function () {
 gulp.task('autoprefix', function () {
     return gulp
         .src(paths.build + 'css/main.css')
-        .pipe(autoprefixer())
+        .pipe(plugins.autoprefixer())
         .pipe(gulp.dest( paths.build + 'css'));
 });
 
@@ -101,11 +86,11 @@ gulp.task('autoprefix', function () {
 gulp.task('style', function () {
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(rubySass({ style: 'compressed' })
+        .pipe(plugins.rubySass({ style: 'compressed' })
             .on('error', gutil.log)
             .on('error', gutil.beep)
         )
-        .pipe( autoprefixer() )
+        .pipe( plugins.autoprefixer() )
         .pipe(gulp.dest( paths.build + 'css'));
 });
 
@@ -118,7 +103,7 @@ gulp.task('style', function () {
 gulp.task('copyCSS', function () {
     return gulp
         .src(paths.dev + 'css/*.css')
-        .pipe(minifyCSS())
+        .pipe(plugins.minifyCss())
         .pipe(gulp.dest(paths.build + 'css/'));
 });
 
@@ -131,7 +116,7 @@ gulp.task('copyCSS', function () {
 gulp.task('copy-JS', function () {
     return gulp
         .src(paths.dev + 'js/**/*.js')
-        .pipe(rename({
+        .pipe(plugins.rename({
             suffix: '.min'
         }))
         .pipe( gulp.dest( paths.build + 'js'));
@@ -146,9 +131,9 @@ gulp.task('copy-JS', function () {
 gulp.task('uglify', function () {
     return gulp
         .src(paths.dev + 'js/**/*.js')
-        .pipe(changed(paths.build + 'js'))
-        .pipe(uglify()) 
-        .pipe(rename({
+        .pipe(plugins.changed(paths.build + 'js'))
+        .pipe(plugins.uglify()) 
+        .pipe(plugins.rename({
             suffix: '.min'
         }))
         .pipe( gulp.dest( paths.build + 'js'));
@@ -163,8 +148,8 @@ gulp.task('uglify', function () {
 gulp.task('imagemin', function () {
     return gulp
         .src([paths.dev + 'img/*.png', paths.dev + 'img/*.jpg', paths.dev + 'img/*.gif'])
-        .pipe(changed(paths.build + 'img'))
-        .pipe(imagemin({ progressive: true })) 
+        .pipe(plugins.changed(paths.build + 'img'))
+        .pipe(plugins.imagemin({ progressive: true })) 
         .pipe(gulp.dest( paths.build + 'img'));
 });
 
@@ -177,8 +162,8 @@ gulp.task('imagemin', function () {
 gulp.task('webp', function () {
     return gulp
         .src([paths.dev + 'img/webp/*.png', paths.dev + 'img/webp/*.jpg'])
-        .pipe(changed(paths.build + 'img/webp/'))
-        .pipe(webp({
+        .pipe(plugins.changed(paths.build + 'img/webp/'))
+        .pipe(plugins.webp({
             quality: 80
         }))
         .pipe(gulp.dest( paths.build + 'img/webp/'));
@@ -193,7 +178,7 @@ gulp.task('webp', function () {
 gulp.task('fonts', function () {
     return gulp
         .src(paths.dev + 'fonts/*')
-        .pipe(changed(paths.build + 'fonts'))
+        .pipe(plugins.changed(paths.build + 'fonts'))
         .pipe(gulp.dest( paths.build + 'fonts'));
 });
 
