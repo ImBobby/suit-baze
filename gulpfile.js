@@ -57,13 +57,17 @@ gulp.task('js_watch', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('sass', function () {
+    var options = {
+        style: 'expanded'
+    };
+
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(plugins.rubySass({ style: 'expanded' })
+        .pipe(plugins.rubySass(options)
             .on('error', gutil.log)
             .on('error', gutil.beep)
         )
-        .pipe(gulp.dest( paths.build + 'css'));
+        .pipe(gulp.dest(paths.build + 'css'));
 });
 
 
@@ -75,7 +79,7 @@ gulp.task('autoprefix', function () {
     return gulp
         .src(paths.build + 'css/main.css')
         .pipe(plugins.autoprefixer())
-        .pipe(gulp.dest( paths.build + 'css'));
+        .pipe(gulp.dest(paths.build + 'css'));
 });
 
 
@@ -84,14 +88,18 @@ gulp.task('autoprefix', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('style', function () {
+    var options = {
+        style: 'compressed'
+    };
+
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(plugins.rubySass({ style: 'compressed' })
+        .pipe(plugins.rubySass(options)
             .on('error', gutil.log)
             .on('error', gutil.beep)
         )
-        .pipe( plugins.autoprefixer() )
-        .pipe(gulp.dest( paths.build + 'css'));
+        .pipe(plugins.autoprefixer())
+        .pipe(gulp.dest(paths.build + 'css'));
 });
 
 
@@ -114,12 +122,14 @@ gulp.task('copyCSS', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('copy-JS', function () {
+    var options = {
+        suffix: '.min'
+    };
+
     return gulp
         .src(paths.dev + 'js/**/*.js')
-        .pipe(plugins.rename({
-            suffix: '.min'
-        }))
-        .pipe( gulp.dest( paths.build + 'js'));
+        .pipe(plugins.rename(options))
+        .pipe(gulp.dest( paths.build + 'js'));
 });
 
 
@@ -129,14 +139,16 @@ gulp.task('copy-JS', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('uglify', function () {
+    var options = {
+        suffix: '.min'
+    };
+
     return gulp
         .src(paths.dev + 'js/**/*.js')
         .pipe(plugins.changed(paths.build + 'js'))
         .pipe(plugins.uglify()) 
-        .pipe(plugins.rename({
-            suffix: '.min'
-        }))
-        .pipe( gulp.dest( paths.build + 'js'));
+        .pipe(plugins.rename(options))
+        .pipe(gulp.dest( paths.build + 'js'));
 });
 
 
@@ -146,11 +158,17 @@ gulp.task('uglify', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('imagemin', function () {
+    var imageFormats = [
+        paths.dev + 'img/*.png',
+        paths.dev + 'img/*.jpg',
+        paths.dev + 'img/*.gif'
+    ];
+
     return gulp
-        .src([paths.dev + 'img/*.png', paths.dev + 'img/*.jpg', paths.dev + 'img/*.gif'])
+        .src(imageFormats)
         .pipe(plugins.changed(paths.build + 'img'))
         .pipe(plugins.imagemin({ progressive: true })) 
-        .pipe(gulp.dest( paths.build + 'img'));
+        .pipe(gulp.dest(paths.build + 'img'));
 });
 
 
@@ -160,13 +178,20 @@ gulp.task('imagemin', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('webp', function () {
+    var imageFormats = [
+        paths.dev + 'img/webp/*.png',
+        paths.dev + 'img/webp/*.jpg'
+    ];
+
+    var options = {
+        quality: 80
+    };
+
     return gulp
-        .src([paths.dev + 'img/webp/*.png', paths.dev + 'img/webp/*.jpg'])
+        .src(imageFormats)
         .pipe(plugins.changed(paths.build + 'img/webp/'))
-        .pipe(plugins.webp({
-            quality: 80
-        }))
-        .pipe(gulp.dest( paths.build + 'img/webp/'));
+        .pipe(plugins.webp(options))
+        .pipe(gulp.dest(paths.build + 'img/webp/'));
 });
 
 
@@ -179,7 +204,7 @@ gulp.task('fonts', function () {
     return gulp
         .src(paths.dev + 'fonts/*')
         .pipe(plugins.changed(paths.build + 'fonts'))
-        .pipe(gulp.dest( paths.build + 'fonts'));
+        .pipe(gulp.dest(paths.build + 'fonts'));
 });
 
 
@@ -253,27 +278,3 @@ gulp.task('livereload', function () {
 gulp.task('build', ['clean'], function () {
     gulp.start('style', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
