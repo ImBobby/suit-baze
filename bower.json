@@ -12,6 +12,6 @@
     "normalize-css": "~3.0.1",
     "fastclick": "~0.6.11",
     "modernizr": "~2.8.1",
-    "baze-grid": "~1.2.0"
+    "baze-grid": "~1.2.2"
   }
 }

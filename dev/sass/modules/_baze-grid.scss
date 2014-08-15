@@ -1,28 +1,30 @@
 
-/* Config
---------------------------------------------------------------------------- */
+// Config
+// --------------------------------------------------------------------------- */
 
-$GRID_COUNT     : 12;
-$GRID_GUTTER    : 25px;
+$BZ_GRID_COUNT  : 12;
+$BZ_GRID_GUTTER : 25px;
+$BZ_GRID_MEDIUM : 40 * 1em;
+$BZ_GRID_LARGE  : 64 * 1em;     
 
-@function grid_size($size) {
-    @return $size / $GRID_COUNT * 100%;
+@function bz_grid_size($size) {
+    @return $size / $BZ_GRID_COUNT * 100%;
 }
 
 
-/* Style
---------------------------------------------------------------------------- */
+// Style
+// --------------------------------------------------------------------------- */
 
-%clearfix:after {
+%bz_clearfix:after {
     display: table;
     clear: both;
     content: '';
 }
 
 .grid {
-    @extend %clearfix;
+    @extend %bz_clearfix;
 
-    margin-left: $GRID_GUTTER * -1;
+    margin-left: $BZ_GRID_GUTTER * -1;
     box-sizing: border-box;
 }
 
@@ -38,47 +40,53 @@ $GRID_GUTTER    : 25px;
 .grid__col {
     float: left;
     min-height: 1px;    // http://css-tricks.com/make-sure-columns-dont-collapse-horizontally/
-    padding-left: $GRID_GUTTER;
+    padding-left: $BZ_GRID_GUTTER;
     box-sizing: border-box;
 }
 
-@for $i from 1 through $GRID_COUNT {
+@for $i from 1 through $BZ_GRID_COUNT {
 
     .grid__col--s#{$i} {
-        width: grid_size($i);
+        width: bz_grid_size($i);
     }
 
     .grid__col--off-s#{$i} {
-        margin-left: grid_size($i);
+        margin-left: bz_grid_size($i);
     }
 
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: #{$BZ_GRID_MEDIUM}) {
 
-    @for $i from 1 through $GRID_COUNT {
+    [class*="grid__col--m"] {
+        margin-left: 0;
+    }
+
+    @for $i from 1 through $BZ_GRID_COUNT {
         .grid__col--m#{$i} {
-            width: grid_size($i);
-            margin-left: 0;
+            width: bz_grid_size($i);
         }
 
         .grid__col--off-m#{$i} {
-            margin-left: grid_size($i);
+            margin-left: bz_grid_size($i);
         }
     }
 
 }
 
-@media screen and (min-width: 64em) {
+@media screen and (min-width: #{$BZ_GRID_LARGE}) {
 
-    @for $i from 1 through $GRID_COUNT {
+    [class*="grid__col--l"] {
+        margin-left: 0;
+    }
+
+    @for $i from 1 through $BZ_GRID_COUNT {
         .grid__col--l#{$i} {
-            width: grid_size($i);
-            margin-left: 0;
+            width: bz_grid_size($i);
         }
 
         .grid__col--off-l#{$i} {
-            margin-left: grid_size($i);
+            margin-left: bz_grid_size($i);
         }
     }
 
