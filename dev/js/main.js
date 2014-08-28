@@ -11,7 +11,7 @@ var Site = {
     assets: {
         _jquery_cdn     : '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
         _jquery_local   : myPrefix + 'assets/js/vendor/jquery.min.js',
-        _fastclick      : myPrefix + 'assets/js/vendor/fastClick.min.js'
+        _fastclick      : myPrefix + 'assets/js/vendor/fastclick.min.js'
     },
 
     init: function () {
