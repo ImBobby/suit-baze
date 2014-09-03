@@ -1,7 +1,7 @@
 /*******************************************************************************
 
     Title :  
-    Date  :  July 2014
+    Date  :  September 2014
     Author:  Suitmedia (http://www.suitmedia.com)
 
 ********************************************************************************/
@@ -55,7 +55,7 @@ var Site = {
     var checkJquery = function () {
         if ( !window.jQuery ) {
             Modernizr.load({
-                load    : Site.assets._jquery,
+                load    : Site.assets._jquery_local,
                 complete: siteInit
             });
         } else {
