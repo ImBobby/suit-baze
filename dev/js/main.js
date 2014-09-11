@@ -9,7 +9,9 @@
 var Site = {
 
     assets: {
-        // _plugin: myPrefix + [plugin path]
+        _jquery_cdn     : '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
+        _jquery_local   : myPrefix + 'assets/js/vendor/jquery.min.js',
+        _fastclick      : myPrefix + 'assets/js/vendor/fastclick.min.js'
     },
 
     init: function () {
@@ -19,7 +21,12 @@ var Site = {
     },
 
     fastClick: function () {
-        FastClick.attach(document.body);
+        Modernizr.load({
+            load    : Site.assets._fastclick,
+            complete: function () {
+                FastClick.attach(document.body);
+            }
+        });
     },
 
     enableActiveStateMobile: function () {
@@ -40,7 +47,24 @@ var Site = {
 
 };
 
+(function () {
+    var siteInit = function () {
+        Site.init();
+    };
 
-$(function () {
-    Site.init();
-});
+    var checkJquery = function () {
+        if ( !window.jQuery ) {
+            Modernizr.load({
+                load    : Site.assets._jquery_local,
+                complete: siteInit
+            });
+        } else {
+            Site.init();
+        }
+    };
+
+    Modernizr.load({
+        load    : Site.assets._jquery_cdn,
+        complete: checkJquery
+    });
+})();
