@@ -1,12 +1,20 @@
 #Suit-baze
 Suit-baze is a Front-end starter kit base on [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate) modified by developers from [Suitmedia](https://github.com/Suitmedia).
 
-##About this branch
+## What's included
 
-It is an experimental branch called **single-script**. Everything is the same from the **master** except here all 3rd party scripts (even jQuery) are loaded asynchronously using [modernizr](http://modernizr.com/).
+* [Normalize](https://github.com/necolas/normalize.css/)
+* [Baze Grid](https://github.com/ImBobby/Baze-Grid)
+* [Modernizr](https://github.com/Modernizr/Modernizr)
+* [jQuery](https://github.com/jquery/jquery)
+* [Fastclick](https://github.com/ftlabs/fastclick)
+* [Gulp](https://github.com/gulpjs/gulp) build system
+* [Bower](https://github.com/bower/bower) manifest
+* Vertical rhythm system
 
-To see how it works, check out the [main.js](https://github.com/ImBobby/suit-baze/blob/single-script/dev/js/main.js).
+### Available gulp task
 
-##Purpose
-
-Asynchronously load all 3rd party scripts will reduce http request.
+* default
+* watch
+* build
+* livereload
