@@ -39,6 +39,7 @@ $BZ_GRID_LARGE  : 64 * 1em;
 
 .grid__col {
     float: left;
+    width: 100%;
     min-height: 1px;    // http://css-tricks.com/make-sure-columns-dont-collapse-horizontally/
     padding-left: $BZ_GRID_GUTTER;
     box-sizing: border-box;
