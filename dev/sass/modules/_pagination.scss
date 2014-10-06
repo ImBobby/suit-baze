@@ -1,0 +1,61 @@
+
+/**
+ * Markup
+ * <ul class="paging">
+ *     <li><a class="active">...</a></li>
+ *     <li><a href="#">...</a></li>
+ *     <li><a href="#">...</a></li>
+ *     <li><a href="#">...</a></li>
+ *     <li><a href="#">...</a></li>
+ * </ul>
+ */
+
+
+/* Config
+--------------------------------------------------------------------------- */
+
+$paging_padding: $space/4 $space/2;
+
+$paging_border          : #ddd;
+$paging_color           : #666;
+$paging_bg              : #eee;
+
+$paging_active_border   : #555;
+$paging_active_color    : #f8f8f8;
+$paging_active_bg       : #888;
+
+
+/* Style
+--------------------------------------------------------------------------- */
+
+.paging {
+    padding: 0;
+    margin: 0 0 $space 0;
+    list-style: none;
+    text-align: center;
+    user-select: none;
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        display: block;
+        padding: $paging_padding;
+        border: solid 1px $paging_border;
+        color: $paging_color;
+        background: $paging_bg;
+
+        &:hover,
+        &:focus,
+        &.active {
+            border-color: $paging_active_border;
+            color: $paging_active_color;
+            background: $paging_active_bg;
+        }
+
+        &.active {
+            cursor: default;
+        }
+    }
+}
