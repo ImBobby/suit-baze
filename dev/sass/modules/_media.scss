@@ -1,0 +1,17 @@
+
+.media {
+    &:after {
+        display: table;
+        clear: both;
+        content: '';
+    }
+}
+
+.media__figure {
+    float: left;
+    margin-right: $space/2;
+}
+
+.media__body {
+    overflow: hidden;
+}
