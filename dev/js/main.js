@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    Title :  
+    Title :
     Date  :  October 2014
     Author:  Suitmedia (http://www.suitmedia.com)
 
@@ -53,14 +53,13 @@ var Site = {
     };
 
     var checkJquery = function () {
-        if ( !window.jQuery ) {
-            Modernizr.load({
-                load    : Site.assets._jquery_local,
+        Modernizr.load([
+            {
+                test: window.jQuery,
+                nope: Site.assets._jquery_local,
                 complete: siteInit
-            });
-        } else {
-            Site.init();
-        }
+            }
+        ]);
     };
 
     Modernizr.load({
