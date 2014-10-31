@@ -55,8 +55,8 @@ var Site = {
     var checkJquery = function () {
         Modernizr.load([
             {
-                test: window.jQuery,
-                nope: Site.assets._jquery_local,
+                test    : window.jQuery,
+                nope    : Site.assets._jquery_local,
                 complete: siteInit
             }
         ]);
