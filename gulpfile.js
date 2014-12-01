@@ -15,6 +15,10 @@ var paths = {
     build   : 'assets/'
 };
 
+var autoprefixOpts = {
+    browsers: ['> 1%', 'last 10 versions', 'Firefox ESR', 'Opera 12.1']
+};
+
 
 
 /* Task: Watch HTML
@@ -76,9 +80,10 @@ gulp.task('sass', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('autoprefix', function () {
+
     return gulp
         .src(paths.build + 'css/main.css')
-        .pipe(plugins.autoprefixer())
+        .pipe(plugins.autoprefixer(autoprefixOpts))
         .pipe(gulp.dest(paths.build + 'css'));
 });
 
@@ -98,7 +103,7 @@ gulp.task('style', function () {
             .on('error', gutil.log)
             .on('error', gutil.beep)
         )
-        .pipe(plugins.autoprefixer())
+        .pipe(plugins.autoprefixer(autoprefixOpts))
         .pipe(gulp.dest(paths.build + 'css'));
 });
 
