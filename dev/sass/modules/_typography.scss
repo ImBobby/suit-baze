@@ -2,6 +2,8 @@
 // Ratio variables
 // ------------------------------------------------------------------------ //
 
+$headings       : 'h1', 'h2', 'h3', 'h4', 'h5', 'h6';
+
 $MINOR_SECOND   : 1.067;
 $MAJOR_SECOND   : 1.125;
 $MINOR_THIRD    : 1.2;
@@ -64,34 +66,25 @@ $RATIO          : $PERFECT_FOURTH;
 // Styles
 // ------------------------------------------------------------------------ //
 
-h1,
-.h1 {
-    @include typography_getStyle(3);
-}
+$multiplier: 3 * 1;
 
-h2,
-.h2 {
-    @include typography_getStyle(2);
-}
+@each $heading in $headings {
 
-h3,
-.h3 {
-    @include typography_getStyle(1);
-}
+    #{ $heading },
+    .#{ $heading } {
 
-h4,
-.h4 {
-    @include typography_getStyle(0);
-}
+        @if $multiplier < 0 {
+            $temp: $multiplier * -1;
 
-h5,
-.h5 {
-    @include typography_getStyle(1, 'down');
-}
+            @include typography_getStyle($temp, 'down');
+        } @else {
+            @include typography_getStyle($multiplier);    
+        }
 
-h6,
-.h6 {
-    @include typography_getStyle(2, 'down');
+    }
+
+    $multiplier: $multiplier - 1;
+
 }
 
 p,
