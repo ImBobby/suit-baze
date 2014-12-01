@@ -99,11 +99,7 @@ gulp.task('style', function () {
 
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(plugins.rubySass(options)
-            .on('error', gutil.log)
-            .on('error', gutil.beep)
-        )
-        .pipe(plugins.autoprefixer(autoprefixOpts))
+        .pipe(plugins.rubySass(options))
         .pipe(gulp.dest(paths.build + 'css'));
 });
 
@@ -280,6 +276,10 @@ gulp.task('livereload', function () {
 /* Task: Build
 --------------------------------------------------------------------------------- */
 
+gulp.task('production', ['style', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS'], function () {
+    gulp.start('autoprefix');
+});
+
 gulp.task('build', ['clean'], function () {
-    gulp.start('style', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS');
+    gulp.start('production');
 });
