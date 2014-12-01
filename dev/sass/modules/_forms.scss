@@ -1,6 +1,6 @@
 
-/* Config
---------------------------------------------------------------------------- */
+// Config
+// ------------------------------------------------------------------------ //
 
 $input_border_size      : 1 * 1px;
 $input_border_color     : $black40;
@@ -8,26 +8,22 @@ $input_padding          : $space/3;
 $input_bg               : #fff;
 
 
-/* Base style
---------------------------------------------------------------------------- */
+// Base style
+// ------------------------------------------------------------------------ //
 
 legend {
     margin-bottom: $space/2;
 }
 
-/**
- * Fix small bullet on Webkit
- * http://goo.gl/WgqfpM
- */
+// Fix small bullet on Webkit
+// http://goo.gl/WgqfpM
 input[type="password"] {
     font: small-caption;
     font-size: 1em;
 }
 
-/** 
- * Hide input type number spinner
- * http://goo.gl/lcCQgB
- */
+// Hide input type number spinner
+// http://goo.gl/lcCQgB
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
@@ -65,8 +61,8 @@ input[type="number"] {
 }
 
 
-/* Modifier
---------------------------------------------------------------------------- */
+// Modifier
+// ------------------------------------------------------------------------ //
 
 .form-input--error {
     border-color: #d32c31;

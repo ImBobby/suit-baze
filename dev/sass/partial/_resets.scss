@@ -61,8 +61,8 @@ table {
 }
 
 
-/* Fix windows phone viewport bug - http://goo.gl/knRaIp
---------------------------------------------------------------------------- */
+// Fix windows phone viewport bug - http://goo.gl/knRaIp
+// ------------------------------------------------------------------------ //
 
 @-webkit-viewport { width: device-width }
 @-moz-viewport { width: device-width }
@@ -71,8 +71,8 @@ table {
 @viewport { width: device-width }
 
 
-/* http://goo.gl/e0gJzS
---------------------------------------------------------------------------- */
+// http://goo.gl/e0gJzS
+// ------------------------------------------------------------------------ //
 
 input[type="search"] {
     box-sizing: border-box;
