@@ -6,15 +6,15 @@
 //	4. Page styles
 //	5. Footer
 
-@import "partial/_normalize";
-@import "partial/_variables";
-@import "partial/_resets";
-@import "partial/_helpers";
-@import "partial/_print";
+@import "partial/normalize";
+@import "partial/variables";
+@import "partial/resets";
+@import "partial/helpers";
+@import "partial/print";
 
-@import "mixin/_mixin";
-@import "modules/_modules";
-@import "plugin/_plugin";
+@import "mixin/mixin";
+@import "modules/modules";
+@import "plugin/plugin";
 
 // 1 Font-face
 // ------------------------------------------------------------------------ //
