@@ -8,7 +8,7 @@
     };
 
     var assets = {
-        _jquery_cdn     : '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
+        _jquery_cdn     : '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js',
         _jquery_local   : myPrefix + path.js + 'jquery.min.js',
         _fastclick      : myPrefix + path.js + 'fastclick.min.js'
     };
