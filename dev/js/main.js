@@ -3,14 +3,14 @@
 ;(function ( window, document, undefined ) {
 
     var path = {
-        css: 'assets/css/',
-        js : 'assets/js/vendor/'
+        css: myPrefix + 'assets/css/',
+        js : myPrefix + 'assets/js/vendor/'
     };
 
     var assets = {
         _jquery_cdn     : '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js',
-        _jquery_local   : myPrefix + path.js + 'jquery.min.js',
-        _fastclick      : myPrefix + path.js + 'fastclick.min.js'
+        _jquery_local   : path.js + 'jquery.min.js',
+        _fastclick      : path.js + 'fastclick.min.js'
     };
 
     var Site = {
