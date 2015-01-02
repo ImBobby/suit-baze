@@ -1,4 +1,4 @@
-/*! [PROJECT_NAME] | December 2014 | Suitmedia */
+/*! [PROJECT_NAME] | January 2015 | Suitmedia */
 
 //	1. Font-face
 //	2. Basic styles
@@ -57,6 +57,12 @@ textarea {
 
 .block {
     margin-bottom: $space;
+}
+
+.container {
+    width: 95%;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
 // 3 Header

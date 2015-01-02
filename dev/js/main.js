@@ -1,4 +1,4 @@
-/*! [PROJECT_NAME] | December 2014 | Suitmedia */
+/*! [PROJECT_NAME] | January 2015 | Suitmedia */
 
 ;(function ( window, document, undefined ) {
 
