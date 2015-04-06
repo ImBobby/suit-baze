@@ -76,10 +76,6 @@ textarea {
 // Fix windows phone viewport bug - http://goo.gl/knRaIp
 // ------------------------------------------------------------------------ //
 
-@-webkit-viewport { width: device-width }
-@-moz-viewport { width: device-width }
-@-ms-viewport { width: device-width }
-@-o-viewport { width: device-width }
 @viewport { width: device-width }
 
 
@@ -89,4 +85,3 @@ textarea {
 input[type="search"] {
     box-sizing: border-box;
 }
-
