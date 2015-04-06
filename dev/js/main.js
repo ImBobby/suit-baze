@@ -1,4 +1,4 @@
-/*! [PROJECT_NAME] | January 2015 | Suitmedia */
+/*! [PROJECT_NAME] | April 2015 | Suitmedia */
 
 ;(function ( window, document, undefined ) {
 
@@ -50,6 +50,8 @@
 
     var siteInit = function () {
         Site.init();
+
+        window.Site = Site;
     };
 
     var checkJquery = function () {
@@ -67,8 +69,4 @@
         complete: checkJquery
     });
 
-    window.Site = Site;
-
 })( window, document );
-
-    
