@@ -1,7 +1,49 @@
+
+// List helper
+// ------------------------------------------------------------------------ //
+
 .list-nostyle {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.list-inline > li {
+    display: inline-block;
+}
+
+
+// Typography helper
+// ------------------------------------------------------------------------ //
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-ellipsis {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+// Visual helper
+// ------------------------------------------------------------------------ //
+
+.clearfix:after,
+.cf:after {
+    display: table;
+    clear: both;
+    content: '';
 }
 
 .hidden {
@@ -33,30 +75,4 @@
 
 .invisible {
     visibility: hidden;
-}
-
-.clearfix:after,
-.cf:after {
-    display: table;
-    clear: both;
-    content: '';
-}
-
-.align-center {
-    text-align: center;
-}
-
-.align-right {
-    text-align: right;
-}
-
-.list-inline > li {
-    display: inline-block;
-}
-
-.ellipsis {
-    display: block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
 }

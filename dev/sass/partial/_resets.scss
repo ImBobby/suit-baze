@@ -38,6 +38,18 @@ table {
     width: 100%;
 }
 
+figure {
+    margin: 0 0 $space 0;
+}
+
+label, 
+input, 
+button, 
+select, 
+textarea {
+    font-family: $base_font_family;
+}
+
 .browsehappy {
     background: #FFD17D;
     border-bottom: solid 1px #FFCC6F;
