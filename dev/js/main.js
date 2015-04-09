@@ -19,6 +19,8 @@
             Site.fastClick();
             Site.enableActiveStateMobile();
             Site.WPViewportFix();
+
+            window.Site = Site;
         },
 
         fastClick: function () {
@@ -48,18 +50,12 @@
 
     };
 
-    var siteInit = function () {
-        Site.init();
-
-        window.Site = Site;
-    };
-
     var checkJquery = function () {
         Modernizr.load([
             {
                 test    : window.jQuery,
                 nope    : assets._jquery_local,
-                complete: siteInit
+                complete: Site.init
             }
         ]);
     };
