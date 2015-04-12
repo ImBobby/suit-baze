@@ -1,34 +1,22 @@
 
-/**
- * Markup
- * <ul class="paging">
- *     <li><a class="active">...</a></li>
- *     <li><a href="#">...</a></li>
- *     <li><a href="#">...</a></li>
- *     <li><a href="#">...</a></li>
- *     <li><a href="#">...</a></li>
- * </ul>
- */
-
-
 // Config
 // ------------------------------------------------------------------------ //
 
-$paging_padding: $space/4 $space/2;
+$pagination_padding         : $space/4 $space/2;
 
-$paging_border          : #ddd;
-$paging_color           : #666;
-$paging_bg              : #eee;
+$pagination_border          : #ddd;
+$pagination_color           : #666;
+$pagination_bg              : #eee;
 
-$paging_active_border   : #555;
-$paging_active_color    : #f8f8f8;
-$paging_active_bg       : #888;
+$pagination_active_border   : #555;
+$pagination_active_color    : #f8f8f8;
+$pagination_active_bg       : #888;
 
 
 // Style
 // ------------------------------------------------------------------------ //
 
-.paging {
+/*ul|ol*/.pagination {
     padding: 0;
     margin: 0 0 $space 0;
     list-style: none;
@@ -41,17 +29,17 @@ $paging_active_bg       : #888;
 
     a {
         display: block;
-        padding: $paging_padding;
-        border: solid 1px $paging_border;
-        color: $paging_color;
-        background: $paging_bg;
+        padding: $pagination_padding;
+        border: solid 1px $pagination_border;
+        color: $pagination_color;
+        background: $pagination_bg;
 
         &:hover,
         &:focus,
         &.active {
-            border-color: $paging_active_border;
-            color: $paging_active_color;
-            background: $paging_active_bg;
+            border-color: $pagination_active_border;
+            color: $pagination_active_color;
+            background: $pagination_active_bg;
         }
 
         &.active {
