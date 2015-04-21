@@ -1,93 +1,94 @@
+/*! Baze Grid v2.0.2 | (c) 2014 @_bobbylie | https://github.com/ImBobby/Baze-Grid */
 
 // Config
 // --------------------------------------------------------------------------- */
 
-$BZ_GRID_COUNT  : 12;
-$BZ_GRID_GUTTER : 25px;
-$BZ_GRID_MEDIUM : 40 * 1em;
-$BZ_GRID_LARGE  : 64 * 1em;     
+$BZG_COUNT      : 12 !default;
+$BZG_GUTTER     : 25 * 1px !default;
+$BZG_MEDIUM     : 40 * 1em !default;
+$BZG_LARGE      : 64 * 1em !default;
 
-@function bz_grid_size($size) {
-    @return $size / $BZ_GRID_COUNT * 100%;
+@function bzgSize($size) {
+    @return $size / $BZG_COUNT * 100%;
 }
 
 
 // Style
 // --------------------------------------------------------------------------- */
 
-%bz_clearfix:after {
+%bzg_clearfix:after {
     display: table;
     clear: both;
     content: '';
 }
 
-.grid {
-    @extend %bz_clearfix;
+.bzg {
+    @extend %bzg_clearfix;
 
-    margin-left: $BZ_GRID_GUTTER * -1;
+    margin-left: $BZG_GUTTER * -1;
     box-sizing: border-box;
 }
 
-.grid--no-gutter {
+.bzg--no-gutter {
     margin-left: 0;
 
-    > .grid__col {
+    > .bzg_c {
         padding-left: 0;
     }
 
 }
 
-.grid__col {
+.bzg_c {
     float: left;
     width: 100%;
-    min-height: 1px;    // http://css-tricks.com/make-sure-columns-dont-collapse-horizontally/
-    padding-left: $BZ_GRID_GUTTER;
+    min-height: 1px;
+    padding-left: $BZG_GUTTER;
     box-sizing: border-box;
 }
 
-@for $i from 1 through $BZ_GRID_COUNT {
+@for $i from 1 through $BZG_COUNT {
 
-    .grid__col--s#{$i} {
-        width: bz_grid_size($i);
+    .bzg_c[data-col*="s#{$i}"] {
+        width: bzgSize($i);
     }
 
-    .grid__col--off-s#{$i} {
-        margin-left: bz_grid_size($i);
-    }
-
-}
-
-@media screen and (min-width: #{$BZ_GRID_MEDIUM}) {
-
-    [class*="grid__col--m"] {
-        margin-left: 0;
-    }
-
-    @for $i from 1 through $BZ_GRID_COUNT {
-        .grid__col--m#{$i} {
-            width: bz_grid_size($i);
-        }
-
-        .grid__col--off-m#{$i} {
-            margin-left: bz_grid_size($i);
-        }
+    .bzg_c[data-offset*="s#{$i}"] {
+        margin-left: bzgSize($i);
     }
 
 }
 
-@media screen and (min-width: #{$BZ_GRID_LARGE}) {
+@media screen and (min-width: #{$BZG_MEDIUM} ) {
 
-    [class*="grid__col--l"] {
+    .bzg_c[data-col*="m"] {
         margin-left: 0;
     }
 
-    @for $i from 1 through $BZ_GRID_COUNT {
-        .grid__col--l#{$i} {
-            width: bz_grid_size($i);
+    @for $i from 1 through $BZG_COUNT {
+        .bzg_c[data-col*="m#{$i}"] {
+            width: bzgSize($i);
         }
 
-        .grid__col--off-l#{$i} {
-            margin-left: bz_grid_size($i);
+        .bzg_c[data-offset*="m#{$i}"] {
+            margin-left: bzgSize($i);
+        }
+    }
+
+}
+
+@media screen and (min-width: #{$BZG_LARGE}) {
+
+    .bzg_c[data-col*="l"] {
+        margin-left: 0;
+    }
+
+    @for $i from 1 through $BZG_COUNT {
+        .bzg_c[data-col*="l#{$i}"] {
+            width: bzgSize($i);
+        }
+
+        .bzg_c[data-offset*="l#{$i}"] {
+            margin-left: bzgSize($i);
         }
     }
 
