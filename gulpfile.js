@@ -25,9 +25,11 @@ var autoprefixOpts = {
 --------------------------------------------------------------------------------- */
 
 gulp.task('html_watch', function () {
+    var srcToWatch = '*.html';
+
     return gulp
-        .src('*.html')
-        .pipe(plugins.watch())
+        .src( srcToWatch )
+        .pipe(plugins.watch( srcToWatch ))
         .pipe(plugins.livereload());
 });
 
@@ -37,9 +39,11 @@ gulp.task('html_watch', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('css_watch', function () {
+    var srcToWatch = paths.build + 'css/*.css';
+
     return gulp
-        .src(paths.build + 'css/*.css')
-        .pipe(plugins.watch())
+        .src( srcToWatch )
+        .pipe(plugins.watch( srcToWatch ))
         .pipe(plugins.livereload());
 });
 
@@ -49,9 +53,11 @@ gulp.task('css_watch', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('js_watch', function () {
+    var srcToWatch = paths.build + 'js/*.js';
+
     return gulp
-        .src(paths.build + 'js/*.js')
-        .pipe(plugins.watch())
+        .src( srcToWatch )
+        .pipe(plugins.watch( srcToWatch ))
         .pipe(plugins.livereload());
 });
 
