@@ -5,6 +5,7 @@
 var gulp    = require('gulp'),
     gutil   = require('gulp-util'),
     del     = require('del'),
+    path    = require('path'),
 
     // load all plugins with prefix 'gulp'
     plugins = require('gulp-load-plugins')();
@@ -68,15 +69,21 @@ gulp.task('js_watch', function () {
 
 gulp.task('sass', function () {
     var options = {
-        style: 'expanded'
+        style: 'expanded',
+        onError: function ( err ) {
+            var errMsg  = gutil.colors.red( 'ERROR: ', err.message );
+            var errFile = gutil.colors.green(path.basename(err.file) + ':' + err.line);
+
+            console.log();
+            console.log(errMsg + ' - ' + errFile);
+            console.log();
+            gutil.beep();
+        }
     };
 
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(plugins.sass(options)
-            .on('error', gutil.log)
-            .on('error', gutil.beep)
-        )
+        .pipe(plugins.sass(options))
         .pipe(gulp.dest(paths.build + 'css'));
 });
 
