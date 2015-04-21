@@ -73,7 +73,7 @@ gulp.task('sass', function () {
 
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(plugins.rubySass(options)
+        .pipe(plugins.sass(options)
             .on('error', gutil.log)
             .on('error', gutil.beep)
         )
@@ -105,7 +105,7 @@ gulp.task('style', function () {
 
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(plugins.rubySass(options))
+        .pipe(plugins.sass(options))
         .pipe(gulp.dest(paths.build + 'css'));
 });
 
