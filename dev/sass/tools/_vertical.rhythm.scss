@@ -1,0 +1,63 @@
+
+// Config
+// ------------------------------------------------------------------------ //
+
+$vr_ratios: (
+    minor_second     : 1.067,
+    major_second     : 1.125,
+    minor_third      : 1.2,
+    major_third      : 1.25,
+    perfect_fourth   : 1.333,
+    perfect_fifth    : 1.5,
+    golden_section   : 1.618,
+    minor_sixth      : 1.6,
+    major_sixth      : 1.667,
+    minor_seventh    : 1.778
+);
+
+$vr_ratio_selected: map-get( $vr_ratios, perfect_fourth );
+$vr_base_font_size  : 1 * 1em;
+
+
+// Functions and Mixins
+// ------------------------------------------------------------------------ //
+
+@function vrLineHeight( $font_size ) {
+    $calculated_line_height: $base_line_height / $font_size * 1em;
+
+    @if $calculated_line_height < 1em {
+        @return $calculated_line_height * 1.5;
+    } @else {
+        @return $calculated_line_height;
+    }
+}
+
+@function vrMarginBottom( $font_size ) {
+    $calculated_margin_bottom: $base_line_height / $font_size * 1em;
+
+    @return $calculated_margin_bottom;
+}
+
+@mixin verticalRhythm( $multiplier, $direction: 'up' ) {
+    $vr_base_font_size: 1 * 1em;
+
+    @if $direction == 'up' {
+        
+        @if $multiplier == 0 {
+            $vr_base_font_size: 1 * 1em;
+        } @else {
+            @for $i from 1 through $multiplier {
+                $vr_base_font_size: $vr_base_font_size * $vr_ratio_selected;
+            }
+        }
+
+    } @else {
+        @for $i from 1 through $multiplier {
+            $vr_base_font_size: (1 / $vr_ratio_selected) * $vr_base_font_size;
+        }
+    }
+
+    margin: 0 0 vrMarginBottom( $vr_base_font_size ) 0;
+    font-size: $vr_base_font_size;
+    line-height: vrLineHeight( $vr_base_font_size );
+}

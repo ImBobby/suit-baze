@@ -1,69 +1,28 @@
 /*! [PROJECT_NAME] | Suitmedia */
 
-//	1. Font-face
-//	2. Basic styles
-//	3. Header
-//	4. Page styles
-//	5. Footer
+@import "settings/_variables";
 
-@import "partial/normalize";
-@import "partial/variables";
-@import "partial/resets";
-@import "partial/helpers";
-@import "partial/print";
+@import "tools/_brandscolor";
+@import "tools/_mq";
+@import "tools/_vertical.rhythm";
 
-@import "mixin/mixin";
-@import "modules/modules";
-@import "plugin/plugin";
+@import "generics/_normalize";
+@import "generics/_resets";
 
-// 1 Font-face
-// ------------------------------------------------------------------------ //
+@import "base/_font.face";
+@import "base/_base";
+@import "base/_typography";
 
+@import "objects/_wrappers";
+@import "objects/_baze.grid";
+@import "objects/_media";
 
+@import "components/_breadcrumb";
+@import "components/_buttons";
+@import "components/_forms";
+@import "components/_pagination";
+@import "components/_table";
+@import "components/_browse.happy";
 
-// 2 Basic styles
-// ------------------------------------------------------------------------ //
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    font: 400 $base_font_size $base_font_family;
-    line-height: $base_line_height;
-}
-
-body {
-	color: $black90;
-}
-
-a {
-	color: $link;
-	text-decoration: none;
-
-	&:hover,
-    &:focus {
-		color: $link_hover;
-	}
-}
-
-.block {
-    margin-bottom: $space;
-}
-
-.container {
-    width: 95%;
-    max-width: 960px;
-    margin: 0 auto;
-}
-
-// 3 Header
-// ------------------------------------------------------------------------ //
-
-
-// 4 Page styles
-// ------------------------------------------------------------------------ //
-
-
-// 5 Footer
-// ------------------------------------------------------------------------ //
+@import "trumps/_print";
+@import "trumps/_helpers";

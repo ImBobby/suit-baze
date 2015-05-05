@@ -1,0 +1,61 @@
+
+h1 {
+    @include verticalRhythm(3);
+}
+
+h2 {
+    @include verticalRhythm(2);
+}
+
+h3 {
+    @include verticalRhythm(1);
+}
+
+h4 {
+    @include verticalRhythm(0);
+}
+
+h5 {
+    @include verticalRhythm(-1, 'down');
+}
+
+h6 {
+    @include verticalRhythm(-2, 'down');
+}
+
+p,
+ul,
+ol,
+hr,
+table,
+dl {
+    @include verticalRhythm(0);
+}
+
+.hero {
+    @include verticalRhythm(4);
+}
+
+.h1 {
+    @include verticalRhythm(3);
+}
+
+.h2 {
+    @include verticalRhythm(2);
+}
+
+.h3 {
+    @include verticalRhythm(1);
+}
+
+.h4 {
+    @include verticalRhythm(0);
+}
+
+.h5 {
+    @include verticalRhythm(-1, 'down');
+}
+
+.h6 {
+    @include verticalRhythm(-2, 'down');
+}

@@ -1,0 +1,34 @@
+html {
+    font: 400 $base_font_size $base_font_family;
+    line-height: $base_line_height;
+}
+
+body {
+    color: $black90;
+}
+
+a {
+    color: $link;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: $link_hover;
+    }
+}
+
+legend {
+    margin-bottom: ($space / 2);
+}
+
+::-moz-selection {
+    background: $selection_bg;
+    color: $selection_color;
+    text-shadow: none;
+}
+
+::selection {
+    background: $selection_bg;
+    color: $selection_color;
+    text-shadow: none;
+}

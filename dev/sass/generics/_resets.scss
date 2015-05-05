@@ -1,3 +1,13 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 html,
 button,
 input,
@@ -50,26 +60,23 @@ textarea {
     font-family: $base_font_family;
 }
 
-.browsehappy {
-    background: #FFD17D;
-    border-bottom: solid 1px #FFCC6F;
-    color: #222;
-    font-size: .8em;
-    margin: 0 0 .2em;
-    padding: .4em 0;
-    text-align: center;
+// Fix small bullet on Webkit
+// http://goo.gl/WgqfpM
+input[type="password"] {
+    font: small-caption;
+    font-size: 1em;
 }
 
-::-moz-selection {
-    background: $selection_bg;
-    color: $selection_color;
-    text-shadow: none;
+input[type="number"] {
+    -moz-appearance:textfield;
 }
 
-::selection {
-    background: $selection_bg;
-    color: $selection_color;
-    text-shadow: none;
+// Hide input type number spinner
+// http://goo.gl/lcCQgB
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
 }
 
 
