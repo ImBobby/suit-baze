@@ -26,7 +26,7 @@ var autoprefixOpts = {
 --------------------------------------------------------------------------------- */
 
 gulp.task('html_watch', function () {
-    var srcToWatch = '*.html';
+    var srcToWatch = ['**/*.html', '**/*.php'];
 
     return gulp
         .src( srcToWatch )
