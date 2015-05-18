@@ -60,6 +60,10 @@ textarea {
     font-family: $base_font_family;
 }
 
+canvas {
+    vertical-align: middle;
+}
+
 .browsehappy {
     background: #FFD17D;
     border-bottom: solid 1px #FFCC6F;
