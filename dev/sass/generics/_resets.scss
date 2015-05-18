@@ -67,6 +67,20 @@ input[type="password"] {
     font-size: 1em;
 }
 
+canvas {
+    vertical-align: middle;
+}
+
+.browsehappy {
+    background: #FFD17D;
+    border-bottom: solid 1px #FFCC6F;
+    color: #222;
+    font-size: .8em;
+    margin: 0 0 .2em;
+    padding: .4em 0;
+    text-align: center;
+}
+
 input[type="number"] {
     -moz-appearance:textfield;
 }
