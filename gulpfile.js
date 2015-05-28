@@ -96,6 +96,7 @@ gulp.task('autoprefix', function () {
 
     return gulp
         .src(paths.build + 'css/main.css')
+        .pipe(plugins.changed(paths.build + 'css'))
         .pipe(plugins.autoprefixer(autoprefixOpts))
         .pipe(gulp.dest(paths.build + 'css'));
 });
