@@ -84,18 +84,6 @@ gulp.task('sass', function () {
     return gulp
         .src(paths.dev + 'sass/main.scss')
         .pipe(plugins.sass(options))
-        .pipe(gulp.dest(paths.build + 'css'));
-});
-
-
-
-/* Task: Autoprefix
---------------------------------------------------------------------------------- */
-
-gulp.task('autoprefix', function () {
-
-    return gulp
-        .src(paths.build + 'css/main.css')
         .pipe(plugins.autoprefixer(autoprefixOpts))
         .pipe(gulp.dest(paths.build + 'css'));
 });
@@ -113,6 +101,7 @@ gulp.task('style', function () {
     return gulp
         .src(paths.dev + 'sass/main.scss')
         .pipe(plugins.sass(options))
+        .pipe(plugins.autoprefixer(autoprefixOpts))
         .pipe(gulp.dest(paths.build + 'css'));
 });
 
@@ -240,9 +229,7 @@ gulp.task('clean', function () {
 /* Task: Default
 --------------------------------------------------------------------------------- */
 
-gulp.task('default', ['imagemin', 'sass', 'copy-JS', 'fonts', 'copyCSS', 'webp'], function () {
-    gulp.start('autoprefix');
-});
+gulp.task('default', ['imagemin', 'sass', 'copy-JS', 'fonts', 'copyCSS', 'webp']);
 
 
 
@@ -253,9 +240,6 @@ gulp.task('default', ['imagemin', 'sass', 'copy-JS', 'fonts', 'copyCSS', 'webp']
 gulp.task('watch', ['default'], function () {
     // SASS 
     gulp.watch(paths.dev + 'sass/**/*.scss', ['sass']);
-
-    // Autoprefix 
-    gulp.watch(paths.build + 'css/main.css', ['autoprefix']);
 
     // Uglify
     gulp.watch(paths.dev + 'js/**/*.js', ['copy-JS']);
@@ -289,9 +273,7 @@ gulp.task('livereload', function () {
 /* Task: Build
 --------------------------------------------------------------------------------- */
 
-gulp.task('production', ['style', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS'], function () {
-    gulp.start('autoprefix');
-});
+gulp.task('production', ['style', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS']);
 
 gulp.task('build', ['clean'], function () {
     gulp.start('production');
