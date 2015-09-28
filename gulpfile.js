@@ -69,7 +69,7 @@ gulp.task('js_watch', function () {
 
 gulp.task('sass', function () {
     var options = {
-        style: 'expanded',
+        outputStyle: 'expanded',
         onError: function ( err ) {
             var errMsg  = gutil.colors.red( 'ERROR: ', err.message );
             var errFile = gutil.colors.green(path.basename(err.file) + ':' + err.line);
@@ -83,7 +83,7 @@ gulp.task('sass', function () {
 
     return gulp
         .src(paths.dev + 'sass/main.scss')
-        .pipe(plugins.sass(options))
+        .pipe(plugins.sass(options).on('error', plugins.sass.logError))
         .pipe(plugins.autoprefixer(autoprefixOpts))
         .pipe(gulp.dest(paths.build + 'css'));
 });
@@ -95,7 +95,7 @@ gulp.task('sass', function () {
 
 gulp.task('style', function () {
     var options = {
-        style: 'compressed'
+        outputStyle: 'compressed'
     };
 
     return gulp
