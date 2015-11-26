@@ -19,6 +19,8 @@ or download from the [latest zip file](https://github.com/ImBobby/suit-baze/rele
 * [Gulp](https://github.com/gulpjs/gulp) build system
 * [Bower](https://github.com/bower/bower) manifest
 * Vertical rhythm system
+* [Facebook Open Graph meta tag](https://developers.facebook.com/docs/sharing/webmasters#basic)
+* [Twitter Card meta tag](https://dev.twitter.com/cards/types/summary-large-image)
 
 ### Available gulp task
 
