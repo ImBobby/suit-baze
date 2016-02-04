@@ -3,7 +3,6 @@
 --------------------------------------------------------------------------------- */
 
 var gulp    = require('gulp'),
-    gutil   = require('gulp-util'),
     del     = require('del'),
     path    = require('path'),
 
@@ -71,13 +70,13 @@ gulp.task('sass', function () {
     var options = {
         outputStyle: 'expanded',
         onError: function ( err ) {
-            var errMsg  = gutil.colors.red( 'ERROR: ', err.message );
-            var errFile = gutil.colors.green(path.basename(err.file) + ':' + err.line);
+            var errMsg  = plugins.util.colors.red( 'ERROR: ', err.message );
+            var errFile = plugins.util.colors.green(path.basename(err.file) + ':' + err.line);
 
             console.log();
             console.log(errMsg + ' - ' + errFile);
             console.log();
-            gutil.beep();
+            plugins.util.beep();
         }
     };
 
