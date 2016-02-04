@@ -68,16 +68,7 @@ gulp.task('js_watch', function () {
 
 gulp.task('sass', function () {
     var options = {
-        outputStyle: 'expanded',
-        onError: function ( err ) {
-            var errMsg  = plugins.util.colors.red( 'ERROR: ', err.message );
-            var errFile = plugins.util.colors.green(path.basename(err.file) + ':' + err.line);
-
-            console.log();
-            console.log(errMsg + ' - ' + errFile);
-            console.log();
-            plugins.util.beep();
-        }
+        outputStyle: 'expanded'
     };
 
     return gulp
