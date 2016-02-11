@@ -2,12 +2,13 @@
 /* Gulp set up
 --------------------------------------------------------------------------------- */
 
-var gulp    = require('gulp'),
-    del     = require('del'),
-    path    = require('path'),
+var gulp        = require('gulp'),
+    del         = require('del'),
+    path        = require('path'),
+    prefixer    = require('autoprefixer'),
 
     // load all plugins with prefix 'gulp'
-    plugins = require('gulp-load-plugins')();
+    plugins     = require('gulp-load-plugins')();
 
 
 var paths = {
@@ -74,7 +75,9 @@ gulp.task('sass', function () {
     return gulp
         .src(paths.dev + 'sass/main.scss')
         .pipe(plugins.sass(options).on('error', plugins.sass.logError))
-        .pipe(plugins.autoprefixer(autoprefixOpts))
+        .pipe(plugins.postcss([
+            prefixer(autoprefixOpts)
+        ]))
         .pipe(gulp.dest(paths.build + 'css'));
 });
 
@@ -91,7 +94,9 @@ gulp.task('style', function () {
     return gulp
         .src(paths.dev + 'sass/main.scss')
         .pipe(plugins.sass(options))
-        .pipe(plugins.autoprefixer(autoprefixOpts))
+        .pipe(plugins.postcss([
+            prefixer(autoprefixOpts)
+        ]))
         .pipe(gulp.dest(paths.build + 'css'));
 });
 
