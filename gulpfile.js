@@ -20,6 +20,10 @@ var autoprefixOpts = {
     browsers: ['> 1%', 'last 10 versions', 'Firefox ESR', 'Opera 12.1']
 };
 
+var renameOpts = {
+    suffix: '.min'
+};
+
 
 
 /* Task: Watch HTML
@@ -116,18 +120,51 @@ gulp.task('copyCSS', function () {
 
 
 
+/* Task: Ecmascript next
+--------------------------------------------------------------------------------- */
+
+gulp.task('esnext', function () {
+    return gulp
+        .src(paths.dev + 'js/main.js')
+        .pipe(plugins.babel({
+            presets: ['es2015']
+        }))
+        .on('error', function (e) {
+            console.log('>>> Error', e);
+
+            this.emit('end');
+        })
+        .pipe(plugins.rename(renameOpts))
+        .pipe(gulp.dest( paths.build + 'js'));
+});
+
+gulp.task('esnext:uglify', function () {
+    return gulp
+        .src(paths.dev + 'js/main.js')
+        .pipe(plugins.babel({
+            presets: ['es2015']
+        }))
+        .on('error', function (e) {
+            console.log('>>> Error', e);
+
+            this.emit('end');
+        })
+        .pipe(plugins.uglify())
+        .pipe(plugins.rename(renameOpts))
+        .pipe(gulp.dest( paths.build + 'js'));
+});
+
+
+
+
 /* Task: Copy JS
 --------------------------------------------------------------------------------- */
 
 gulp.task('copy-JS', function () {
-    var options = {
-        suffix: '.min'
-    };
-
     return gulp
-        .src(paths.dev + 'js/**/*.js')
-        .pipe(plugins.rename(options))
-        .pipe(gulp.dest( paths.build + 'js'));
+        .src(paths.dev + 'js/vendor/*.js')
+        .pipe(plugins.rename(renameOpts))
+        .pipe(gulp.dest( paths.build + 'js/vendor/'));
 });
 
 
@@ -137,16 +174,12 @@ gulp.task('copy-JS', function () {
 --------------------------------------------------------------------------------- */
 
 gulp.task('uglify', function () {
-    var options = {
-        suffix: '.min'
-    };
-
     return gulp
-        .src(paths.dev + 'js/**/*.js')
+        .src(paths.dev + 'js/vendor/*.js')
         .pipe(plugins.changed(paths.build + 'js'))
         .pipe(plugins.uglify()) 
-        .pipe(plugins.rename(options))
-        .pipe(gulp.dest( paths.build + 'js'));
+        .pipe(plugins.rename(renameOpts))
+        .pipe(gulp.dest( paths.build + 'js/vendor/'));
 });
 
 
@@ -224,7 +257,7 @@ gulp.task('clean', function () {
 /* Task: Default
 --------------------------------------------------------------------------------- */
 
-gulp.task('default', ['imagemin', 'sass', 'copy-JS', 'fonts', 'copyCSS', 'webp']);
+gulp.task('default', ['imagemin', 'sass', 'esnext', 'copy-JS', 'fonts', 'copyCSS', 'webp']);
 
 
 
@@ -236,8 +269,11 @@ gulp.task('watch', ['default'], function () {
     // SASS 
     gulp.watch(paths.dev + 'sass/**/*.scss', ['sass']);
 
+    // esNext
+    gulp.watch(paths.dev + 'js/main.js', ['esnext']);
+
     // Uglify
-    gulp.watch(paths.dev + 'js/**/*.js', ['copy-JS']);
+    gulp.watch(paths.dev + 'js/vendor/*.js', ['copy-JS']);
 
     // Imagemin
     gulp.watch(paths.dev + 'img/*', ['imagemin']);
@@ -268,7 +304,7 @@ gulp.task('livereload', function () {
 /* Task: Build
 --------------------------------------------------------------------------------- */
 
-gulp.task('production', ['style', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS']);
+gulp.task('production', ['style', 'esnext:uglify', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS']);
 
 gulp.task('build', ['clean'], function () {
     gulp.start('production');
