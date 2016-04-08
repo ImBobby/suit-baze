@@ -109,7 +109,7 @@ gulp.task('style', function () {
 gulp.task('copyCSS', function () {
     return gulp
         .src(paths.dev + 'css/*.css')
-        .pipe(plugins.minifyCss())
+        .pipe(plugins.cleanCss())
         .pipe(gulp.dest(paths.build + 'css/'));
 });
 
