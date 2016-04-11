@@ -127,7 +127,7 @@ gulp.task('esnext', function () {
     return gulp
         .src(paths.dev + 'js/main.js')
         .pipe(plugins.babel({
-            presets: ['es2015']
+            presets: ['es2015', 'react']
         }))
         .on('error', function (e) {
             console.log('>>> Error', e);
