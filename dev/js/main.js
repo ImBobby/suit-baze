@@ -19,6 +19,7 @@
             Site.fastClick();
             Site.enableActiveStateMobile();
             Site.WPViewportFix();
+            Site.loadAdditionalScripts();
 
             window.Site = Site;
         },
@@ -46,8 +47,21 @@
                 style.appendChild(fix);
                 document.getElementsByTagName('head')[0].appendChild(style);
             }
-        }
+        },
 
+        loadAdditionalScripts: function () {
+            var scripts = [].filter.call(document.scripts, function (script) {
+                var src = $.trim(script.getAttribute('data-src'));
+
+                return src && src !== null;
+            });
+
+            if ( !scripts.length ) return;
+
+            scripts.forEach( function (script) {
+                Modernizr.load(script.getAttribute('data-src'));
+            });
+        }
     };
 
     var checkJquery = function () {
