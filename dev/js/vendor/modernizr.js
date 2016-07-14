@@ -45,7 +45,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
     slice = classes.slice,
 
-    featureName, 
+    featureName,
 
 
     injectElementWithStyles = function( rule, callback, nodes, testnames ) {
@@ -105,7 +105,7 @@ window.Modernizr = (function( window, document, undefined ) {
       return bool;
 
      },
- 
+
 
     isEventSupported = (function() {
 
@@ -152,7 +152,7 @@ window.Modernizr = (function( window, document, undefined ) {
       };
     }
     else {
-      hasOwnProp = function (object, property) { 
+      hasOwnProp = function (object, property) {
         return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
       };
     }
@@ -520,6 +520,23 @@ window.Modernizr = (function( window, document, undefined ) {
         return !!document.createElementNS && /SVGClipPath/.test(toString.call(document.createElementNS(ns.svg, 'clipPath')));
     };
 
+    tests['pointerevents'] = function() {
+        var element = document.createElement('x'),
+            documentElement = document.documentElement,
+            getComputedStyle = window.getComputedStyle,
+            supports;
+        if(!('pointerEvents' in element.style)){
+            return false;
+        }
+        element.style.pointerEvents = 'auto';
+        element.style.pointerEvents = 'x';
+        documentElement.appendChild(element);
+        supports = getComputedStyle &&
+            getComputedStyle(element, '').pointerEvents === 'auto';
+        documentElement.removeChild(element);
+        return !!supports;
+    };
+
     function webforms() {
                                             Modernizr['input'] = (function( props ) {
             for ( var i = 0, len = props.length; i < len; i++ ) {
@@ -603,7 +620,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
        }
 
-       return Modernizr; 
+       return Modernizr;
      };
 
 
@@ -877,7 +894,7 @@ Modernizr.addTest('mediaqueries', Modernizr.mq('only all'));// code.google.com/s
 
   image.onerror = function() {
       Modernizr.addTest('webp', false);
-  };  
+  };
   image.onload = function() {
       Modernizr.addTest('webp', function() { return image.width == 1; });
   };
