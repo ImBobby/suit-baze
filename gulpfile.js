@@ -1,108 +1,105 @@
+'use strict'
 
 /* Gulp set up
 --------------------------------------------------------------------------------- */
 
-var gulp        = require('gulp'),
-    del         = require('del'),
-    path        = require('path'),
-    prefixer    = require('autoprefixer'),
+const gulp        = require('gulp')
+const del         = require('del')
+const prefixer    = require('autoprefixer')
+const plugins     = require('gulp-load-plugins')()
 
-    // load all plugins with prefix 'gulp'
-    plugins     = require('gulp-load-plugins')();
-
-
-var paths = {
+const paths = {
     dev     : 'dev/',
     build   : 'assets/'
-};
+}
 
-var autoprefixOpts = {
+const autoprefixOpts = {
     browsers: ['> 1%', 'last 10 versions', 'Firefox ESR', 'Opera 12.1']
-};
+}
 
-var renameOpts = {
+const renameOpts = {
     suffix: '.min'
-};
+}
 
 
 
 /* Task: Watch HTML
 --------------------------------------------------------------------------------- */
 
-gulp.task('html_watch', function () {
-    var srcToWatch = ['**/*.html', '**/*.php'];
+gulp.task('html_watch', () => {
+    let srcToWatch = ['**/*.html', '**/*.php']
 
     return gulp
-        .src( srcToWatch )
-        .pipe(plugins.watch( srcToWatch ))
-        .pipe(plugins.livereload());
-});
+        .src(srcToWatch)
+        .pipe(plugins.watch(srcToWatch))
+        .pipe(plugins.livereload())
+})
 
 
 
 /* Task: Watch CSS
 --------------------------------------------------------------------------------- */
 
-gulp.task('css_watch', function () {
-    var srcToWatch = paths.build + 'css/*.css';
+gulp.task('css_watch', () => {
+    let srcToWatch = `${paths.build}css/*.css`
 
     return gulp
-        .src( srcToWatch )
-        .pipe(plugins.watch( srcToWatch ))
-        .pipe(plugins.livereload());
-});
+        .src(srcToWatch)
+        .pipe(plugins.watch(srcToWatch))
+        .pipe(plugins.livereload())
+})
 
 
 
 /* Task: Watch JS
 --------------------------------------------------------------------------------- */
 
-gulp.task('js_watch', function () {
-    var srcToWatch = paths.build + 'js/*.js';
+gulp.task('js_watch', () => {
+    let srcToWatch = `${paths.build}js/*.js`
 
     return gulp
-        .src( srcToWatch )
-        .pipe(plugins.watch( srcToWatch ))
-        .pipe(plugins.livereload());
-});
+        .src(srcToWatch)
+        .pipe(plugins.watch(srcToWatch))
+        .pipe(plugins.livereload())
+})
 
 
 
 /* Task: Compile SASS
 --------------------------------------------------------------------------------- */
 
-gulp.task('sass', function () {
-    var options = {
+gulp.task('sass', () => {
+    let options = {
         outputStyle: 'expanded'
-    };
+    }
 
     return gulp
-        .src(paths.dev + 'sass/main.scss')
+        .src(`${paths.dev}sass/main.scss`)
         .pipe(plugins.sass(options).on('error', plugins.sass.logError))
         .pipe(plugins.postcss([
             prefixer(autoprefixOpts)
         ]))
-        .pipe(gulp.dest(paths.build + 'css'));
-});
+        .pipe(gulp.dest(`${paths.build}css`))
+})
 
 
 
 /* Task: Style
 --------------------------------------------------------------------------------- */
 
-gulp.task('style', function () {
-    var options = {
+gulp.task('style', () => {
+    let options = {
         outputStyle: 'compressed'
-    };
+    }
 
     return gulp
-        .src(paths.dev + 'sass/main.scss')
+        .src(`${paths.dev}sass/main.scss`)
         .pipe(plugins.sass(options))
         .pipe(plugins.postcss([
             prefixer(autoprefixOpts)
         ]))
-        .pipe(gulp.dest(paths.build + 'css'));
-});
+        .pipe(gulp.dest(`${paths.build}css`))
+})
 
 
 
@@ -110,12 +107,12 @@ gulp.task('style', function () {
 /* Task: Copy and minify CSS vendor
 --------------------------------------------------------------------------------- */
 
-gulp.task('copyCSS', function () {
+gulp.task('copyCSS', () => {
     return gulp
-        .src(paths.dev + 'css/*.css')
+        .src(`${paths.dev}css/*.css`)
         .pipe(plugins.cleanCss())
-        .pipe(gulp.dest(paths.build + 'css/'));
-});
+        .pipe(gulp.dest(`${paths.build}css/`))
+})
 
 
 
@@ -123,36 +120,36 @@ gulp.task('copyCSS', function () {
 /* Task: Ecmascript next
 --------------------------------------------------------------------------------- */
 
-gulp.task('esnext', function () {
+gulp.task('esnext', () => {
     return gulp
-        .src(paths.dev + 'js/main.js')
+        .src(`${paths.dev}js/main.js`)
         .pipe(plugins.babel({
             presets: ['es2015', 'react']
         }))
-        .on('error', function (e) {
-            console.log('>>> Error', e);
+        .on('error', (err) => {
+            console.log('>>> Error', e)
 
-            this.emit('end');
+            this.emit('end')
         })
         .pipe(plugins.rename(renameOpts))
-        .pipe(gulp.dest( paths.build + 'js'));
-});
+        .pipe(gulp.dest(`${paths.build}js`))
+})
 
-gulp.task('esnext:uglify', function () {
+gulp.task('esnext:uglify', () => {
     return gulp
-        .src(paths.dev + 'js/main.js')
+        .src(`${paths.dev}js/main.js`)
         .pipe(plugins.babel({
             presets: ['es2015']
         }))
-        .on('error', function (e) {
-            console.log('>>> Error', e);
+        .on('error', (err) => {
+            console.log('>>> Error', e)
 
-            this.emit('end');
+            this.emit('end')
         })
         .pipe(plugins.uglify())
         .pipe(plugins.rename(renameOpts))
-        .pipe(gulp.dest( paths.build + 'js'));
-});
+        .pipe(gulp.dest(`${paths.build}js`))
+})
 
 
 
@@ -160,12 +157,12 @@ gulp.task('esnext:uglify', function () {
 /* Task: Copy JS
 --------------------------------------------------------------------------------- */
 
-gulp.task('copy-JS', function () {
+gulp.task('copy-JS', () => {
     return gulp
-        .src(paths.dev + 'js/vendor/*.js')
+        .src(`${paths.dev}js/vendor/*.js`)
         .pipe(plugins.rename(renameOpts))
-        .pipe(gulp.dest( paths.build + 'js/vendor/'));
-});
+        .pipe(gulp.dest(`${paths.build}js/vendor/`))
+})
 
 
 
@@ -173,14 +170,14 @@ gulp.task('copy-JS', function () {
 /* Task: Minify JS
 --------------------------------------------------------------------------------- */
 
-gulp.task('uglify', function () {
+gulp.task('uglify', () => {
     return gulp
-        .src(paths.dev + 'js/vendor/*.js')
-        .pipe(plugins.changed(paths.build + 'js'))
-        .pipe(plugins.uglify()) 
+        .src(`${paths.dev}js/vendor/*.js`)
+        .pipe(plugins.changed(`${paths.build}js`))
+        .pipe(plugins.uglify())
         .pipe(plugins.rename(renameOpts))
-        .pipe(gulp.dest( paths.build + 'js/vendor/'));
-});
+        .pipe(gulp.dest(`${paths.build}js/vendor/`))
+})
 
 
 
@@ -188,19 +185,19 @@ gulp.task('uglify', function () {
 /* Task: Optimize image
 --------------------------------------------------------------------------------- */
 
-gulp.task('imagemin', function () {
-    var imageFormats = [
-        paths.dev + 'img/*.png',
-        paths.dev + 'img/*.jpg',
-        paths.dev + 'img/*.gif'
-    ];
+gulp.task('imagemin', () => {
+    let imageFormats = [
+        `${paths.dev}img/*.png`,
+        `${paths.dev}img/*.jpg`,
+        `${paths.dev}img/*.gif`
+    ]
 
     return gulp
         .src(imageFormats)
-        .pipe(plugins.changed(paths.build + 'img'))
-        .pipe(plugins.imagemin({ progressive: true })) 
-        .pipe(gulp.dest(paths.build + 'img'));
-});
+        .pipe(plugins.changed(`${paths.build}img`))
+        .pipe(plugins.imagemin({ progressive: true }))
+        .pipe(gulp.dest(`${paths.build}img`))
+})
 
 
 
@@ -208,22 +205,22 @@ gulp.task('imagemin', function () {
 /* Task: Convert image to WebP
 --------------------------------------------------------------------------------- */
 
-gulp.task('webp', function () {
-    var imageFormats = [
-        paths.dev + 'img/webp/*.png',
-        paths.dev + 'img/webp/*.jpg'
-    ];
+gulp.task('webp', () => {
+    let imageFormats = [
+        `${paths.dev}img/webp/*.png`,
+        `${paths.dev}img/webp/*.jpg`
+    ]
 
-    var options = {
+    let options = {
         quality: 80
-    };
+    }
 
     return gulp
         .src(imageFormats)
-        .pipe(plugins.changed(paths.build + 'img/webp/'))
+        .pipe(plugins.changed(`${paths.build}img/webp/`))
         .pipe(plugins.webp(options))
-        .pipe(gulp.dest(paths.build + 'img/webp/'));
-});
+        .pipe(gulp.dest(`${paths.build}img/webp/`))
+})
 
 
 
@@ -231,12 +228,12 @@ gulp.task('webp', function () {
 /* Task: Copy fonts
 --------------------------------------------------------------------------------- */
 
-gulp.task('fonts', function () {
+gulp.task('fonts', () => {
     return gulp
-        .src(paths.dev + 'fonts/*')
-        .pipe(plugins.changed(paths.build + 'fonts'))
-        .pipe(gulp.dest(paths.build + 'fonts'));
-});
+        .src(`${paths.dev}fonts/*`)
+        .pipe(plugins.changed(`${paths.build}fonts`))
+        .pipe(gulp.dest(`${paths.build}fonts`))
+})
 
 
 
@@ -245,11 +242,11 @@ gulp.task('fonts', function () {
 /* Task: Clean
 --------------------------------------------------------------------------------- */
 
-gulp.task('clean', function () {
-    del(paths.build, function (err) {
-        console.log('Assets directory cleaned');
-    });
-});
+gulp.task('clean', () => {
+    del(paths.build, (err) => {
+        console.log('Assets directory cleaned')
+    })
+})
 
 
 
@@ -257,7 +254,7 @@ gulp.task('clean', function () {
 /* Task: Default
 --------------------------------------------------------------------------------- */
 
-gulp.task('default', ['imagemin', 'sass', 'esnext', 'copy-JS', 'fonts', 'copyCSS', 'webp']);
+gulp.task('default', ['imagemin', 'sass', 'esnext', 'copy-JS', 'fonts', 'copyCSS', 'webp'])
 
 
 
@@ -265,28 +262,28 @@ gulp.task('default', ['imagemin', 'sass', 'esnext', 'copy-JS', 'fonts', 'copyCSS
 /* Task: Watch
 --------------------------------------------------------------------------------- */
 
-gulp.task('watch', ['default'], function () {
-    // SASS 
-    gulp.watch(paths.dev + 'sass/**/*.scss', ['sass']);
+gulp.task('watch', ['default'], () => {
+    // SASS
+    gulp.watch(`${paths.dev}sass/**/*.scss`, ['sass'])
 
     // esNext
-    gulp.watch(paths.dev + 'js/main.js', ['esnext']);
+    gulp.watch(`${paths.dev}js/main.js`, ['esnext'])
 
     // Uglify
-    gulp.watch(paths.dev + 'js/vendor/*.js', ['copy-JS']);
+    gulp.watch(`${paths.dev}js/vendor/*.js`, ['copy-JS'])
 
     // Imagemin
-    gulp.watch(paths.dev + 'img/*', ['imagemin']);
+    gulp.watch(`${paths.dev}img/*`, ['imagemin'])
 
     // WebP
-    gulp.watch(paths.dev + 'img/webp/*', ['webp']);
+    gulp.watch(`${paths.dev}img/webp/*`, ['webp'])
 
     // Fonts
-    gulp.watch(paths.dev + 'fonts/*', ['fonts']);
+    gulp.watch(`${paths.dev}fonts/*`, ['fonts'])
 
     // Copy CSS
-    gulp.watch(paths.dev + 'css/*', ['copyCSS']);
-});
+    gulp.watch(`${paths.dev}css/*`, ['copyCSS'])
+})
 
 
 
@@ -294,9 +291,9 @@ gulp.task('watch', ['default'], function () {
 /* Task: Livereload
 --------------------------------------------------------------------------------- */
 
-gulp.task('livereload', function () {
-    gulp.start('html_watch', 'css_watch', 'js_watch');
-});
+gulp.task('livereload', () => {
+    gulp.start('html_watch', 'css_watch', 'js_watch')
+})
 
 
 
@@ -304,8 +301,8 @@ gulp.task('livereload', function () {
 /* Task: Build
 --------------------------------------------------------------------------------- */
 
-gulp.task('production', ['style', 'esnext:uglify', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS']);
+gulp.task('production', ['style', 'esnext:uglify', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS'])
 
-gulp.task('build', ['clean'], function () {
-    gulp.start('production');
-});
+gulp.task('build', ['clean'], () => {
+    gulp.start('production')
+})
