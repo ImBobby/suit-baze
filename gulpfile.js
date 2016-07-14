@@ -22,7 +22,7 @@ const autoprefixOpts = {
 /* Task: Watch HTML
 --------------------------------------------------------------------------------- */
 
-gulp.task('html_watch', () => {
+gulp.task('watch:html', () => {
     let srcToWatch = ['**/*.html', '**/*.php']
 
     return gulp
@@ -36,7 +36,7 @@ gulp.task('html_watch', () => {
 /* Task: Watch CSS
 --------------------------------------------------------------------------------- */
 
-gulp.task('css_watch', () => {
+gulp.task('watch:stylesheet', () => {
     let srcToWatch = `${paths.build}css/*.css`
 
     return gulp
@@ -50,7 +50,7 @@ gulp.task('css_watch', () => {
 /* Task: Watch JS
 --------------------------------------------------------------------------------- */
 
-gulp.task('js_watch', () => {
+gulp.task('watch:js', () => {
     let srcToWatch = `${paths.build}js/*.js`
 
     return gulp
@@ -64,7 +64,7 @@ gulp.task('js_watch', () => {
 /* Task: Compile SASS
 --------------------------------------------------------------------------------- */
 
-gulp.task('sass', () => {
+gulp.task('stylesheet:compile', () => {
     let options = {
         outputStyle: 'expanded'
     }
@@ -83,7 +83,7 @@ gulp.task('sass', () => {
 /* Task: Style
 --------------------------------------------------------------------------------- */
 
-gulp.task('style', () => {
+gulp.task('stylesheet:compile_and_minify', () => {
     let options = {
         outputStyle: 'compressed'
     }
@@ -103,7 +103,7 @@ gulp.task('style', () => {
 /* Task: Copy and minify CSS vendor
 --------------------------------------------------------------------------------- */
 
-gulp.task('copyCSS', () => {
+gulp.task('stylesheet:copy_vendor_css', () => {
     return gulp
         .src(`${paths.dev}css/*.css`)
         .pipe(plugins.cleanCss())
@@ -116,7 +116,7 @@ gulp.task('copyCSS', () => {
 /* Task: Copy JS
 --------------------------------------------------------------------------------- */
 
-gulp.task('copy-JS', () => {
+gulp.task('javascript:compile', () => {
     let options = {
         suffix: '.min'
     }
@@ -133,7 +133,7 @@ gulp.task('copy-JS', () => {
 /* Task: Minify JS
 --------------------------------------------------------------------------------- */
 
-gulp.task('uglify', () => {
+gulp.task('javascript:compile_and_minify', () => {
     let options = {
         suffix: '.min'
     }
@@ -152,7 +152,7 @@ gulp.task('uglify', () => {
 /* Task: Optimize image
 --------------------------------------------------------------------------------- */
 
-gulp.task('imagemin', () => {
+gulp.task('image:compress', () => {
     let imageFormats = [
         `${paths.dev}img/*.png`,
         `${paths.dev}img/*.jpg`,
@@ -172,7 +172,7 @@ gulp.task('imagemin', () => {
 /* Task: Convert image to WebP
 --------------------------------------------------------------------------------- */
 
-gulp.task('webp', () => {
+gulp.task('image:convert_to_webp', () => {
     let imageFormats = [
         `${paths.dev}img/webp/*.png`,
         `${paths.dev}img/webp/*.jpg`
@@ -221,7 +221,7 @@ gulp.task('clean', () => {
 /* Task: Default
 --------------------------------------------------------------------------------- */
 
-gulp.task('default', ['imagemin', 'sass', 'copy-JS', 'fonts', 'copyCSS', 'webp'])
+gulp.task('default', ['image:compress', 'stylesheet:compile', 'javascript:compile', 'fonts', 'stylesheet:copy_vendor_css', 'image:convert_to_webp'])
 
 
 
@@ -231,22 +231,22 @@ gulp.task('default', ['imagemin', 'sass', 'copy-JS', 'fonts', 'copyCSS', 'webp']
 
 gulp.task('watch', ['default'], () => {
     // SASS
-    gulp.watch(`${paths.dev}sass/**/*.scss`, ['sass'])
+    gulp.watch(`${paths.dev}sass/**/*.scss`, ['stylesheet:compile'])
 
     // Uglify
-    gulp.watch(`${paths.dev}js/**/*.js`, ['copy-JS'])
+    gulp.watch(`${paths.dev}js/**/*.js`, ['javascript:compile'])
 
     // Imagemin
-    gulp.watch(`${paths.dev}img/*`, ['imagemin'])
+    gulp.watch(`${paths.dev}img/*`, ['image:compress'])
 
     // WebP
-    gulp.watch(`${paths.dev}img/webp/*`, ['webp'])
+    gulp.watch(`${paths.dev}img/webp/*`, ['image:convert_to_webp'])
 
     // Fonts
     gulp.watch(`${paths.dev}fonts/*`, ['fonts'])
 
     // Copy CSS
-    gulp.watch(`${paths.dev}css/*`, ['copyCSS'])
+    gulp.watch(`${paths.dev}css/*`, ['stylesheet:copy_vendor_css'])
 })
 
 
@@ -256,7 +256,7 @@ gulp.task('watch', ['default'], () => {
 --------------------------------------------------------------------------------- */
 
 gulp.task('livereload', () => {
-    gulp.start('html_watch', 'css_watch', 'js_watch')
+    gulp.start('watch:html', 'watch:stylesheet', 'watch:js')
 })
 
 
@@ -265,7 +265,7 @@ gulp.task('livereload', () => {
 /* Task: Build
 --------------------------------------------------------------------------------- */
 
-gulp.task('production', ['style', 'uglify', 'imagemin', 'webp', 'fonts', 'copyCSS'])
+gulp.task('production', ['stylesheet:compile_and_minify', 'javascript:compile_and_minify', 'image:compress', 'image:convert_to_webp', 'fonts', 'stylesheet:copy_vendor_css'])
 
 gulp.task('build', ['clean'], () => {
     gulp.start('production')
