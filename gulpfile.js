@@ -162,7 +162,12 @@ gulp.task('image:compress', () => {
     return gulp
         .src(imageFormats)
         .pipe(plugins.changed(`${paths.build}img`))
-        .pipe(plugins.imagemin({ progressive: true }))
+        .pipe(plugins.imagemin([
+            plugins.imagemin.gifsicle(),
+            plugins.imagemin.jpegtran({ progressive: true }),
+            plugins.imagemin.optipng(),
+            plugins.imagemin.svgo()
+        ]))
         .pipe(gulp.dest(`${paths.build}img`))
 })
 
