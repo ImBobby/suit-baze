@@ -1,0 +1,16 @@
+
+$z_indexes: ();
+
+@each $item in map-keys($z_indexes) {
+    .#{$item} {
+        z-index: index(map-keys($z_indexes), $item);
+    }
+
+    $children: map-get($z_indexes, $item);
+
+    @each $child in $children {
+        .#{$child} {
+            z-index: index($children, $child);
+        }
+    }
+}
