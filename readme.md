@@ -24,6 +24,7 @@ or download from the [latest zip file](https://github.com/ImBobby/suit-baze/rele
 * [Facebook Open Graph meta tag](https://developers.facebook.com/docs/sharing/webmasters#basic)
 * [Twitter Card meta tag](https://dev.twitter.com/cards/types/summary-large-image)
 * [EditorConfig](http://editorconfig.org/)
+* Modified version of [sassier z-index management](http://codepen.io/stowball/post/sassier-z-index-management-for-complex-layouts#comment-id-5463)
 
 ### Load additional scripts
 
