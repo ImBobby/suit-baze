@@ -17,6 +17,10 @@ const autoprefixOpts = {
     browsers: ['> 1%', 'last 10 versions', 'Firefox ESR', 'Opera 12.1']
 }
 
+const renameOpts = {
+    suffix: '.min'
+}
+
 
 
 /* Task: Watch HTML
@@ -113,18 +117,51 @@ gulp.task('stylesheet:copy_vendor_css', () => {
 
 
 
-/* Task: Copy JS
+/* Task: Ecmascript next
 --------------------------------------------------------------------------------- */
 
 gulp.task('javascript:compile', () => {
-    let options = {
-        suffix: '.min'
-    }
-
     return gulp
-        .src(`${paths.dev}js/**/*.js`)
-        .pipe(plugins.rename(options))
+        .src(`${paths.dev}js/main.js`)
+        .pipe(plugins.babel({
+            presets: ['es2015', 'react']
+        }))
+        .on('error', (err) => {
+            console.log('>>> Error', e)
+
+            this.emit('end')
+        })
+        .pipe(plugins.rename(renameOpts))
         .pipe(gulp.dest(`${paths.build}js`))
+})
+
+gulp.task('javascript:compile_and_minify', () => {
+    return gulp
+        .src(`${paths.dev}js/main.js`)
+        .pipe(plugins.babel({
+            presets: ['es2015']
+        }))
+        .on('error', (err) => {
+            console.log('>>> Error', e)
+
+            this.emit('end')
+        })
+        .pipe(plugins.uglify())
+        .pipe(plugins.rename(renameOpts))
+        .pipe(gulp.dest(`${paths.build}js`))
+})
+
+
+
+
+/* Task: Copy JS
+--------------------------------------------------------------------------------- */
+
+gulp.task('javascript:copy_vendor_js', () => {
+    return gulp
+        .src(`${paths.dev}js/vendor/*.js`)
+        .pipe(plugins.rename(renameOpts))
+        .pipe(gulp.dest(`${paths.build}js/vendor/`))
 })
 
 
@@ -133,17 +170,13 @@ gulp.task('javascript:compile', () => {
 /* Task: Minify JS
 --------------------------------------------------------------------------------- */
 
-gulp.task('javascript:compile_and_minify', () => {
-    let options = {
-        suffix: '.min'
-    }
-
+gulp.task('javascript:minify_vendor_js', () => {
     return gulp
-        .src(`${paths.dev}js/**/*.js`)
+        .src(`${paths.dev}js/vendor/*.js`)
         .pipe(plugins.changed(`${paths.build}js`))
         .pipe(plugins.uglify())
-        .pipe(plugins.rename(options))
-        .pipe(gulp.dest(`${paths.build}js`))
+        .pipe(plugins.rename(renameOpts))
+        .pipe(gulp.dest(`${paths.build}js/vendor/`))
 })
 
 
@@ -226,7 +259,15 @@ gulp.task('clean', () => {
 /* Task: Default
 --------------------------------------------------------------------------------- */
 
-gulp.task('default', ['image:compress', 'stylesheet:compile', 'javascript:compile', 'fonts', 'stylesheet:copy_vendor_css', 'image:convert_to_webp'])
+gulp.task('default', [
+    'stylesheet:copy_vendor_css',
+    'stylesheet:compile',
+    'javascript:compile',
+    'javascript:copy_vendor_js',
+    'image:compress',
+    'image:convert_to_webp',
+    'fonts'
+])
 
 
 
@@ -238,8 +279,11 @@ gulp.task('watch', ['default'], () => {
     // SASS
     gulp.watch(`${paths.dev}sass/**/*.scss`, ['stylesheet:compile'])
 
+    // esNext
+    gulp.watch(`${paths.dev}js/main.js`, ['javascript:compile'])
+
     // Uglify
-    gulp.watch(`${paths.dev}js/**/*.js`, ['javascript:compile'])
+    gulp.watch(`${paths.dev}js/vendor/*.js`, ['javascript:copy_vendor_js'])
 
     // Imagemin
     gulp.watch(`${paths.dev}img/*`, ['image:compress'])
@@ -270,7 +314,15 @@ gulp.task('livereload', () => {
 /* Task: Build
 --------------------------------------------------------------------------------- */
 
-gulp.task('production', ['stylesheet:compile_and_minify', 'javascript:compile_and_minify', 'image:compress', 'image:convert_to_webp', 'fonts', 'stylesheet:copy_vendor_css'])
+gulp.task('production', [
+    'stylesheet:compile_and_minify',
+    'stylesheet:copy_vendor_css',
+    'javascript:compile_and_minify',
+    'javascript:minify_vendor_js',
+    'image:compress',
+    'image:convert_to_webp',
+    'fonts'
+])
 
 gulp.task('build', ['clean'], () => {
     gulp.start('production')
