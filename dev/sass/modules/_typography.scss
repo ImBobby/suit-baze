@@ -25,7 +25,7 @@ $RATIO          : $PERFECT_FOURTH;
     $temp: $base_line_height / $font_size * 1em;
 
     @if $temp < 1em {
-        @return $temp*1.5;
+        @return $temp * 1.5;
     } @else {
         @return $temp;
     }
@@ -33,7 +33,7 @@ $RATIO          : $PERFECT_FOURTH;
 
 @function getMarginBottom($font_size) {
     $temp: $base_line_height / $font_size * 1em;
-    
+
     @return $temp;
 }
 
@@ -47,7 +47,7 @@ $RATIO          : $PERFECT_FOURTH;
         } @else {
             @for $i from 1 through $multiplier {
                 $font_size: $font_size * $RATIO;
-            }    
+            }
         }
 
     } @else {
@@ -78,7 +78,7 @@ $multiplier: 3 * 1;
 
             @include typography_getStyle($temp, 'down');
         } @else {
-            @include typography_getStyle($multiplier);    
+            @include typography_getStyle($multiplier);
         }
 
     }
@@ -94,27 +94,3 @@ hr,
 table {
     @include typography_getStyle(0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

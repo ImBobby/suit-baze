@@ -2,9 +2,9 @@
 // Config
 // ------------------------------------------------------------------------ //
 
-$input_border_size      : 1 * 1px;
+$input_border_size      : (1 * 1px);
 $input_border_color     : $black40;
-$input_padding          : $space/3;
+$input_padding          : ($space / 3);
 $input_bg               : #fff;
 
 
@@ -12,7 +12,7 @@ $input_bg               : #fff;
 // ------------------------------------------------------------------------ //
 
 legend {
-    margin-bottom: $space/2;
+    margin-bottom: ($space / 2);
 }
 
 // Fix small bullet on Webkit
@@ -31,16 +31,16 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 input[type="number"] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
 }
 
 .form__row {
-    margin-bottom: $space/2;
+    margin-bottom: ($space / 2);
 }
 
 .form-label {
     display: block;
-    margin-top: $space/3;
+    margin-top: ($space / 3);
 }
 
 .form-input {
@@ -57,6 +57,10 @@ input[type="number"] {
 
     &[disabled] {
         cursor: not-allowed;
+    }
+
+    @at-root select#{&} {
+
     }
 }
 

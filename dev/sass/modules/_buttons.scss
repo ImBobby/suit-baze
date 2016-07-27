@@ -2,7 +2,7 @@
 // Setup
 // ------------------------------------------------------------------------ //
 
-$BTN_PADDING: $space/3 $space;
+$BTN_PADDING: ($space / 3) $space;
 
 @mixin btnStyle( $bg, $color: #fff ) {
     color: $color;
@@ -31,7 +31,7 @@ $BTN_PADDING: $space/3 $space;
     background: #ddd;
     cursor: pointer;
     user-select: none;
-    
+
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 
     &:focus {
