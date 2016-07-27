@@ -46,18 +46,24 @@ address {
 
 table {
     width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 figure {
     margin: 0 0 $space 0;
 }
 
-label, 
-input, 
-button, 
-select, 
+label,
+input,
+button,
+select,
 textarea {
     font-family: $base_font_family;
+}
+
+pre {
+    overflow: auto;
 }
 
 canvas {
