@@ -248,7 +248,7 @@ gulp.task('fonts', () => {
 --------------------------------------------------------------------------------- */
 
 gulp.task('clean', () => {
-    del(paths.build, (err) => {
+    return del(paths.build).then(() => {
         console.log('Assets directory cleaned')
     })
 })
