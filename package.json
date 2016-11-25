@@ -27,7 +27,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^1.0.0",
     "gulp-util": "^2.2.14",
-    "gulp-watch": "^4.3.9",
+    "gulp-watch": "^4.3.11",
     "gulp-webp": "^2.1.1"
   }
 }
