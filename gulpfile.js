@@ -126,8 +126,8 @@ gulp.task('javascript:compile', () => {
         .pipe(plugins.babel({
             presets: ['es2015', 'react']
         }))
-        .on('error', (err) => {
-            console.log('>>> Error', e)
+        .on('error', function (err) {
+            console.log('>>> Error', err)
 
             this.emit('end')
         })
@@ -141,8 +141,8 @@ gulp.task('javascript:compile_and_minify', () => {
         .pipe(plugins.babel({
             presets: ['es2015']
         }))
-        .on('error', (err) => {
-            console.log('>>> Error', e)
+        .on('error', function (err) {
+            console.log('>>> Error', err)
 
             this.emit('end')
         })
