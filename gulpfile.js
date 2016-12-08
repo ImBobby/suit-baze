@@ -77,7 +77,8 @@ gulp.task('stylesheet:compile', () => {
         .src(`${paths.dev}sass/main.scss`)
         .pipe(plugins.sass(options).on('error', plugins.sass.logError))
         .pipe(plugins.postcss([
-            prefixer(autoprefixOpts)
+            prefixer(autoprefixOpts),
+            require('postcss-object-fit-images')
         ]))
         .pipe(gulp.dest(`${paths.build}css`))
 })
@@ -96,7 +97,8 @@ gulp.task('stylesheet:compile_and_minify', () => {
         .src(`${paths.dev}sass/main.scss`)
         .pipe(plugins.sass(options))
         .pipe(plugins.postcss([
-            prefixer(autoprefixOpts)
+            prefixer(autoprefixOpts),
+            require('postcss-object-fit-images')
         ]))
         .pipe(gulp.dest(`${paths.build}css`))
 })

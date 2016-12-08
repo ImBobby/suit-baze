@@ -10,7 +10,8 @@
     const assets = {
         _jquery_cdn     : `https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js`,
         _jquery_local   : `${path.js}jquery.min.js`,
-        _fastclick      : `${path.js}fastclick.min.js`
+        _fastclick      : `${path.js}fastclick.min.js`,
+        _objectFit      : `${path.js}object-fit-images.min.js`
     }
 
     const Site = {
@@ -34,6 +35,12 @@
                 style.appendChild(fix)
                 document.getElementsByTagName('head')[0].appendChild(style)
             }
+        },
+
+        objectFitPolyfill() {
+            load(assets._objectFit).then( () => {
+                objectFitImages()
+            })
         },
 
         loadAdditionalScripts() {

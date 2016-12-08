@@ -28,6 +28,7 @@
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^2.2.14",
     "gulp-watch": "^4.3.11",
-    "gulp-webp": "^2.1.1"
+    "gulp-webp": "^2.1.1",
+    "postcss-object-fit-images": "^1.1.2"
   }
 }
