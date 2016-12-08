@@ -6,6 +6,7 @@
 const gulp        = require('gulp')
 const del         = require('del')
 const prefixer    = require('autoprefixer')
+const beep        = require('beepbeep')
 const plugins     = require('gulp-load-plugins')()
 
 const paths = {
@@ -130,7 +131,7 @@ gulp.task('javascript:compile', () => {
         }))
         .on('error', function (err) {
             console.log('>>> Error', err)
-
+            beep(2)
             this.emit('end')
         })
         .pipe(plugins.rename(renameOpts))
@@ -145,7 +146,7 @@ gulp.task('javascript:compile_and_minify', () => {
         }))
         .on('error', function (err) {
             console.log('>>> Error', err)
-
+            beep(2)
             this.emit('end')
         })
         .pipe(plugins.uglify())
