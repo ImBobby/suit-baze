@@ -26,12 +26,12 @@
         },
 
         WPViewportFix() {
-            if ( navigator.userAgent.match(/IEMobile\/10\.0/) ) {
-                let style   = document.createElement('style'),
-                    fix     = document.createTextNode('@-ms-viewport{width:auto!important}')
+            if ( '-ms-user-select' in document.documentElement.style && navigator.userAgent.match(/IEMobile/) ) {
+                let style = document.createElement('style')
+                let fix = document.createTextNode('@-ms-viewport{width:auto!important}')
 
                 style.appendChild(fix)
-                document.getElementsByTagName('head')[0].appendChild(style)
+                document.head.appendChild(style)
             }
         },
 
