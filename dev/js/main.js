@@ -8,8 +8,6 @@
     }
 
     const assets = {
-        _jquery_cdn     : `https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js`,
-        _jquery_local   : `${path.js}jquery.min.js`,
         _fastclick      : `${path.js}fastclick.min.js`,
         _objectFit      : `${path.js}object-fit-images.min.js`
     }
@@ -41,23 +39,11 @@
             load(assets._objectFit).then( () => {
                 objectFitImages()
             })
-        },
-
-        loadAdditionalScripts() {
-            let scripts = [].filter.call(document.scripts, script => {
-                let src = $.trim(script.getAttribute('data-src'))
-
-                return src && src !== null
-            })
-
-            scripts.forEach( script => {
-                load(script.getAttribute('data-src'))
-            })
         }
     }
 
     Promise.all([
-        load(assets._jquery_cdn)
+
     ]).then(() => {
         for (let fn in Site) {
             Site[fn]()
