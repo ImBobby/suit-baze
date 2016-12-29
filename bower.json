@@ -10,7 +10,6 @@
   "dependencies": {
     "jquery": "^3.1.0",
     "normalize-css": "~3.0.3",
-    "fastclick": "~0.6.11",
     "modernizr": "~2.8.3",
     "baze-grid": "~2.0.2"
   }

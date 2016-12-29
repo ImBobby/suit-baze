@@ -8,17 +8,10 @@
     }
 
     const assets = {
-        _fastclick      : `${path.js}fastclick.min.js`,
         _objectFit      : `${path.js}object-fit-images.min.js`
     }
 
     const Site = {
-        fastClick() {
-            load(assets._fastclick).then(() => {
-                FastClick.attach(document.body)
-            })
-        },
-
         enableActiveStateMobile() {
             if ( document.addEventListener ) {
                 document.addEventListener('touchstart', () => {}, true)
