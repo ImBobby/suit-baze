@@ -68,12 +68,11 @@
     function loadJSON(url) {
         return new Promise((resolve, reject) => {
             fetch(url).then(res => {
-                if ( res.ok )
-                    return res.json()
-
-                reject('Network response not ok')
-            }).then(data => {
-                resolve(data)
+                if ( res.ok ) {
+                    resolve(res.json())
+                } else {
+                    reject('Network response not ok')
+                }
             }).catch(e => {
                 reject(e)
             })
