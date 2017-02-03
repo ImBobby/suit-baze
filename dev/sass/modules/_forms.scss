@@ -6,6 +6,7 @@ $input_border_size      : (1 * 1px);
 $input_border_color     : $black40;
 $input_padding          : ($space / 3);
 $input_bg               : #fff;
+$input_disabled_color   : #A8A8A8;
 
 
 // Base style
@@ -56,7 +57,12 @@ input[type="number"] {
     }
 
     &[disabled] {
+        color: $input_disabled_color;
         cursor: not-allowed;
+
+        // Fix iOS color for being too opaque
+        // https://github.com/ImBobby/suit-baze/issues/98
+        -webkit-text-fill-color: $input_disabled_color;
     }
 
     @at-root select#{&} {
