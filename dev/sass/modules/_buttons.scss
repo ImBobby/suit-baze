@@ -40,6 +40,7 @@ $BTN_PADDING: ($space / 3) $space;
 
     &[disabled] {
         cursor: not-allowed;
+        pointer-events: none;
     }
 }
 
