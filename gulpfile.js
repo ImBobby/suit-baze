@@ -125,7 +125,7 @@ gulp.task('stylesheet:copy_vendor_css', () => {
 
 gulp.task('javascript:compile', () => {
     return gulp
-        .src(`${paths.dev}js/main.js`)
+        .src(`${paths.dev}js/*.js`)
         .pipe(plugins.babel({
             presets: ['es2015', 'react']
         }))
@@ -140,7 +140,7 @@ gulp.task('javascript:compile', () => {
 
 gulp.task('javascript:compile_and_minify', () => {
     return gulp
-        .src(`${paths.dev}js/main.js`)
+        .src(`${paths.dev}js/*.js`)
         .pipe(plugins.babel({
             presets: ['es2015']
         }))
@@ -283,7 +283,7 @@ gulp.task('watch', ['default'], () => {
     gulp.watch(`${paths.dev}sass/**/*.scss`, ['stylesheet:compile'])
 
     // esNext
-    gulp.watch(`${paths.dev}js/main.js`, ['javascript:compile'])
+    gulp.watch(`${paths.dev}js/*.js`, ['javascript:compile'])
 
     // Uglify
     gulp.watch(`${paths.dev}js/vendor/*.js`, ['javascript:copy_vendor_js'])
