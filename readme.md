@@ -46,4 +46,4 @@ In practice, most scripts are loaded via `Modernizr.load`. But in some cases, ba
 
 ## Browser support
 
-Evergreen browsers and IE8+
+Evergreen browsers and IE9+
