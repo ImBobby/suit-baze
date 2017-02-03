@@ -192,7 +192,8 @@ gulp.task('image:compress', () => {
     let imageFormats = [
         `${paths.dev}img/*.png`,
         `${paths.dev}img/*.jpg`,
-        `${paths.dev}img/*.gif`
+        `${paths.dev}img/*.gif`,
+        `${paths.dev}img/*.svg`
     ]
 
     return gulp
