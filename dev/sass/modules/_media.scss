@@ -1,17 +1,14 @@
 
 .media {
-    &:after {
-        display: table;
-        clear: both;
-        content: '';
-    }
+    display: flex;
+    align-items: flex-start;
 }
 
-.media__figure {
-    float: left;
+.media-figure {
     margin-right: ($space / 2);
 }
 
-.media__body {
-    overflow: hidden;
+.media-content {
+    flex: 1;
+    min-width: 0;
 }
