@@ -1,0 +1,16 @@
+
+.sticky-footer-container {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.sticky-footer-container-item {
+    display: table-row;
+    height: 1px;
+
+    &.\--pushed {
+        height: auto;
+    }
+}
