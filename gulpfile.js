@@ -127,7 +127,8 @@ gulp.task('javascript:compile', () => {
     return gulp
         .src(`${paths.dev}js/*.js`)
         .pipe(plugins.babel({
-            presets: ['es2015', 'react']
+            presets: ['env'],
+            plugins: ['transform-object-rest-spread']
         }))
         .on('error', function (err) {
             console.log('>>> Error', err)
@@ -142,7 +143,8 @@ gulp.task('javascript:compile_and_minify', () => {
     return gulp
         .src(`${paths.dev}js/*.js`)
         .pipe(plugins.babel({
-            presets: ['es2015']
+            presets: ['env'],
+            plugins: ['transform-object-rest-spread']
         }))
         .on('error', function (err) {
             console.log('>>> Error', err)

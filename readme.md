@@ -12,7 +12,8 @@ or download from the [latest zip file](https://github.com/ImBobby/suit-baze/rele
 ## What's included
 
 * SCSS to CSS compilation using [gulp-sass](https://github.com/dlmanning/gulp-sass)
-* Autoprefixer
+* [Autoprefixer](https://github.com/postcss/autoprefixer)
+* [Babel](https://babeljs.io/)
 * [Normalize](https://github.com/necolas/normalize.css/)
 * [Baze Grid](https://github.com/ImBobby/Baze-Grid)
 * [Modernizr](https://github.com/Modernizr/Modernizr)
@@ -32,7 +33,7 @@ or download from the [latest zip file](https://github.com/ImBobby/suit-baze/rele
 |---        |---|
 | `gulp`   | Run all main tasks such as SCSS compiling, image optimization, etc once.  |
 | `gulp watch`   | Run default task while watching changed files.   |
-| `gulp build`   | Clear assets folder and regenerate fresh pristine assets directory along with ready to production assets.  |
+| `gulp build`   | Clear assets folder and regenerate fresh assets directory along with ready to production assets.  |
 | `gulp livereload`   | Enable livereload development. Run separately with `gulp watch`  |
 
 
