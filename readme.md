@@ -32,10 +32,8 @@ or download from the [latest zip file](https://github.com/ImBobby/suit-baze/rele
 | task      | description  |
 |---        |---|
 | `gulp`   | Run all main tasks such as SCSS compiling, image optimization, etc once.  |
-| `gulp watch`   | Run default task while watching changed files.   |
-| `gulp build`   | Clear assets folder and regenerate fresh assets directory along with ready to production assets.  |
-| `gulp livereload`   | Enable livereload development. Run separately with `gulp watch`  |
-
+| `gulp watch`   | Run default task while watching changed files with live reload.   |
+| `gulp production`   | Regenerate fresh assets directory along with ready to production assets.  |
 
 ## Browser support
 

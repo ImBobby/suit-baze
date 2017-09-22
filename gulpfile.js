@@ -24,48 +24,6 @@ const renameOpts = {
 
 
 
-/* Task: Watch HTML
---------------------------------------------------------------------------------- */
-
-gulp.task('watch:html', () => {
-    let srcToWatch = ['**/*.html', '**/*.php']
-
-    return gulp
-        .src(srcToWatch)
-        .pipe(plugins.watch(srcToWatch))
-        .pipe(plugins.livereload())
-})
-
-
-
-/* Task: Watch CSS
---------------------------------------------------------------------------------- */
-
-gulp.task('watch:stylesheet', () => {
-    let srcToWatch = `${paths.build}css/*.css`
-
-    return gulp
-        .src(srcToWatch)
-        .pipe(plugins.watch(srcToWatch))
-        .pipe(plugins.livereload())
-})
-
-
-
-/* Task: Watch JS
---------------------------------------------------------------------------------- */
-
-gulp.task('watch:js', () => {
-    let srcToWatch = `${paths.build}js/*.js`
-
-    return gulp
-        .src(srcToWatch)
-        .pipe(plugins.watch(srcToWatch))
-        .pipe(plugins.livereload())
-})
-
-
-
 /* Task: Compile SASS
 --------------------------------------------------------------------------------- */
 
@@ -82,6 +40,7 @@ gulp.task('stylesheet:compile', () => {
             require('postcss-object-fit-images')
         ]))
         .pipe(gulp.dest(`${paths.build}css`))
+        .pipe(plugins.livereload())
 })
 
 
@@ -102,6 +61,7 @@ gulp.task('stylesheet:compile_and_minify', () => {
             require('postcss-object-fit-images')
         ]))
         .pipe(gulp.dest(`${paths.build}css`))
+        .pipe(plugins.livereload())
 })
 
 
@@ -113,8 +73,9 @@ gulp.task('stylesheet:compile_and_minify', () => {
 gulp.task('stylesheet:copy_vendor_css', () => {
     return gulp
         .src(`${paths.dev}css/*.css`)
-        .pipe(plugins.cleanCss())
+        .pipe(plugins.cleanCss({ compatibility: 'ie9' }))
         .pipe(gulp.dest(`${paths.build}css/`))
+        .pipe(plugins.livereload())
 })
 
 
@@ -137,6 +98,7 @@ gulp.task('javascript:compile', () => {
         })
         .pipe(plugins.rename(renameOpts))
         .pipe(gulp.dest(`${paths.build}js`))
+        .pipe(plugins.livereload())
 })
 
 gulp.task('javascript:compile_and_minify', () => {
@@ -154,6 +116,7 @@ gulp.task('javascript:compile_and_minify', () => {
         .pipe(plugins.uglify())
         .pipe(plugins.rename(renameOpts))
         .pipe(gulp.dest(`${paths.build}js`))
+        .pipe(plugins.livereload())
 })
 
 
@@ -167,6 +130,7 @@ gulp.task('javascript:copy_vendor_js', () => {
         .src(`${paths.dev}js/vendor/*.js`)
         .pipe(plugins.rename(renameOpts))
         .pipe(gulp.dest(`${paths.build}js/vendor/`))
+        .pipe(plugins.livereload())
 })
 
 
@@ -182,6 +146,7 @@ gulp.task('javascript:minify_vendor_js', () => {
         .pipe(plugins.uglify())
         .pipe(plugins.rename(renameOpts))
         .pipe(gulp.dest(`${paths.build}js/vendor/`))
+        .pipe(plugins.livereload())
 })
 
 
@@ -208,6 +173,7 @@ gulp.task('image:compress', () => {
             plugins.imagemin.svgo()
         ]))
         .pipe(gulp.dest(`${paths.build}img`))
+        .pipe(plugins.livereload())
 })
 
 
@@ -231,6 +197,7 @@ gulp.task('image:convert_to_webp', () => {
         .pipe(plugins.changed(`${paths.build}img/webp/`))
         .pipe(plugins.webp(options))
         .pipe(gulp.dest(`${paths.build}img/webp/`))
+        .pipe(plugins.livereload())
 })
 
 
@@ -244,6 +211,7 @@ gulp.task('fonts', () => {
         .src(`${paths.dev}fonts/*`)
         .pipe(plugins.changed(`${paths.build}fonts`))
         .pipe(gulp.dest(`${paths.build}fonts`))
+        .pipe(plugins.livereload())
 })
 
 
@@ -282,6 +250,7 @@ gulp.task('default', [
 --------------------------------------------------------------------------------- */
 
 gulp.task('watch', ['default'], () => {
+    plugins.livereload.listen()
     // SASS
     gulp.watch(`${paths.dev}sass/**/*.scss`, ['stylesheet:compile'])
 
