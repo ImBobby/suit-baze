@@ -25,7 +25,7 @@
     <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
-    <title>front-end starter kit</title>
+    <title>Suit Baze - front-end starter kit</title>
 
     <link rel="stylesheet" href="assets/css/main.css">
     <script src="assets/js/vendor/modernizr.min.js"></script>
@@ -35,11 +35,11 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <h1>Baze - Front-end starter kit</h1>
+    <h1>Suit Baze - front-end starter kit</h1>
 
-    <script>window.myPrefix = '';</script>
-    <script src="assets/js/vendor/jquery.min.js"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.js?features=default,promise,fetch"></script>
+    <script src="assets/js/vendor/jquery.min.js"></script>
+    <script src="assets/js/vendor/object-fit-images.min.js"></script>
     <script src="assets/js/main.min.js"></script>
 </body>
 </html>

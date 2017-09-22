@@ -1,15 +1,5 @@
-/*! [PROJECT_NAME] | Suitmedia */
 
 ((window, document, undefined) => {
-
-    const path = {
-        css: `${myPrefix}assets/css/`,
-        js : `${myPrefix}assets/js/vendor/`
-    }
-
-    const assets = {
-        _objectFit      : `${path.js}object-fit-images.min.js`
-    }
 
     const Site = {
         enableActiveStateMobile() {
@@ -29,20 +19,15 @@
         },
 
         objectFitPolyfill() {
-            load(assets._objectFit).then( () => {
-                objectFitImages()
-            })
+            objectFitImages()
         }
     }
 
-    Promise.all([
+    for (let fn in Site) {
+        Site[fn]()
+    }
 
-    ]).then(() => {
-        for (let fn in Site) {
-            Site[fn]()
-        }
-        window.Site = Site
-    })
+    window.Site = Site
 
     function exist(selector) {
         return new Promise((resolve, reject) => {
@@ -50,18 +35,9 @@
 
             if ( $elem.length ) {
                 resolve($elem)
-            } else {
-                reject(`no element found for ${selector}`)
             }
-        })
-    }
 
-    function load(url) {
-        return new Promise((resolve, reject) => {
-            Modernizr.load({
-                load: url,
-                complete: resolve
-            })
+            reject(`no element found for ${selector}`)
         })
     }
 
@@ -73,9 +49,7 @@
                 } else {
                     reject('Network response not ok')
                 }
-            }).catch(e => {
-                reject(e)
-            })
+            }).catch(reject)
         })
     }
 

@@ -26,14 +26,6 @@ or download from the [latest zip file](https://github.com/ImBobby/suit-baze/rele
 * [EditorConfig](http://editorconfig.org/)
 * Modified version of [sassier z-index management](http://codepen.io/stowball/post/sassier-z-index-management-for-complex-layouts#comment-id-5463)
 
-### Load additional scripts
-
-In practice, most scripts are loaded via `Modernizr.load`. But in some cases, backend developers need to add additional scripts depending on jQuery. So that to load additional scripts, create script tag with 'data-src' attribute instead of 'src'.
-
-```HTML
-<script data-src="path/to/script.js"></script>
-```
-
 ### Available gulp task
 
 | task      | description  |
