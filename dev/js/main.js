@@ -1,7 +1,9 @@
 
 ((window, document, undefined) => {
 
-    const Site = {
+    const noop = () => {}
+
+    const App = {
         enableActiveStateMobile() {
             if ( document.addEventListener ) {
                 document.addEventListener('touchstart', () => {}, true)
@@ -23,19 +25,19 @@
         }
     }
 
-    for (let fn in Site) {
-        Site[fn]()
+    for (let fn in App) {
+        if ( fn[0] !== '_' )
+            App[fn]()
     }
 
-    window.Site = Site
+    window.Site = { ...App }
 
     function exist(selector) {
         return new Promise((resolve, reject) => {
             let $elem = $(selector)
 
-            if ( $elem.length ) {
+            if ( $elem.length )
                 resolve($elem)
-            }
 
             reject(`no element found for ${selector}`)
         })
@@ -44,11 +46,10 @@
     function loadJSON(url) {
         return new Promise((resolve, reject) => {
             fetch(url).then(res => {
-                if ( res.ok ) {
+                if ( res.ok )
                     resolve(res.json())
-                } else {
-                    reject('Network response not ok')
-                }
+
+                reject('Network response not ok')
             }).catch(reject)
         })
     }
