@@ -5,9 +5,7 @@
 
     const App = {
         enableActiveStateMobile() {
-            if ( document.addEventListener ) {
-                document.addEventListener('touchstart', () => {}, true)
-            }
+            document.addEventListener('touchstart', noop, true)
         },
 
         WPViewportFix() {
