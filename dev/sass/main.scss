@@ -47,6 +47,10 @@ a {
     margin-bottom: $space;
 }
 
+.block-half {
+    margin-bottom: ($space / 2);
+}
+
 .container {
     width: 95%;
     max-width: 960px;
