@@ -179,30 +179,6 @@ gulp.task('image:compress', () => {
 
 
 
-/* Task: Convert image to WebP
---------------------------------------------------------------------------------- */
-
-gulp.task('image:convert_to_webp', () => {
-    let imageFormats = [
-        `${paths.dev}img/webp/*.png`,
-        `${paths.dev}img/webp/*.jpg`
-    ]
-
-    let options = {
-        quality: 80
-    }
-
-    return gulp
-        .src(imageFormats)
-        .pipe(plugins.changed(`${paths.build}img/webp/`))
-        .pipe(plugins.webp(options))
-        .pipe(gulp.dest(`${paths.build}img/webp/`))
-        .pipe(plugins.livereload())
-})
-
-
-
-
 /* Task: Copy fonts
 --------------------------------------------------------------------------------- */
 
@@ -239,7 +215,6 @@ gulp.task('default', [
     'javascript:compile',
     'javascript:copy_vendor_js',
     'image:compress',
-    'image:convert_to_webp',
     'fonts'
 ])
 
@@ -262,9 +237,6 @@ gulp.task('watch', ['default'], () => {
 
     // Imagemin
     gulp.watch(`${paths.dev}img/*`, ['image:compress'])
-
-    // WebP
-    gulp.watch(`${paths.dev}img/webp/*`, ['image:convert_to_webp'])
 
     // Fonts
     gulp.watch(`${paths.dev}fonts/*`, ['fonts'])
@@ -295,7 +267,6 @@ gulp.task('production', [
     'javascript:compile_and_minify',
     'javascript:minify_vendor_js',
     'image:compress',
-    'image:convert_to_webp',
     'fonts'
 ])
 
