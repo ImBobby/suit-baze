@@ -7,6 +7,9 @@ const gulp        = require('gulp')
 const del         = require('del')
 const prefixer    = require('autoprefixer')
 const beep        = require('beepbeep')
+const rollup      = require('rollup')
+const rollupBabel = require('rollup-plugin-babel')
+const rUglify     = require('rollup-plugin-uglify')
 const plugins     = require('gulp-load-plugins')()
 
 const paths = {
@@ -84,39 +87,53 @@ gulp.task('stylesheet:copy_vendor_css', () => {
 /* Task: Ecmascript next
 --------------------------------------------------------------------------------- */
 
-gulp.task('javascript:compile', () => {
-    return gulp
-        .src(`${paths.dev}js/*.js`)
-        .pipe(plugins.babel({
-            presets: ['env'],
-            plugins: ['transform-object-rest-spread']
-        }))
-        .on('error', function (err) {
-            console.log('>>> Error', err)
-            beep(2)
-            this.emit('end')
-        })
-        .pipe(plugins.rename(renameOpts))
-        .pipe(gulp.dest(`${paths.build}js`))
-        .pipe(plugins.livereload())
+gulp.task('javascript:compile', async () => {
+    const bundle = await rollup.rollup({
+        input: './dev/js/main.js',
+        plugins: [
+            rollupBabel({
+                exclude: 'node_modules/**',
+                presets: [
+                    ['env', { modules: false }]
+                ],
+                plugins: [
+                    'transform-object-rest-spread'
+                ]
+            })
+        ]
+    })
+
+    await bundle.write({
+        file: './assets/js/main.min.js',
+        format: 'iife',
+        name: 'Site',
+        externalHelpers: false
+    })
 })
 
-gulp.task('javascript:compile_and_minify', () => {
-    return gulp
-        .src(`${paths.dev}js/*.js`)
-        .pipe(plugins.babel({
-            presets: ['env'],
-            plugins: ['transform-object-rest-spread']
-        }))
-        .on('error', function (err) {
-            console.log('>>> Error', err)
-            beep(2)
-            this.emit('end')
-        })
-        .pipe(plugins.uglify())
-        .pipe(plugins.rename(renameOpts))
-        .pipe(gulp.dest(`${paths.build}js`))
-        .pipe(plugins.livereload())
+gulp.task('javascript:compile_and_minify', async () => {
+    const bundle = await rollup.rollup({
+        input: './dev/js/main.js',
+        plugins: [
+            rollupBabel({
+                exclude: 'node_modules/**',
+                presets: [
+                    ['env', { modules: false }]
+                ],
+                plugins: [
+                    'transform-object-rest-spread'
+                ]
+            }),
+            rUglify()
+        ]
+    })
+
+    await bundle.write({
+        file: './assets/js/main.min.js',
+        format: 'iife',
+        name: 'Site',
+        externalHelpers: false
+    })
 })
 
 
