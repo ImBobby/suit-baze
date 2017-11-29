@@ -4,9 +4,9 @@ import WPViewportFix from './windowsPhoneViewportFix'
 import objectFitPolyfill from './objectFitPolyfill'
 
 const App = {
-    ...activeStateMobile,
-    ...WPViewportFix,
-    ...objectFitPolyfill
+    activeStateMobile,
+    WPViewportFix,
+    objectFitPolyfill
 }
 
 for (let fn in App) {

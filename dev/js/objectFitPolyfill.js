@@ -1,5 +1,3 @@
-export default {
-    objectFitPolyfill() {
-        objectFitImages()
-    }
+export default function () {
+    objectFitImages()
 }
