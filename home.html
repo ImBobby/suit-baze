@@ -28,7 +28,6 @@
     <title>Suit Baze - front-end starter kit</title>
 
     <link rel="stylesheet" href="assets/css/main.css">
-    <script src="assets/js/vendor/modernizr.min.js" defer></script>
 </head>
 <body>
     <!--[if lt IE 9]>
@@ -42,6 +41,7 @@
     </div>
 
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,promise,fetch" defer></script>
+    <script src="assets/js/vendor/modernizr.min.js" defer></script>
     <script src="assets/js/vendor/jquery.min.js" defer></script>
     <script src="assets/js/vendor/object-fit-images.min.js" defer></script>
     <script src="assets/js/main.min.js" defer></script>
