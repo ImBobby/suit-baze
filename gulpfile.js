@@ -84,7 +84,10 @@ const jsTask = (isMinified = false) => () => {
         name: 'Site',
         plugins: rollupPlugins
     })
-    .on('error', e => console.log(e))
+    .on('error', function (e) {
+        console.log(e)
+        this.emit('end')
+    })
     .pipe(source('main.min.js'))
     .pipe(gulp.dest('./assets/js'))
     .pipe(plugins.livereload())
