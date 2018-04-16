@@ -1,10 +1,5 @@
 
-// Setup
-// ------------------------------------------------------------------------ //
-
-$BTN_PADDING: ($space / 3) $space;
-
-@mixin btnStyle( $bg, $color: #fff ) {
+@mixin btnStyle($bg, $color: #fff) {
     color: $color;
     background: $bg;
 
@@ -12,15 +7,15 @@ $BTN_PADDING: ($space / 3) $space;
     &:focus {
 
     }
+
+    &[disabled] {
+
+    }
 }
-
-
-// Base Style
-// ------------------------------------------------------------------------ //
 
 .btn {
     display: inline-block;
-    padding: $BTN_PADDING;
+    padding: 8px 24px;
     border: 0;
     font-family: inherit;
     line-height: $base_line_height;
@@ -43,10 +38,6 @@ $BTN_PADDING: ($space / 3) $space;
         pointer-events: none;
     }
 }
-
-
-// Modifier
-// ------------------------------------------------------------------------ //
 
 .btn--block {
     width: 100%;
