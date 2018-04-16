@@ -35,6 +35,10 @@
     overflow: hidden;
 }
 
+.text-caps {
+    text-transform: uppercase;
+}
+
 
 // Visual helper
 // ------------------------------------------------------------------------ //
@@ -74,4 +78,15 @@
 
 .invisible {
     visibility: hidden;
+}
+
+.full-width {
+    width: 100%;
+}
+
+$gaps: 0, 2, 4, 8, 12, 16, 20, 24;
+
+@each $gap in $gaps {
+    .mb-#{$gap} { margin-bottom: $gap * 1px !important; }
+    .p-#{$gap} { padding: $gap * 1px !important; }
 }
