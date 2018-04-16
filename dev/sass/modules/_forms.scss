@@ -1,26 +1,6 @@
 
-// Config
-// ------------------------------------------------------------------------ //
-
-$input_border_size      : (1 * 1px);
-$input_border_color     : $black40;
-$input_padding          : ($space / 3);
-$input_bg               : #fff;
-$input_disabled_color   : #A8A8A8;
-
-
-// Base style
-// ------------------------------------------------------------------------ //
-
 legend {
     margin-bottom: ($space / 2);
-}
-
-// Fix small bullet on Webkit
-// http://goo.gl/WgqfpM
-input[type="password"] {
-    font: small-caption;
-    font-size: 1em;
 }
 
 // Hide input type number spinner
@@ -35,44 +15,34 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
-.form__row {
-    margin-bottom: ($space / 2);
-}
-
-.form-label {
-    display: block;
-    margin-top: ($space / 3);
-}
-
 .form-input {
-    padding: $input_padding;
-    border: solid $input_border_size $input_border_color;
+    padding: 6px 8px;
+    border: solid 1px #ccc;
+    border-radius: 2px;
     font-family: inherit;
-    background: $input_bg;
+    background: #fff;
     box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
 
     &:focus {
-        border-color: #2669d3;
+        border-color: #333;
         outline: none;
     }
 
     &[disabled] {
-        color: $input_disabled_color;
+        color: #A8A8A8;
         cursor: not-allowed;
 
         // Fix iOS color for being too opaque
         // https://github.com/ImBobby/suit-baze/issues/98
-        -webkit-text-fill-color: $input_disabled_color;
+        -webkit-text-fill-color: #A8A8A8;
     }
 
     @at-root select#{&} {
-
+        background: url(../img/select-arrow.png) center right 12px no-repeat;
+        background-size: 10px;
+        appearance: none;
     }
 }
-
-
-// Modifier
-// ------------------------------------------------------------------------ //
 
 .form-input--error {
     border-color: #d32c31;
