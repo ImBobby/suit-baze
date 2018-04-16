@@ -1,48 +1,33 @@
 
-// Config
-// ------------------------------------------------------------------------ //
-
-$pagination_padding         : ($space / 4) ($space / 2);
-
-$pagination_border          : #ddd;
-$pagination_color           : #666;
-$pagination_bg              : #eee;
-
-$pagination_active_border   : #555;
-$pagination_active_color    : #f8f8f8;
-$pagination_active_bg       : #888;
-
-
-// Style
-// ------------------------------------------------------------------------ //
-
-/*ul|ol*/.pagination {
+.pagination {
+    display: flex;
+    justify-content: center;
     padding: 0;
     margin: 0 0 $space 0;
     list-style: none;
-    text-align: center;
     user-select: none;
 
     li {
-        display: inline-block;
+        margin: 0 2px;
     }
 
     a {
-        display: block;
-        padding: $pagination_padding;
-        border: solid 1px $pagination_border;
-        color: $pagination_color;
-        background: $pagination_bg;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border: solid 1px #ddd;
+        color: currentcolor;
+        background: #eee;
 
         &:hover,
-        &:focus,
-        &.active {
-            border-color: $pagination_active_border;
-            color: $pagination_active_color;
-            background: $pagination_active_bg;
+        &:focus {
+
         }
 
-        &.active {
+        &.is-active {
             cursor: default;
             pointer-events: none;
         }
