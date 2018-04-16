@@ -177,3 +177,27 @@ export function getAttr(attr) {
         return el.getAttribute(attr)
     }
 }
+
+export function createSlider(opts = {}) {
+    return function ($el) {
+        return new Promise((resolve, reject) => {
+            if ( !$el.length ) {
+                reject(`No element ${$el} found.`)
+            }
+
+            const defaults = {
+                accessibility: false,
+                draggable: false
+            }
+
+            $el.on('init', () => {
+                resolve($el)
+            })
+
+            $el.slick({
+                ...defaults,
+                ...opts
+            })
+        })
+    }
+}
