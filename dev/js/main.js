@@ -2,11 +2,13 @@ import * as _ from './utils'
 import activeStateMobile from './activeStateMobile'
 import WPViewportFix from './windowsPhoneViewportFix'
 import objectFitPolyfill from './objectFitPolyfill'
+import formValidation from './formValidation'
 
 const App = {
     activeStateMobile,
     WPViewportFix,
-    objectFitPolyfill
+    objectFitPolyfill,
+    formValidation,
 }
 
 for (let fn in App) {

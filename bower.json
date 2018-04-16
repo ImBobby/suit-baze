@@ -4,10 +4,12 @@
   ],
   "dependencies": {
     "baze-grid": "~2.0.2",
+    "baze-validation": "~1.1.0",
     "jquery": "^3.1.0",
     "modernizr": "~2.8.3",
     "normalize-css": "~3.0.3",
-    "slick-carousel": "~1.6.0"
+    "slick-carousel": "~1.6.0",
+    "sprintf": "~1.0.3"
   },
   "description": "suit-baze is a Front-end starter kit base on HTML5 Boilerplate, modified by Suitmedia",
   "homepage": "https://github.com/ImBobby/suit-baze",
