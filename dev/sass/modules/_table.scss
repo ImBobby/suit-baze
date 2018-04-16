@@ -1,155 +1,31 @@
-/*--------------------------------*\
 
-    Responsive Table
-    structure:
- 
-    table
-    -thead
-    --tr
-    ---th
-    -tbody
-    --tr
-    ---td
-
-    Available modifier:
-    * table--responsive
-    * table--zebra
-    * table--compact
-
-\*--------------------------------*/
-
-// Base style
-// ------------------------------------------------------------------------ //
-
-$table_cell_padding         : .4em;
-$table_cell_padding_compact : .2em .4em;
-
-$table_background           : lighten($black20, 7%);
-$table_border               : #c6c6c6;
-$table_zebra                : lighten($black20, 3%);
-$table_thead_background     : $black20;
-
-$table_border_prop          : "solid 1px " + $table-border;
-
-/*table*/.table {
-    text-align: left;
-    background: $table_background;
+.table {
 
     thead {
-        background: $table_thead_background;
-
-        tr {
-            border-top: unquote($table_border_prop);
-        }
-    }
-
-    tr {
-        border-bottom: unquote($table_border_prop);
-    }
-
-    th,
-    td {
-        padding: $table_cell_padding;
-        border-right: unquote($table_border_prop);
-
-        &:first-child {
-            border-left: unquote($table_border_prop);
-        }
-    }
-}
-
-.table--responsive {
-    @extend .clearfix;
-    
-    position: relative;
-    display: block;
-
-    @media #{$medium} {
-        display: table;
-    }
-
-    thead {
-        display: block;
-        float: left;
-        border-left: unquote($table_border_prop);
-
-        @media #{$medium} {
-            float: none;
-            display: table-header-group;
-            border-left: none;
-        }
-
-        tr {
-            display: block;
-
-            @media #{$medium} {
-                display: table-row;
-            }
-        }
+        color: #fff;
+        background: #444;
     }
 
     tbody {
-        position: relative;
-        display: block;
-        width: auto;
-        overflow-x: auto;
-        white-space: nowrap;
-        
-        @media #{$medium} {
-            display: table-row-group;
-            white-space: normal;
-        }
 
-        tr {
-            display: inline-block;
-            border-top: unquote($table_border_prop);
-            margin-left: -4px;
-
-            @media #{$medium} {
-                display: table-row;
-                border-top: none;
-            }
+        tr:nth-child(even) {
+            background: rgba(#eee, .3);
         }
     }
 
     th,
     td {
-        display: block;
-
-        &:first-child {
-            border-left: none;
-
-            @media #{$medium} {
-                border-left: unquote($table_border_prop);
-            }
-        }
-
-        @media #{$medium} {
-            display: table-cell;
-        }
-    }
-
-    th + th,
-    td + td {
-        border-top: unquote($table_border_prop);
-
-        @media #{$medium} {
-            border-top: none;
-        }
+        padding: 8px;
+        border: solid 1px #ddd;
+        font-size: 90%;
     }
 }
 
-.table--zebra {
-    tbody {
-        tr:nth-child(2n) {
-            background: $table-zebra;
-        }
-    }
-}
+.table-wrapper {
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 
-.table--compact {
-    th,
-    td {
-        padding: $table-cell-padding-compact;
+    @media #{$large} {
+        overflow: visible;
     }
 }
