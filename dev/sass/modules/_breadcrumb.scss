@@ -1,34 +1,16 @@
 
-// http://goo.gl/E1YNsD
-
-// Config
-// ------------------------------------------------------------------------ //
-
-$bread_space        : ($space / 2);
-$bread_separator    : '→';
-
-
-// Style
-// ------------------------------------------------------------------------ //
-
-/*ul*/.breadcrumb {
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     padding: 0;
     list-style: none;
 
-    &:after {
-        display: table;
-        clear: both;
-        content: '';
-    }
-
     > li {
-        position: relative;
-        float: left;
 
         &:before {
-            margin: 0 $bread_space;
-            color: #444;
-            content: $bread_separator;
+            margin: 0 8px;
+            content: '→';
         }
 
         &:first-child:before {
