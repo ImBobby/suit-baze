@@ -12,6 +12,19 @@ $space              : $base_line_height;
 // Colors
 // ------------------------------------------------------------------------ //
 
+$palettes: (
+    black: #222
+);
+
+@function palette($color) {
+    @if map-has-key($palettes, $color) {
+        @return map-get($palettes, $color);
+    } @else {
+        @warn "key `#{$color}` was not found. Falling back to #222";
+        @return #222;
+    }
+}
+
 $black              : #222;
 $black90            : lighten($black, 10%);
 $black80            : lighten($black, 20%);
