@@ -1876,6 +1876,8 @@
   !*/
 
     Modernizr.addTest('csstransitions', testAllProps('transition', 'all', true));
+    Modernizr.addTest('cssgridlegacy', testAllProps('grid-columns', '10px', true));
+    Modernizr.addTest('cssgrid', testAllProps('grid-template-rows', 'none', true));
 
 
     // Run each test

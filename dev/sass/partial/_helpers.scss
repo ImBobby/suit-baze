@@ -90,3 +90,9 @@ $gaps: 0, 2, 4, 8, 12, 16, 20, 24;
     .mb-#{$gap} { margin-bottom: $gap * 1px !important; }
     .p-#{$gap} { padding: $gap * 1px !important; }
 }
+
+@each $state, $color in $palettes {
+    .text-#{$state} {
+        color: $color;
+    }
+}

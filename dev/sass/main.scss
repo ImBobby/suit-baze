@@ -44,6 +44,14 @@ a {
 	}
 }
 
+button {
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
+}
+
 .block {
     margin-bottom: $space;
 }
