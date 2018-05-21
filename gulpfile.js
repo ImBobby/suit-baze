@@ -25,7 +25,7 @@ const sassTask = (isMinified = false) => () => {
     const outputStyle = isMinified ? 'compressed' : 'expanded'
     const options = { outputStyle }
     const autoprefixOpts = {
-        browsers: ['> 1%', 'last 10 versions', 'Firefox ESR', 'Opera 12.1']
+        browsers: ['last 2 versions']
     }
 
     return gulp.src(`${paths.dev}sass/main.scss`)
