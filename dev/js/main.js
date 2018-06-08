@@ -1,4 +1,3 @@
-import * as _ from './utils'
 import activeStateMobile from './activeStateMobile'
 import WPViewportFix from './windowsPhoneViewportFix'
 import objectFitPolyfill from './objectFitPolyfill'
