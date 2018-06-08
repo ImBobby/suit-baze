@@ -37,4 +37,4 @@ or download from the [latest zip file](https://github.com/ImBobby/suit-baze/rele
 
 ## Browser support
 
-Evergreen browsers and IE9+
+Evergreen browsers and IE10+
