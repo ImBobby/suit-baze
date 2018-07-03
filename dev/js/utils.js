@@ -145,11 +145,7 @@ export function toggleClass(...classes) {
 
 export function getJSON(url) {
     return new Promise((resolve, reject) => {
-        fetch(url).then(res => {
-            if ( res.ok )
-                resolve(res.json())
-            reject('Network response not ok')
-        }).catch(reject)
+        $.getJSON(url).done(resolve).fail(reject)
     })
 }
 
