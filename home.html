@@ -7,6 +7,7 @@
     <meta name="description" content="Baze is a front-end starter template">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FFFFFF">
 
     <meta property="og:url" content="">
     <meta property="og:title" content="">
@@ -35,9 +36,18 @@
     <![endif]-->
 
     <div class="sticky-footer-container">
-        <div class="sticky-footer-container-item">Header</div>
-        <div class="sticky-footer-container-item --pushed">Content</div>
-        <div class="sticky-footer-container-item">Footer</div>
+        <div class="sticky-footer-container-item">
+            <header>
+                <h1 class="sr-only">Suit Baze</h1>
+                <a href="#" class="site-logo">Logo</a>
+            </header>
+        </div>
+        <div class="sticky-footer-container-item --pushed">
+            <main>Main</main>
+        </div>
+        <div class="sticky-footer-container-item">
+            <footer>Footer</footer>
+        </div>
     </div>
 
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,promise,fetch" defer></script>
