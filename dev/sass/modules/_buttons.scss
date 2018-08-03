@@ -5,7 +5,7 @@
 
     &:hover,
     &:focus {
-
+        outline: none;
     }
 
     &[disabled],
@@ -43,4 +43,8 @@
 
 .btn--block {
     width: 100%;
+}
+
+.btn--primary {
+    @include btnStyle(palette(primary), #FFF);
 }
