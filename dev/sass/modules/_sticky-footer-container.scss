@@ -16,6 +16,7 @@ body {
     height: 1px;
 
     &.\--pushed {
-        height: auto;
+        // height: auto;
+        height: 100%;
     }
 }
