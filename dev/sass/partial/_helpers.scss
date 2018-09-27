@@ -80,7 +80,7 @@
     visibility: hidden;
 }
 
-.full-width {
+.full-width, .\--full {
     width: 100%;
 }
 
@@ -96,5 +96,19 @@ $gaps: 0, 2, 4, 8, 12, 16, 20, 24, 32, 36;
 @each $state, $color in $palettes {
     .text-#{$state} {
         color: $color;
+    }
+
+    .bg-#{$state} {
+        background-color: $color;
+    }
+}
+
+@each $state, $color in $light-palettes {
+    .text-#{$state} {
+        color: $color;
+    }
+
+    .bg-#{$state} {
+        background-color: $color;
     }
 }
