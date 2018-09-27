@@ -1,2 +1,33 @@
 @import "mq";
 @import "brandscolor";
+
+@mixin objPos($yPos, $xPos, $y: 0, $x: 0) {
+	#{$yPos} : $y;
+	#{$xPos} : $x;
+}
+
+@mixin objDimension($w, $h) {
+	width: $w;
+	height: $h;
+}
+
+@mixin objAbsFull() {
+	@include objPos(top,  left);
+	@include objDimension(100%,  100%);
+	position: absolute;
+}
+
+@mixin fontSize($px) {
+	font-size: ($px / $base_px_font_size) * 1em;
+}
+
+@mixin transformPos($x, $y) {
+	transform: translate($x, $y);
+}
+
+@mixin triangle($pos, $pos2, $pos3, $width, $color) {
+	border-#{$pos2} : $width solid transparent;
+	border-#{$pos3} : $width solid transparent;
+	border-#{$pos} : $width solid $color;
+	display: block;
+}
