@@ -15,14 +15,14 @@ $MINOR_SIXTH    : 1.6;
 $MAJOR_SIXTH    : 1.667;
 $MINOR_SEVENTH  : 1.778;
 
-$RATIO          : $PERFECT_FOURTH;
-
+$RATIO          : $MINOR_THIRD;
+$base_line_height_em : $base_line_height * 1em;
 
 // Functions and Mixins
 // ------------------------------------------------------------------------ //
 
 @function getLineHeight($font_size) {
-    $temp: $base_line_height / $font_size * 1em;
+    $temp: $base_line_height_em / $font_size * 1em;
 
     @if $temp < 1em {
         @return $temp * 1.5;
@@ -32,9 +32,9 @@ $RATIO          : $PERFECT_FOURTH;
 }
 
 @function getMarginBottom($font_size) {
-    $temp: $base_line_height / $font_size * 1em;
+    $temp: $base_line_height_em / $font_size * 1em;
 
-    @return $temp;
+    @return $temp / 1.6;
 }
 
 @mixin typography_getStyle($multiplier, $direction: 'up') {
@@ -66,7 +66,7 @@ $RATIO          : $PERFECT_FOURTH;
 // Styles
 // ------------------------------------------------------------------------ //
 
-$multiplier: 3 * 1;
+$multiplier: 5 * 1;
 
 @each $heading in $headings {
 
