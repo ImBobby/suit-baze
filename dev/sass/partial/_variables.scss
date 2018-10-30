@@ -5,7 +5,7 @@ $base_px_font_size  : 16;
 $base_font_size     : $base_px_font_size * 1px;
 $base_line_height   : 1.6;
 $base_font_family   : -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-$space              : $base_line_height;
+$space              : $base_line_height * 1em;
 
 
 
