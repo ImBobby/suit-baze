@@ -158,9 +158,9 @@ gulp.task('image:compress', () => {
 
 gulp.task('fonts', () => {
     return gulp
-        .src(`${paths.dev}fonts/*`)
-        .pipe(plugins.changed(`${paths.build}fonts`))
-        .pipe(gulp.dest(`${paths.build}fonts`))
+        .src(`${paths.dev}webfonts/*`)
+        .pipe(plugins.changed(`${paths.build}webfonts`))
+        .pipe(gulp.dest(`${paths.build}webfonts`))
         .pipe(plugins.livereload())
 })
 
