@@ -226,7 +226,7 @@ gulp.task('watch', ['default'], () => {
     gulp.watch(`${paths.dev}img/*`, ['image:compress'])
 
     // Fonts
-    gulp.watch(`${paths.dev}fonts/*`, ['fonts'])
+    gulp.watch(`${paths.dev}webfonts/*`, ['fonts'])
 
     // Copy CSS
     gulp.watch(`${paths.dev}css/*`, ['stylesheet:copy_vendor_css'])
