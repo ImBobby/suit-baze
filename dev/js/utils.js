@@ -197,3 +197,7 @@ export function createSlider(opts = {}) {
         })
     }
 }
+
+export function escKeyPress(e) {
+    return e.keyCode == 27;
+}
