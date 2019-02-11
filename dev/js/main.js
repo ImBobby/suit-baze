@@ -7,11 +7,14 @@ const App = {
     activeStateMobile,
     WPViewportFix,
     objectFitPolyfill,
-    formValidation,
+    formValidation
 }
 
 for (let fn in App) {
-    App[fn]()
+    if(fn[0] !== '_')
+        App[fn]()
 }
+
+window.Site = App
 
 export default App
