@@ -1,4 +1,4 @@
-/*! Baze Validation v1.2.0 | (c) @_bobbylie | http://git.io/bxW4 */
+/*! Baze Validation v1.2.1 | (c) @_bobbylie | http://git.io/bxW4 */
 
 ;(function ( $, window, document, undefined ) {
 
@@ -76,6 +76,7 @@
     var addMessage = function ( field, message ) {
       var hasMsg  = field.next('.' + userOpts.classMsg),
           id      = getUID(),
+          msgTxt  = field.attr('data-invalid'),
           msg     = $(document.createElement('span'));
 
 
@@ -86,6 +87,11 @@
         hasMsg.remove();
       }
 
+      if (msgTxt === undefined) {
+        message = message
+      } else {
+        message = msgTxt
+      }
 
       /**
        * Add aria-describedBy and aria-invalid to invalid field
@@ -102,7 +108,7 @@
       msg
         .addClass( userOpts.classMsg )
         .attr('id', id)
-        .text( message )
+        .html( '<span>'+message+'</span>' )
         .insertAfter( field );
     };
 
@@ -278,6 +284,10 @@
 
       if ( valid && $.isFunction(userOpts.onValidated) ) {
         userOpts.onValidated(evt);
+      }
+
+      if ( valid ) {
+        $this.addClass('is-submitting')
       }
     };
 
