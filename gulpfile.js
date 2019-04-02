@@ -195,7 +195,7 @@ gulp.task('clean', () => {
 /* Task: Default
 --------------------------------------------------------------------------------- */
 
-gulp.task('default', [
+gulp.task('default', gulp.series(
     'stylesheet:copy_vendor_css',
     'stylesheet:compile',
     'javascript:compile',
@@ -203,52 +203,51 @@ gulp.task('default', [
     'image:compress',
     'fonts',
     'watch:htmlPHP'
-])
-
-
+))
 
 
 /* Task: Watch
 --------------------------------------------------------------------------------- */
 
-gulp.task('watch', ['default'], () => {
+gulp.task('stream', () => {
     plugins.livereload.listen()
     // SASS
-    gulp.watch(`${paths.dev}sass/**/*.scss`, ['stylesheet:compile'])
+    gulp.watch(`${paths.dev}sass/**/*.scss`, gulp.series('stylesheet:compile'))
 
     // esNext
-    gulp.watch(`${paths.dev}js/*.js`, ['javascript:compile'])
+    gulp.watch(`${paths.dev}js/*.js`, gulp.series('javascript:compile'))
 
     // Uglify
-    gulp.watch(`${paths.dev}js/vendor/*.js`, ['javascript:copy_vendor_js'])
+    gulp.watch(`${paths.dev}js/vendor/*.js`, gulp.series('javascript:copy_vendor_js'))
 
-    // Imagemin
-    gulp.watch(`${paths.dev}img/*`, ['image:compress'])
+    // // Imagemin
+    gulp.watch(`${paths.dev}img/*`, gulp.series('image:compress'))
 
     // Fonts
-    gulp.watch(`${paths.dev}webfonts/*`, ['fonts'])
+    gulp.watch(`${paths.dev}webfonts/*`,gulp.series( 'fonts'))
 
     // Copy CSS
-    gulp.watch(`${paths.dev}css/*`, ['stylesheet:copy_vendor_css'])
+    gulp.watch(`${paths.dev}css/*`, gulp.series('stylesheet:copy_vendor_css'))
 
-    gulp.watch(['*.html', '*.php', '**/*.php'], ['watch:htmlPHP'])
+    gulp.watch(['*.html', '*.php', '**/*.php'], gulp.series('watch:htmlPHP'))
 })
 
 
+gulp.task('watch', gulp.series('default', 'stream'))
 
 
 /* Task: Build
 --------------------------------------------------------------------------------- */
 
-gulp.task('production', [
+gulp.task('production', gulp.series(
     'stylesheet:compile_and_minify',
     'stylesheet:copy_vendor_css',
     'javascript:compile_and_minify',
     'javascript:minify_vendor_js',
     'image:compress',
     'fonts'
-])
+))
 
-gulp.task('build', ['clean'], () => {
+gulp.task('build', gulp.series('clean'), () => {
     gulp.start('production')
 })
