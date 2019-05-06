@@ -201,3 +201,11 @@ export function createSlider(opts = {}) {
 export function escKeyPress(e) {
     return e.keyCode == 27;
 }
+
+export function summ(a,b) {
+    return a+b
+}
+
+export function summArray(arr) {
+    return arr.reduce(summ)
+}
