@@ -1,24 +1,20 @@
+.flex {
+    display: flex;
+}
 
-.flexbox {
+.flex--wrap {
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
-    .flex {
-        display: flex;
-    }
+.v-center {
+    align-items: center;
+}
 
-    .flex--wrap {
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
+.h-center {
+    justify-content: center;
+}
 
-    .v-center {
-        align-items: center;
-    }
-
-    .h-center {
-        justify-content: center;
-    }
-
-    .v-center--spread {
-        justify-content: space-between;
-    }
+.v-center--spread {
+    justify-content: space-between;
 }

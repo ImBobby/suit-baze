@@ -36,7 +36,7 @@
     <![endif]-->
 
     <?php $h = [1,2,3,4,5,6] ?>
-    <?php $color = ['primary', 'black', 'light-grey', 'white'] ?>
+    <?php $color = ['primary', 'black', 'orange', 'light-grey', 'white'] ?>
 
     <div class="sticky-footer-container">
         <div class="sticky-footer-container-item">

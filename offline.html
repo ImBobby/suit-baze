@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#FFFFFF">
+    <link rel="manifest" href="manifest.json">
 
     <meta property="og:url" content="">
     <meta property="og:title" content="">
@@ -28,34 +29,30 @@
 
     <title>Suit Baze - front-end starter kit</title>
 
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/offline.css">
 </head>
 <body>
     <!--[if lte IE 9]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="sticky-footer-container">
+    <div class="sticky-footer-container flex-container">
         <div class="sticky-footer-container-item">
-            <header>
-                <h1 class="sr-only">Suit Baze</h1>
-                <a href="#" class="site-logo">Logo</a>
+            <header class="p-36 text-center">
+                <img src="assets/img/site-logo.png" alt="" width="60">
             </header>
         </div>
         <div class="sticky-footer-container-item --pushed">
-            <main>Main</main>
+            <main>
+                <div class="container container--small text-center">
+                    <div class="h1">Ooops, You are offline!</div>
+                    <p>Please, check your network connection</p>
+                </div>
+            </main>
         </div>
         <div class="sticky-footer-container-item">
-            <footer>Footer</footer>
+            <footer></footer>
         </div>
     </div>
-
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,promise,fetch" defer></script>
-    <script src="assets/js/vendor/modernizr.min.js" defer></script>
-    <script src="assets/js/vendor/jquery.min.js" defer></script>
-    <script src="assets/js/vendor/object-fit-images.min.js" defer></script>
-    <script src="assets/js/vendor/sprintf.min.js" defer></script>
-    <script src="assets/js/vendor/baze.validate.min.js" defer></script>
-    <script src="assets/js/main.min.js" defer></script>
 </body>
 </html>

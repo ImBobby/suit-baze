@@ -4,7 +4,8 @@
 $base_px_font_size  : 16;
 $base_font_size     : $base_px_font_size * 1px;
 $base_line_height   : 1.6;
-$base_font_family   : -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+$font_serif         : -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+$base_font_family   : $font_serif;
 $space              : $base_line_height * 1em;
 
 
@@ -14,7 +15,8 @@ $space              : $base_line_height * 1em;
 
 $palettes: (
 	'primary': #0094ed,
-    'black': #000
+    'black': #000,
+    'orange': #ff6600
 );
 
 $light-palettes: (
@@ -50,6 +52,7 @@ $link_hover         : darken($link, 10%);
 $selection_bg       : #b3d4fc;
 $selection_color    : $black;
 
+$shadow             : 0 2px 6px rgba($black, 0.4);
 
 
 // Break Points

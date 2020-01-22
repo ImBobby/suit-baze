@@ -12,6 +12,7 @@ const rUglify     = require('rollup-plugin-uglify')
 const plugins     = require('gulp-load-plugins')()
 const rollup      = require('rollup-stream')
 const source      = require('vinyl-source-stream')
+const emailBuild  = require('gulp-inline-css')
 
 const paths = {
     dev     : 'dev/',
@@ -25,10 +26,10 @@ const sassTask = (isMinified = false) => () => {
     const outputStyle = isMinified ? 'compressed' : 'expanded'
     const options = { outputStyle }
     const autoprefixOpts = {
-        browsers: ['last 2 versions']
+        overrideBrowserslist: ['last 2 versions']
     }
 
-    return gulp.src(`${paths.dev}sass/main.scss`)
+    return gulp.src(`${paths.dev}sass/*.scss`)
         .pipe(plugins.sass(options).on('error', plugins.sass.logError))
         .pipe(plugins.postcss([
             prefixer(autoprefixOpts),
@@ -167,6 +168,27 @@ gulp.task('fonts', () => {
 
 
 
+/* Task: Inline css email template
+--------------------------------------------------------------------------------- */
+
+// gulp.task('email:build', () => {
+//     return gulp.src('email_dev/*.html')
+//         .pipe(emailBuild().build())
+//         .pipe(gulp.dest('email_build/'))
+//         .pipe(plugins.livereload())
+// })
+gulp.task('email:build', () => {
+    return gulp.src('email_dev/*.html')
+        .pipe(emailBuild({
+            removeLinkTags: true
+        }))
+        .pipe(gulp.dest('email_build/'))
+        .pipe(plugins.livereload())
+})
+
+
+
+
 /* Task: Watch HTLM and PHP files
 --------------------------------------------------------------------------------- */
 
@@ -202,6 +224,7 @@ gulp.task('default', gulp.series(
     'javascript:copy_vendor_js',
     'image:compress',
     'fonts',
+    'email:build',
     'watch:htmlPHP'
 ))
 
@@ -229,12 +252,22 @@ gulp.task('stream', () => {
     // Copy CSS
     gulp.watch(`${paths.dev}css/*`, gulp.series('stylesheet:copy_vendor_css'))
 
+    // watch html
     gulp.watch(['*.html', '*.php', '**/*.php'], gulp.series('watch:htmlPHP'))
 })
 
 
 gulp.task('watch', gulp.series('default', 'stream'))
 
+gulp.task('watch:email_build', () => {
+    plugins.livereload.listen()
+
+    // SASS
+    gulp.watch(`${paths.dev}sass/**/*.scss`, gulp.series('stylesheet:compile'))
+
+    // Compile email template
+    gulp.watch(`email_dev/*.html`, gulp.series('email:build'))
+})
 
 /* Task: Build
 --------------------------------------------------------------------------------- */
@@ -245,6 +278,7 @@ gulp.task('production', gulp.series(
     'javascript:compile_and_minify',
     'javascript:minify_vendor_js',
     'image:compress',
+    'email:build',
     'fonts'
 ))
 

@@ -1,6 +1,6 @@
 {
   "name": "suit-baze",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "authors": [
     "Suitmedia"
   ],
@@ -21,11 +21,11 @@
     "gulp-babel": "^7.0.0",
     "gulp-changed": "^3.1.0",
     "gulp-clean-css": "^3.9.0",
-    "gulp-imagemin": "^5.0.3",
+    "gulp-imagemin": "^6.2.0",
     "gulp-livereload": "^4.0.1",
     "gulp-load-plugins": "^1.4.0",
-    "gulp-postcss": "^7.0.0",
-    "gulp-rename": "^1.2.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.0",
     "gulp-watch": "^5.0.1",
@@ -35,6 +35,7 @@
     "rollup-stream": "^1.24.1",
     "vinyl-source-stream": "^2.0.0",
     "gulpsmith": "^0.6.0",
-    "metalsmith": "^2.3.0"
+    "metalsmith": "^2.3.0",
+    "gulp-inline-css": "^3.4.0"
   }
 }

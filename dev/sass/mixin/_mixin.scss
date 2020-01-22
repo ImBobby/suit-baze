@@ -11,9 +11,14 @@
 	height: $h;
 }
 
+@mixin elSize($w, $h : $w) {
+    width: $w;
+    height: $h;
+}
+
 @mixin objAbsFull() {
 	@include objPos(top,  left);
-	@include objDimension(100%,  100%);
+	@include elSize(100%);
 	position: absolute;
 }
 
@@ -30,4 +35,50 @@
 	border-#{$pos3} : $width solid transparent;
 	border-#{$pos} : $width solid $color;
 	display: block;
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+       @content;
+    }
+
+    &:-moz-placeholder {
+       @content;
+    }
+
+    &::-moz-placeholder {
+       @content;
+    }
+
+    &:-ms-input-placeholder {
+       @content;
+    }
+}
+
+@mixin rounded($t, $r : $t, $b : $t, $l : $t) {
+    border-radius: $t $r $b $l;
+}
+
+@mixin pseudo-block($position: null) {
+    content: '';
+    display: block;
+    @if ($position) { position: $position; }
+}
+
+@mixin ellipsis-multiline($font-size: 1rem, $line-height: 1, $lines-to-show: 2) {
+    display: block;
+    //* Fallback for non-webkit */
+    display: -webkit-box;
+    max-height: $font-size*$line-height*$lines-to-show;
+    //* Fallback for non-webkit */
+    font-size: $font-size;
+    line-height: $line-height;
+    -webkit-line-clamp: $lines-to-show;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin gradient($dir, $start, $stop) {
+    background-image: linear-gradient($dir, $start, $stop);
 }

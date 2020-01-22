@@ -1,0 +1,21 @@
+
+.flexbox {
+
+    .v-center {
+        display: flex;
+        align-items: center;
+
+        > * {
+            flex: 0 1 auto;
+            margin-bottom: 0;
+
+            + * {
+                margin-left: $space;
+            }
+        }
+    }
+
+    .v-center--spread {
+        justify-content: space-between;
+    }
+}

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#FFFFFF">
+    <link rel="manifest" href="manifest.json">
 
     <meta property="og:url" content="">
     <meta property="og:title" content="">
@@ -50,12 +51,33 @@
         </div>
     </div>
 
+    <section id="installBanner" class="p-16 banner-install">
+        <h5>Install Baze App?</h5>
+        <div class="flex">
+            <button id="skipInstallBtn" class="btn mr-8">Next time</button>
+            <button id="installBtn" class="btn--primary">Install app</button>
+        </div>
+    </section>
+
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,promise,fetch" defer></script>
-    <script src="assets/js/vendor/modernizr.min.js" defer></script>
     <script src="assets/js/vendor/jquery.min.js" defer></script>
     <script src="assets/js/vendor/object-fit-images.min.js" defer></script>
     <script src="assets/js/vendor/sprintf.min.js" defer></script>
     <script src="assets/js/vendor/baze.validate.min.js" defer></script>
     <script src="assets/js/main.min.js" defer></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('baze-sw.js')
+                .then(reg => {
+                    console.log('😎', reg);
+                })
+                .catch(err => {
+                    console.log('😥', err);
+                })
+            });
+        }
+    </script>
 </body>
 </html>

@@ -1,9 +1,11 @@
+import installApp from './installApp'
 import activeStateMobile from './activeStateMobile'
 import WPViewportFix from './windowsPhoneViewportFix'
 import objectFitPolyfill from './objectFitPolyfill'
 import formValidation from './formValidation'
 
 const App = {
+	installApp,
     activeStateMobile,
     WPViewportFix,
     objectFitPolyfill,

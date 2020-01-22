@@ -1,28 +1,7 @@
 /*! [PROJECT_NAME] | Suitmedia */
-
-//	1. Font-face
-//	2. Basic styles
-//	3. Header
-//	4. Page styles
-//	5. Footer
-
 @import "partial/normalize";
 @import "partial/variables";
 @import "partial/resets";
-@import "partial/helpers";
-@import "partial/print";
-
-@import "mixin/mixin";
-@import "modules/modules";
-@import "plugin/plugin";
-
-// 1 Font-face
-// ------------------------------------------------------------------------ //
-
-
-
-// 2 Basic styles
-// ------------------------------------------------------------------------ //
 
 html {
     font: 400 $base_font_size $base_font_family;
@@ -53,12 +32,16 @@ button {
     }
 }
 
-.block {
-    margin-bottom: $space;
+.h1 {
+    font-size: 2.48832em;
+    line-height: 0.96451em;
+    margin: 0 0 0.40188em 0;
 }
 
-.block-half {
-    margin-bottom: ($space / 2);
+p {
+    font-size: 1em;
+    line-height: 1.6em;
+    margin: 0 0 1em 0;
 }
 
 .container {
@@ -69,35 +52,31 @@ button {
     @media #{$medium} {
         width: 94%;
     }
-
-    @media #{$extra_large} {
-        max-width: 1280px;
-    }
 }
 
-// 3 Header
-// ------------------------------------------------------------------------ //
-
-
-// 4 Page styles
-// ------------------------------------------------------------------------ //
-.position {
-    @include objDimension(100%,  auto);
-    @include objPos(top,  left);
-    @include fontSize(69);
-    position: relative;
-    color: palette('light-grey');
-
-    &:after {
-        content: '';
-        @include triangle(left, top, bottom, 12px, $black);
-    }
+.text-center {
+    text-align: center;
 }
 
-// 5 Footer
+$gaps: 0, 2, 4, 8, 12, 16, 20, 24, 32, 36;
+
+@each $gap in $gaps {
+    .p-#{$gap} { padding: $gap * 1px !important; }
+}
+
+// Header
 // ------------------------------------------------------------------------ //
 
-// 6 Banner Prompt
+// Page styles
+// ------------------------------------------------------------------------ //
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    justify-content: center;
+}
+
+// Banner Prompt
 // ------------------------------------------------------------------------ //
 .banner-install {
     position: fixed;
