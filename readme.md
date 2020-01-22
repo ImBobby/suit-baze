@@ -3,11 +3,11 @@
 
 ## Getting started
 
-Recommended way to install suit-baze is via [yo generator](https://github.com/ImBobby/generator-suit-baze).
+Recommended way to install suit-baze is via [yo generator](https://github.com/suitmedia/generator-suit-baze).
 ```Bash
 yo suit-baze
 ```
-or download from the [latest zip file](https://github.com/ImBobby/suit-baze/releases) or clone this repo.
+or download from the [latest zip file](https://github.com/suitmedia/suit-baze/releases) or clone this repo.
 
 ## What's included
 
@@ -16,11 +16,10 @@ or download from the [latest zip file](https://github.com/ImBobby/suit-baze/rele
 * [Babel](https://babeljs.io/)
 * [Normalize](https://github.com/necolas/normalize.css/)
 * [Baze Grid](https://github.com/ImBobby/Baze-Grid)
-* [Modernizr](https://github.com/Modernizr/Modernizr)
+* [Modernizr](https://github.com/Modernizr/Modernizr) (optional)
 * [jQuery](https://github.com/jquery/jquery)
 * [Fastclick](https://github.com/ftlabs/fastclick)
 * [Gulp](https://github.com/gulpjs/gulp) build system
-* [Bower](https://github.com/bower/bower) manifest
 * Vertical rhythm system
 * [Facebook Open Graph meta tag](https://developers.facebook.com/docs/sharing/webmasters#basic)
 * [Twitter Card meta tag](https://dev.twitter.com/cards/types/summary-large-image)
