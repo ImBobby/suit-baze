@@ -1,5 +1,22 @@
 const cacheName         = 'baze-cache-v1';
-const paths             = 'http://localhost/project-folder/_frontend'
+let paths
+let pageLocation        = location;
+let origin              = pageLocation.origin;
+let pathname            = pageLocation.pathname.split('/')[1];
+let stagingFrontend     = 'https://frontend.suitdev.com';
+let local               = 'localhost';
+let frontendFolder      = '_frontend';
+let locationHref        = pageLocation.href;
+
+if(origin === stagingFrontend) {
+    paths = origin + '/' + pathname
+} else if (origin.includes(local)) {
+    let localPath = locationHref.split(frontendFolder)[0] + frontendFolder
+    paths = localPath
+} else {
+    paths = '.'
+}
+
 const offlinePageUrl    = `${paths}/offline.html`
 const precacheResources = [
     offlinePageUrl,
