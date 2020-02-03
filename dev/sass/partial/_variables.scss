@@ -1,11 +1,12 @@
 
 // Typography
 // ------------------------------------------------------------------------ //
-
-$base_font_size     : 16px;
-$base_line_height   : 1.6em;
-$base_font_family   : -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-$space              : $base_line_height;
+$base_px_font_size  : 16;
+$base_font_size     : $base_px_font_size * 1px;
+$base_line_height   : 1.6;
+$font_serif         : -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+$base_font_family   : $font_serif;
+$space              : $base_line_height * 1em;
 
 
 
@@ -13,19 +14,28 @@ $space              : $base_line_height;
 // ------------------------------------------------------------------------ //
 
 $palettes: (
-    black: #222
+	'primary': #0094ed,
+    'black': #000,
+    'orange': #ff6600
+);
+
+$light-palettes: (
+    'light-grey': #D3D3D3,
+    'white': #FFF
 );
 
 @function palette($color) {
     @if map-has-key($palettes, $color) {
         @return map-get($palettes, $color);
+    } @else if map-has-key($light-palettes, $color) {
+        @return map-get($light-palettes, $color);
     } @else {
-        @warn "key `#{$color}` was not found. Falling back to #222";
-        @return #222;
+        @warn "key `#{$color}` was not found. Falling back to #000";
+        @return #000;
     }
 }
 
-$black              : #222;
+$black              : #000;
 $black90            : lighten($black, 10%);
 $black80            : lighten($black, 20%);
 $black70            : lighten($black, 30%);
@@ -42,20 +52,22 @@ $link_hover         : darken($link, 10%);
 $selection_bg       : #b3d4fc;
 $selection_color    : $black;
 
+$shadow             : 0 2px 6px rgba($black, 0.4);
 
 
 // Break Points
 // ------------------------------------------------------------------------ //
 
-$small              : "screen and (min-width: 20em)";
-$small_portrait     : "screen and (min-width: 20em) and (orientation: portrait)";
-$small_landscape    : "screen and (min-width: 20em) and (orientation: landscape)";
+$small              : "screen and (min-width: 28em)";
+$small_portrait     : "screen and (min-width: 28em) and (orientation: portrait)";
+$small_landscape    : "screen and (min-width: 28em) and (orientation: landscape)";
 
 $medium             : "screen and (min-width: 48em)";
 $medium_portrait    : "screen and (min-width: 48em) and (orientation: portrait)";
 $medium_landscape   : "screen and (min-width: 48em) and (orientation: landscape)";
 
 $large              : "screen and (min-width: 64em)";
+$extra_large        : "screen and (min-width: 75em)";
 
 $retina             : "(-webkit-min-device-pixel-ratio: 1.3),
                        (min-resolution: 1.25dppx),

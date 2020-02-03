@@ -2,8 +2,15 @@
 .responsive-media {
     position: relative;
     height: 0;
-    padding-bottom: 56.25%;
     overflow: hidden;
+
+    &.r-16-9 {
+        padding-bottom: 56.25%;
+    }
+
+    &.r-1, &.r-square {
+        padding-bottom: 100%;
+    }
 
     > * {
         position: absolute;

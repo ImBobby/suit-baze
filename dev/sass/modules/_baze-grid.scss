@@ -7,6 +7,7 @@ $BZG_COUNT      : 12 !default;
 $BZG_GUTTER     : 25 * 1px !default;
 $BZG_MEDIUM     : 48 * 1em !default;
 $BZG_LARGE      : 64 * 1em !default;
+$BZG_XLARGE     : 75 * 1em !default;
 
 @function bzgSize($size) {
     @return $size / $BZG_COUNT * 100%;
@@ -44,6 +45,8 @@ $BZG_LARGE      : 64 * 1em !default;
     min-height: 1px;
     padding-left: $BZG_GUTTER;
     box-sizing: border-box;
+
+    
 }
 
 @for $i from 1 through $BZG_COUNT {
@@ -88,6 +91,24 @@ $BZG_LARGE      : 64 * 1em !default;
         }
 
         .bzg_c[data-offset*="l#{$i}"] {
+            margin-left: bzgSize($i);
+        }
+    }
+
+}
+
+@media screen and (min-width: #{$BZG_XLARGE}) {
+
+    .bzg_c[data-col*="x"] {
+        margin-left: 0;
+    }
+
+    @for $i from 1 through $BZG_COUNT {
+        .bzg_c[data-col*="x#{$i}"] {
+            width: bzgSize($i);
+        }
+
+        .bzg_c[data-offset*="x#{$i}"] {
             margin-left: bzgSize($i);
         }
     }

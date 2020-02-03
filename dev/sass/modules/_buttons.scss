@@ -1,30 +1,12 @@
-
-@mixin btnStyle($bg, $color: #fff) {
-    color: $color;
-    background: $bg;
-
-    &:hover,
-    &:focus {
-
-    }
-
-    &[disabled],
-    &.disabled {
-
-    }
-}
-
 .btn {
     display: inline-block;
     padding: 8px 24px;
-    border: 0;
+    border: 1px solid;
     font-family: inherit;
     line-height: $base_line_height;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
-    color: $black80;
-    background: #ddd;
     cursor: pointer;
     user-select: none;
 
@@ -41,6 +23,45 @@
     }
 }
 
+
+@mixin btnStyle($bg, $color: #fff, $shade: dark) {
+    @extend .btn;
+    color: $color;
+    background: $bg;
+
+    @if $shade == dark {
+        border-color: $bg;
+    } @else {
+        border-color: darken($bg, 9%);
+    }
+
+    &:hover,
+    &:focus {
+        @if $shade == dark {
+            background: lighten($bg, 10%);
+        } @else if $shade == light {
+            background: darken($bg, 9%);
+        }
+    }
+
+    &[disabled],
+    &.disabled {
+        opacity: .6;
+    }
+}
+
 .btn--block {
     width: 100%;
+}
+
+@each $state, $color in $palettes {
+    .btn--#{$state} {
+        @include btnStyle($color);
+    }
+}
+
+@each $state, $color in $light-palettes {
+    .btn--#{$state} {
+        @include btnStyle($color, $black80, light);
+    }
 }

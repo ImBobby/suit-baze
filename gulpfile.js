@@ -12,6 +12,7 @@ const rUglify     = require('rollup-plugin-uglify')
 const plugins     = require('gulp-load-plugins')()
 const rollup      = require('rollup-stream')
 const source      = require('vinyl-source-stream')
+const emailBuild  = require('gulp-inline-css')
 
 const paths = {
     dev     : 'dev/',
@@ -25,10 +26,10 @@ const sassTask = (isMinified = false) => () => {
     const outputStyle = isMinified ? 'compressed' : 'expanded'
     const options = { outputStyle }
     const autoprefixOpts = {
-        browsers: ['last 2 versions']
+        overrideBrowserslist: ['last 2 versions']
     }
 
-    return gulp.src(`${paths.dev}sass/main.scss`)
+    return gulp.src(`${paths.dev}sass/*.scss`)
         .pipe(plugins.sass(options).on('error', plugins.sass.logError))
         .pipe(plugins.postcss([
             prefixer(autoprefixOpts),
@@ -158,9 +159,30 @@ gulp.task('image:compress', () => {
 
 gulp.task('fonts', () => {
     return gulp
-        .src(`${paths.dev}fonts/*`)
-        .pipe(plugins.changed(`${paths.build}fonts`))
-        .pipe(gulp.dest(`${paths.build}fonts`))
+        .src(`${paths.dev}webfonts/*`)
+        .pipe(plugins.changed(`${paths.build}webfonts`))
+        .pipe(gulp.dest(`${paths.build}webfonts`))
+        .pipe(plugins.livereload())
+})
+
+
+
+
+/* Task: Inline css email template
+--------------------------------------------------------------------------------- */
+
+// gulp.task('email:build', () => {
+//     return gulp.src('email_dev/*.html')
+//         .pipe(emailBuild().build())
+//         .pipe(gulp.dest('email_build/'))
+//         .pipe(plugins.livereload())
+// })
+gulp.task('email:build', () => {
+    return gulp.src('email_dev/*.html')
+        .pipe(emailBuild({
+            removeLinkTags: true
+        }))
+        .pipe(gulp.dest('email_build/'))
         .pipe(plugins.livereload())
 })
 
@@ -195,60 +217,71 @@ gulp.task('clean', () => {
 /* Task: Default
 --------------------------------------------------------------------------------- */
 
-gulp.task('default', [
+gulp.task('default', gulp.series(
     'stylesheet:copy_vendor_css',
     'stylesheet:compile',
     'javascript:compile',
     'javascript:copy_vendor_js',
     'image:compress',
     'fonts',
+    'email:build',
     'watch:htmlPHP'
-])
-
-
+))
 
 
 /* Task: Watch
 --------------------------------------------------------------------------------- */
 
-gulp.task('watch', ['default'], () => {
+gulp.task('stream', () => {
     plugins.livereload.listen()
     // SASS
-    gulp.watch(`${paths.dev}sass/**/*.scss`, ['stylesheet:compile'])
+    gulp.watch(`${paths.dev}sass/**/*.scss`, gulp.series('stylesheet:compile'))
 
     // esNext
-    gulp.watch(`${paths.dev}js/*.js`, ['javascript:compile'])
+    gulp.watch(`${paths.dev}js/*.js`, gulp.series('javascript:compile'))
 
     // Uglify
-    gulp.watch(`${paths.dev}js/vendor/*.js`, ['javascript:copy_vendor_js'])
+    gulp.watch(`${paths.dev}js/vendor/*.js`, gulp.series('javascript:copy_vendor_js'))
 
-    // Imagemin
-    gulp.watch(`${paths.dev}img/*`, ['image:compress'])
+    // // Imagemin
+    gulp.watch(`${paths.dev}img/*`, gulp.series('image:compress'))
 
     // Fonts
-    gulp.watch(`${paths.dev}fonts/*`, ['fonts'])
+    gulp.watch(`${paths.dev}webfonts/*`,gulp.series( 'fonts'))
 
     // Copy CSS
-    gulp.watch(`${paths.dev}css/*`, ['stylesheet:copy_vendor_css'])
+    gulp.watch(`${paths.dev}css/*`, gulp.series('stylesheet:copy_vendor_css'))
 
-    gulp.watch(['*.html', '*.php', '**/*.php'], ['watch:htmlPHP'])
+    // watch html
+    gulp.watch(['*.html', '*.php', '**/*.php'], gulp.series('watch:htmlPHP'))
 })
 
 
+gulp.task('watch', gulp.series('default', 'stream'))
 
+gulp.task('watch:email_build', () => {
+    plugins.livereload.listen()
+
+    // SASS
+    gulp.watch(`${paths.dev}sass/**/*.scss`, gulp.series('stylesheet:compile'))
+
+    // Compile email template
+    gulp.watch(`email_dev/*.html`, gulp.series('email:build'))
+})
 
 /* Task: Build
 --------------------------------------------------------------------------------- */
 
-gulp.task('production', [
+gulp.task('production', gulp.series(
     'stylesheet:compile_and_minify',
     'stylesheet:copy_vendor_css',
     'javascript:compile_and_minify',
     'javascript:minify_vendor_js',
     'image:compress',
+    'email:build',
     'fonts'
-])
+))
 
-gulp.task('build', ['clean'], () => {
+gulp.task('build', gulp.series('clean'), () => {
     gulp.start('production')
 })

@@ -80,19 +80,40 @@
     visibility: hidden;
 }
 
-.full-width {
+.full-width, .\--full {
     width: 100%;
 }
 
-$gaps: 0, 2, 4, 8, 12, 16, 20, 24;
+$gaps: 0, 2, 4, 8, 12, 16, 20, 24, 32, 36;
 
 @each $gap in $gaps {
     .mb-#{$gap} { margin-bottom: $gap * 1px !important; }
-    .p-#{$gap} { padding: $gap * 1px !important; }
+    .mr-#{$gap} { margin-right: $gap * 1px !important; }
+    .ml-#{$gap} { margin-left: $gap * 1px !important; }
+    .mt-#{$gap} { margin-top: $gap * 1px !important; }
+    .pb-#{$gap} { padding-bottom: $gap * 1px !important; }
+    .pr-#{$gap} { padding-right: $gap * 1px !important; }
+    .pl-#{$gap} { padding-left: $gap * 1px !important; }
+    .pt-#{$gap} { padding-top: $gap * 1px !important; }
+    .p-#{$gap}  { padding: $gap * 1px !important; }
 }
 
 @each $state, $color in $palettes {
     .text-#{$state} {
         color: $color;
+    }
+
+    .bg-#{$state} {
+        background-color: $color;
+    }
+}
+
+@each $state, $color in $light-palettes {
+    .text-#{$state} {
+        color: $color;
+    }
+
+    .bg-#{$state} {
+        background-color: $color;
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "suit-baze",
-  "version": "3.0.0",
+  "version": "3.7.0",
   "authors": [
     "Suitmedia"
   ],
@@ -8,32 +8,34 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ImBobby/suit-baze"
+    "url": "https://github.com/suitmedia/suit-baze"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.4",
-    "babel-core": "^6.26.0",
+    "autoprefixer": "^9.5.0",
+    "babel-core": "^6.26.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.7.0",
     "beepbeep": "^1.2.0",
     "del": "^3.0.0",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-changed": "^3.1.0",
     "gulp-clean-css": "^3.9.0",
-    "gulp-imagemin": "^3.1.1",
-    "gulp-livereload": "^3.8.1",
+    "gulp-imagemin": "^6.2.0",
+    "gulp-livereload": "^4.0.1",
     "gulp-load-plugins": "^1.4.0",
-    "gulp-postcss": "^7.0.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "^3.1.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.0",
-    "gulp-util": "^3.0.8",
-    "gulp-watch": "^4.3.11",
+    "gulp-watch": "^5.0.1",
     "postcss-object-fit-images": "^1.1.2",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-uglify": "^2.0.1",
     "rollup-stream": "^1.24.1",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^2.0.0",
+    "gulpsmith": "^0.6.0",
+    "metalsmith": "^2.3.0",
+    "gulp-inline-css": "^3.4.0"
   }
 }

@@ -1,4 +1,4 @@
-/*! Baze Validation v1.2.0 | (c) @_bobbylie | http://git.io/bxW4 */
+/*! Baze Validation v1.2.5 | (c) @_bobbylie | http://git.io/bxW4 */
 
 ;(function ( $, window, document, undefined ) {
 
@@ -76,6 +76,9 @@
     var addMessage = function ( field, message ) {
       var hasMsg  = field.next('.' + userOpts.classMsg),
           id      = getUID(),
+          msgTxt  = field.attr('data-invalid'),
+          types   = field.attr('type'),
+          isCheck = types === 'checkbox' || types === 'radio',
           msg     = $(document.createElement('span'));
 
 
@@ -86,6 +89,11 @@
         hasMsg.remove();
       }
 
+      if (msgTxt === undefined) {
+        message = message
+      } else {
+        message = msgTxt
+      }
 
       /**
        * Add aria-describedBy and aria-invalid to invalid field
@@ -102,8 +110,12 @@
       msg
         .addClass( userOpts.classMsg )
         .attr('id', id)
-        .text( message )
+        .html( '<span>'+message+'</span>' )
         .insertAfter( field );
+
+      if ( isCheck ) {
+        msg.addClass('msg-input-check')
+      }
     };
 
 
@@ -142,6 +154,54 @@
       });
 
       return allIsWell;
+    };
+
+
+    var validateCheckedInput = function (fields) {
+        var allIsWell = true,
+            group     = '.form-check-group',
+            item      = '.form-check__item',
+            isItem    = true;
+
+        fields.each( function () {
+            var $field      = $(this),
+                $group      = $field.closest(group),
+                $item       = $field.closest(item),
+                $allItem    = $item.siblings(),
+                allItem     = $allItem.length,
+                fieldType   = $field.attr('type'),
+                isCheckbox  = fieldType === 'checkbox',
+                isRadio     = fieldType === 'radio',
+                fieldName   = $field.attr('name'),
+                $sameName   = $('input[name="'+fieldName+'"]');
+
+            if ( this.hasAttribute('disabled') ) return;
+
+            if(isCheckbox || isRadio) {
+                if ( $field.is(':checked') || $sameName.is(':checked')) {
+                    $field.addClass( userOpts.classValid );
+                } else if ($group.length) {
+                    var $last;
+
+                    if(allItem < 1) {
+                        $last = $item;
+                    } else {
+                        $last = $allItem.eq($allItem.length - 1);
+                    }
+                    $group.addClass( userOpts.classInvalid );
+                    addMessage( $last, userOpts.msgEmpty );
+
+                    allIsWell = false;
+                } else {
+                    $field.addClass( userOpts.classInvalid );
+                    addMessage( $field, userOpts.msgEmpty );
+
+                    allIsWell = false;
+                }
+            }
+        });
+
+        return allIsWell;
     };
 
 
@@ -266,6 +326,9 @@
       isOK = validateEmpty( fields );
       checkValidationResult();
 
+      isOK = validateCheckedInput( fields );
+      checkValidationResult();
+
       isOK = validateEmail( fields );
       checkValidationResult();
 
@@ -279,6 +342,10 @@
       if ( valid && $.isFunction(userOpts.onValidated) ) {
         userOpts.onValidated(evt);
       }
+
+      if ( valid ) {
+        $this.addClass('is-submitting')
+      }
     };
 
 
@@ -286,6 +353,23 @@
      * Attach validateFields on form submit
      */
     this.$element.on('submit', validateFields);
+
+    this.$element.on('blur', '[required]', function() {
+      var $this = $(this),
+          forms = $this.closest('form'),
+          isValid = $this.is(':valid')
+
+      // console.log(isValid)
+      $this.addClass('blured');
+      validateEmpty($this);
+      validateEmail($this);
+      validateNumeric($this);
+
+      // console.log(userOpts.classMsg)
+      if(isValid == true) {
+        $this.next('.'+userOpts.classMsg).remove()
+      }
+    });
 
 
     /**

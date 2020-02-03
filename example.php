@@ -35,6 +35,9 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <?php $h = [1,2,3,4,5,6] ?>
+    <?php $color = ['primary', 'black', 'orange', 'light-grey', 'white'] ?>
+
     <div class="sticky-footer-container">
         <div class="sticky-footer-container-item">
             <header>
@@ -43,7 +46,39 @@
             </header>
         </div>
         <div class="sticky-footer-container-item --pushed">
-            <main>Main</main>
+            <main>
+                <div class="container">
+                    <div class="mb-24">
+                        <h2>Heading</h2>
+                        <?php for ($i=0; $i < sizeof($h); $i++) { ?>
+                            <h<?=$h[$i]?>>Heading <?=$h[$i]?></h<?=$h[$i]?>>
+                        <?php } ?>
+                    </div>
+                    <hr>
+                    <div class="mb-24">
+                        <h2>Heading Style</h2>
+                        <?php for ($i=0; $i < sizeof($h); $i++) { ?>
+                        <p class="h<?=$h[$i]?>">Text size adjust h<?=$h[$i]?></p>
+                        <?php } ?>
+                    </div>
+                    <hr>
+                    <div class="mb-24">
+                        <h2>Text color</h2>
+                        <?php for ($c=0; $c < sizeof($color); $c++) { ?>
+                            <p class="text-<?=$color[$c]?>">Text class color = ".text-<?=$color[$c]?>"</p>
+                        <?php } ?>
+                    </div>
+                    <hr>
+                    <div class="mb-24">
+                        <h2>Buttons</h2>
+                        <?php for ($c=0; $c < sizeof($color); $c++) { ?>
+                            <p>
+                                <button class="btn--<?=$color[$c]?>">Button Color</button>
+                            </p>
+                        <?php } ?>
+                    </div>
+                </div>
+            </main>
         </div>
         <div class="sticky-footer-container-item">
             <footer>Footer</footer>
@@ -54,6 +89,7 @@
     <script src="assets/js/vendor/modernizr.min.js" defer></script>
     <script src="assets/js/vendor/jquery.min.js" defer></script>
     <script src="assets/js/vendor/object-fit-images.min.js" defer></script>
+    <script src="assets/js/vendor/slick.min.js" defer></script>
     <script src="assets/js/vendor/sprintf.min.js" defer></script>
     <script src="assets/js/vendor/baze.validate.min.js" defer></script>
     <script src="assets/js/main.min.js" defer></script>
